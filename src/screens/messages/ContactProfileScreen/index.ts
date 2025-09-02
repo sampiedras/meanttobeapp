@@ -1,0 +1,1 @@
+export {ContactProfileScreen} from './ContactProfileScreen'

@@ -1,0 +1,52 @@
+[
+    {
+      "auto_renew_status_change_date_pst": "2024-02-13 17:09:47 America/Los_Angeles",
+      "auto_renew_status": "false",
+      "original_transaction_id": 2000000523284364,
+      "unified_receipt": {
+        "pending_renewal_info": [
+          {
+            "original_transaction_id": "2000000523284364",
+            "product_id": "a1",
+            "auto_renew_status": "0",
+            "auto_renew_product_id": "a1"
+          }
+        ],
+        "environment": "Sandbox",
+        "status": 0
+      },
+      "auto_renew_status_change_date_ms": "1707872987000",
+      "auto_renew_product_id": "a1",
+      "notification_type": "DID_CHANGE_RENEWAL_STATUS",
+      "auto_renew_status_change_date": "2024-02-14 01:09:47 Etc/GMT",
+      "environment": "Sandbox",
+      "deprecation": "Mon, 5 Jun 2023 23:59:59 GMT",
+      "bvrs": "1",
+      "password": "b4974c30a78d4df2b7dae73accee42de",
+      "bid": "com.meanttobe"
+    },
+    {
+      "notification_type": "DID_RENEW",
+      "password": "b4974c30a78d4df2b7dae73accee42de",
+      "environment": "Sandbox",
+      "auto_renew_product_id": "a1",
+      "auto_renew_status": "true",
+      "unified_receipt": {
+        "status": 0,
+        "environment": "Sandbox",
+        "pending_renewal_info": [
+          {
+            "auto_renew_status": "1",
+            "auto_renew_product_id": "a1",
+            "product_id": "a1",
+            "original_transaction_id": "2000000523284364"
+          }
+        ]
+      },
+      "bid": "com.meanttobe",
+      "bvrs": "1",
+      "original_transaction_id": 2000000523284364,
+      "deprecation": "Mon, 5 Jun 2023 23:59:59 GMT"
+    }
+  ]
+  

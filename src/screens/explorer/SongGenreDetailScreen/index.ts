@@ -1,0 +1,1 @@
+export {SongGenreDetailScreen} from './SongGenreDetailScreen';
