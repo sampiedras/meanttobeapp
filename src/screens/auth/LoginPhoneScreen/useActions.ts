@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import to from "await-to-js";
-import { signIn, signUp } from "aws-amplify/auth";
+import { getCurrentUser, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useForm } from "react-hook-form";
 import { CountryItem } from "react-native-country-codes-picker";
 import * as yup from "yup";
@@ -37,10 +37,10 @@ export const useActionsLoginPhone = ({
 
   const [loading, setLoading] = useState(false);
   const [countrySelected, setCountrySelected] = useState<CountryItem | null>({
-    flag: "🇲🇽",
-    name: { es: "México" },
-    dial_code: "+52",
-    code: "MX",
+    flag: "🇨🇴",
+    name: { es: "Colombia" },
+    dial_code: "+57",
+    code: "CO",
   });
 
   const { control, formState, handleSubmit } = useForm<IFormLoginPhone>({
@@ -56,12 +56,22 @@ export const useActionsLoginPhone = ({
   const handleAuthentication = async (data: IFormLoginPhone) => {
     console.log("entro aqui@@@@@");
     const phone_number = `${countrySelected?.dial_code}${data.phone_number}`;
+
+    console.log('phone_number', phone_number)
     try {
+      // Si ya hay sesión, ciérrala antes de iniciar otra
+      try {
+        await getCurrentUser();
+        await signOut();
+      } catch {}
+
       const { data } = await triggerGetUserByUserName({
         userName: phone_number,
       });
-      console.log("data @@@@@@@", data?.data);
-      if (data?.data.user_exist === true) {
+      console.log("data @@@@@@@", data);
+      // Si NO existe en backend, registremos y luego iniciemos sesión
+      if (data?.data.user_exist === false) {
+        console.log('user no existe → signUp')
         setLoading(true);
         const [err, result] = await to(
           signUp({
@@ -77,6 +87,7 @@ export const useActionsLoginPhone = ({
 
         if (result) {
           const resultSignIn = await signIn({ username: phone_number });
+          console.log('resultSignInresultSignIn', resultSignIn)
           navigate(RootStackRoutes.VERIFY_CODE, {
             username: phone_number,
             resultSignIn: resultSignIn,
@@ -113,9 +124,19 @@ export const useActionsLoginPhone = ({
         }
         setLoading(false);
       } else {
-        showErrorAlert("Your account has been deleted");
+        // Si existe en backend, solo iniciemos sesión y continuemos
+        setLoading(true);
+        const resultSignIn = await signIn({ username: phone_number });
+        navigate(RootStackRoutes.VERIFY_CODE, {
+          username: phone_number,
+          resultSignIn: resultSignIn,
+          lastScreen: RootStackRoutes.LOGIN_PHONE,
+        });
+        setLoading(false);
       }
     } catch (error: any) {
+      console.log("error @@@@@@@", error);
+      console.log("error?.name", error?.name);
       switch (error?.name) {
         case "UserNotFoundException":
           showErrorAlert(

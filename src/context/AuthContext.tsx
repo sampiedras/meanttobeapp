@@ -8,7 +8,7 @@ import {
 import { Platform } from "react-native";
 import messaging from "@react-native-firebase/messaging";
 import { CognitoUserSession } from "amazon-cognito-identity-js";
-import { getCurrentUser, signOut, fetchAuthSession } from "aws-amplify/auth";
+import { fetchAuthSession, getCurrentUser, signOut } from "aws-amplify/auth";
 import Geolocation from "react-native-geolocation-service";
 import Qonversion, {
   Entitlement,
@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const currentUser = await getCurrentUser();
       const session = await fetchAuthSession();
-      
+
       let userName = "";
 
       if (session.tokens?.accessToken?.payload) {
@@ -119,8 +119,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const mockUserSession = {
           getAccessToken: () => ({
             getJwtToken: () => session.tokens?.accessToken?.toString() || "",
-            payload: session.tokens?.accessToken?.payload || {}
-          })
+            payload: session.tokens?.accessToken?.payload || {},
+          }),
         } as CognitoUserSession;
 
         setUserCognito(mockUserSession);

@@ -4,9 +4,9 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import {
-  signInWithRedirect,
-  getCurrentUser,
   fetchAuthSession,
+  getCurrentUser,
+  signInWithRedirect,
 } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
 import { Image, View } from "react-native-ui-lib";
@@ -35,7 +35,10 @@ export const WelcomeScreen = ({
   useEffect(() => {
     if (route.name !== RootStackRoutes.WELCOME) return;
 
+    console.log('paso aquiiiididid')
+
     const unsubscribe = Hub.listen("auth", async ({ payload }) => {
+      console.log('payload @@@@@@@ --->', payload)
       switch (payload.event) {
         case "signInWithRedirect":
         case "signedIn": {
@@ -49,6 +52,8 @@ export const WelcomeScreen = ({
             const { data: check } = await triggerGetCheckUserExist({
               userName: sub,
             });
+
+            console.log('checkcheck', check)
 
             if (check?.exist === true) {
               await setIsLoading(true);
@@ -76,13 +81,7 @@ export const WelcomeScreen = ({
     });
 
     return unsubscribe;
-  }, [
-    route.name,
-    triggerGetCheckUserExist,
-    setIsLoading,
-    checkUserIsAuth,
-    showErrorAlert,
-  ]);
+  }, []);
 
   const handleSignInApple = async () => {
     try {

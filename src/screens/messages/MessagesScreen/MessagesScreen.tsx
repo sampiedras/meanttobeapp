@@ -14,7 +14,6 @@ import {LocalSvg} from 'react-native-svg';
 import {
   ChannelList,
   ChannelPreviewMessenger,
-  DefaultStreamChatGenerics,
 } from 'stream-chat-react-native';
 import FastImage from 'react-native-fast-image';
 import {useActions} from './useActions';

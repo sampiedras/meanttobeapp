@@ -23,6 +23,10 @@ import store from "./libraries/redux";
 import { NotificationProvider } from "./providers/NotificationProvider";
 import { GET_STREAM_API_KEY, QONVERSION_API_KEY } from "./utils/config";
 
+if (__DEV__) {
+  require("../ReactotronConfig");
+}
+
 Assets.loadAssetsGroup("icons", {
   WELCOME_PEOPLE_ICON: require("./assets/image/welcome_people_icon.png"),
 });

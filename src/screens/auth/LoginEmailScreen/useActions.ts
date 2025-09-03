@@ -46,6 +46,7 @@ export const useActionsLoginEmail = ({
       const { data } = await triggerGetCheckUserExist({
         userName: email,
       });
+      console.log("data 🐶🐶🐶🐶🐶🐶", data);
       if (data?.exist === false) {
         setLoading(true);
         const [err, result] = await to(
@@ -83,6 +84,7 @@ export const useActionsLoginEmail = ({
         });
       }
     } catch (error: any) {
+      console.log("error @@@@@@@", error);
       switch (error?.name) {
         case "UserNotFoundException":
           showErrorAlert(
