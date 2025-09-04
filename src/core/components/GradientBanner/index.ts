@@ -1,0 +1,1 @@
+export { GradientBanner } from "./GradientBanner";

@@ -1,1 +1,0 @@
-export {ChurchScreen} from './ChurchScreen'

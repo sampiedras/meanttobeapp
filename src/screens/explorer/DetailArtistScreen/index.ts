@@ -1,1 +1,0 @@
-export {DetailArtistScreen} from './DetailArtistScreen';

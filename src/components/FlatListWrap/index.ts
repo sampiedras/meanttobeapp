@@ -1,1 +1,0 @@
-export {FlatListWrap} from './FlatListWrap';

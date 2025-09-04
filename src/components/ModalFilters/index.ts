@@ -1,1 +1,0 @@
-export {ModalFilters} from './ModalFilters';

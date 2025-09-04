@@ -1,1 +1,0 @@
-export {TextInputAnimatedDisabled} from './TextInputAnimatedDisabled';

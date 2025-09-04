@@ -1,1 +1,0 @@
-export {TextInputAnimated} from './TextInputAnimated';

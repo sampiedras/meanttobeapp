@@ -1,0 +1,66 @@
+import * as React from "react";
+import Svg, { ClipPath, Defs, G, Path, Rect, SvgProps } from "react-native-svg";
+
+interface Props extends SvgProps {
+  color?: string;
+}
+
+export const LoveIcon = ({ color = "#777B85", ...props }: Props) => (
+  <Svg
+    width={props.width ?? 24}
+    height={props.height ?? 24}
+    {...props}
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <G clipPath="url(#clip0_162_9543)">
+      <Path
+        d="M11.9297 3C16.9397 3 20.9997 7.03 20.9997 12C20.9997 16.97 16.9397 21 11.9297 21"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M8.82959 20.45C7.83959 20.09 6.90961 19.57 6.09961 18.89"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M6.09961 5.11005C6.90961 4.44005 7.83959 3.91005 8.82959 3.55005"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3 10.44C3.18 9.41 3.54999 8.41 4.07999 7.5"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M3 13.5601C3.18 14.5901 3.54999 15.5901 4.07999 16.5001"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M12.0006 15.99C10.8106 15.58 7.89062 13.81 7.89062 10.93C7.89062 9.65999 8.9106 8.63 10.1806 8.63C10.9306 8.63 11.5906 8.98999 12.0106 9.54999C12.4306 8.98999 13.0906 8.63 13.8406 8.63C15.1006 8.63 16.1306 9.65999 16.1306 10.93C16.1306 13.81 13.2106 15.59 12.0206 15.99H12.0006Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </G>
+    <Defs>
+      <ClipPath id="clip0_162_9543">
+        <Rect width="24" height="24" fill="white" />
+      </ClipPath>
+    </Defs>
+  </Svg>
+);

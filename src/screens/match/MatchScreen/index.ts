@@ -1,1 +1,0 @@
-export {MatchScreen} from './MatchScreen'

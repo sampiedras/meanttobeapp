@@ -1,0 +1,65 @@
+import { FetchUserAttributesOutput } from "aws-amplify/auth";
+import { Entitlement, User } from "react-native-qonversion";
+import { StreamChat } from "stream-chat";
+import { DefaultStreamChatGenerics } from "stream-chat-react-native";
+
+export type UserProfileType = {
+  avatar: string;
+  distance: number;
+  searchingId: string;
+  email: string;
+  country: string;
+  name: string;
+  state: string;
+  city: string;
+  active: true;
+  userId: string;
+  countryId: 0;
+  searchRange: "LOCALLY" | "GLOBALLY";
+  sk: string;
+  dateOfBirth: string;
+  phone: string;
+  gsi1Pk: string;
+  searching: string;
+  churchId: string;
+  gsi2Pk: 7;
+  gsi2Sk: string;
+  descriptionStory: string;
+  gsi1Sk: string;
+  userName: string;
+  createdAt: string;
+  address: string;
+  gender: "MALE" | "FEMALE";
+  church: string;
+  typeAccount: string;
+  role: string;
+  nameToSearch: string;
+  updatedAt: string;
+  verse: string;
+  pk: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  mediaUrls: string[];
+  tokenGetStream?: string;
+  notification?: boolean;
+};
+
+export type AuthContextType = {
+  client: StreamChat<DefaultStreamChatGenerics>;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  isUserComplete: boolean;
+  user: FetchUserAttributesOutput | null;
+  userProfile: UserProfileType | null;
+  isSubscriptionActive: boolean;
+  userSubscription: Entitlement | null;
+  userQonversion: User | null;
+  currentSession: () => Promise<void>;
+  setIsLoading: (loading: boolean) => void;
+  handleCompleteProfile: () => void;
+  handleCheckSubscription: () => Promise<void>;
+  handleUserUpdateInfo: () => Promise<void>;
+  handleLogout: () => void;
+};

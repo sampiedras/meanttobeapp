@@ -1,0 +1,1 @@
+export { DetailVerseScreen } from "./DetailVerseScreen";

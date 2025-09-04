@@ -1,0 +1,33 @@
+export const confirmScreen = {
+  en: {
+    "confirm.title": "Confirm",
+    "confirm.text": "Sent the code to ",
+    "confirm.code.required": "Please provide a code",
+    "confirm.label.code": "Verify Code",
+    "confirm.resent.code": "Code sent",
+    "confirm.label.error": "Invalid code",
+    "confirm.trust.device.title": "Trust device?",
+    "confirm.trust.device.subtitle": "Recommended when using your own phone.",
+    "confirm.trust.device.btn.notNow": "Not now",
+    "confirm.trust.device.btn.trust": "Trust",
+    "confirm.error.trust": "Not can trust this device",
+    "confirm.error": "Error to verify your code",
+    "confirm.btn.resend": "Resend code",
+  },
+  es: {
+    "confirm.title": "Verificación",
+    "confirm.text": "Código enviado a ",
+    "confirm.code.required": "Por favor ingresa un código",
+    "confirm.label.code": "Código de verificación",
+    "confirm.resent.code": "Código enviado",
+    "confirm.label.error": "Código inválido",
+    "confirm.trust.device.title": "¿Confiar en el dispositivo?",
+    "confirm.trust.device.subtitle":
+      "Recomendado solo con tu propio dispositivo",
+    "confirm.trust.device.btn.notNow": "No por ahora",
+    "confirm.trust.device.btn.trust": "Confiar",
+    "confirm.error.trust": "No se pudo confiar en el dispositivo",
+    "confirm.error": "Error al verificar el código",
+    "confirm.btn.resend": "Reenviar  código",
+  },
+};

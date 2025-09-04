@@ -32,8 +32,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           "linkedin",
           "google",
         ],
-        NSMicrophoneUsageDescription:
-          "$(PRODUCT_NAME) would like to use your microphone for voice recording.",
         NSLocationAlwaysAndWhenInUseUsageDescription:
           "Meanttobe uses your device's location to help you find cashback offers near you.",
         NSLocationUsageDescription:
@@ -65,35 +63,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         "android.permission.ACCESS_MEDIA_LOCATION",
         "android.permission.CAMERA",
         "android.permission.BILLING",
-        "android.permission.RECORD_AUDIO",
-        "android.permission.MODIFY_AUDIO_SETTINGS",
       ],
     },
     web: {
       favicon: "./assets/favicon.png",
-    },
-    extra: {
-      // Variables de entorno que estarán disponibles en expo-constants
-      apiBase: process.env.EXPO_PUBLIC_API_BASE,
-      apiBibleBase: process.env.EXPO_PUBLIC_API_BIBLE_BASE,
-      apiKeyBible: process.env.EXPO_PUBLIC_API_KEY_BIBLE,
-      getStreamApiKey: process.env.EXPO_PUBLIC_GET_STREAM_API_KEY,
-      qonversionApiKey: process.env.EXPO_PUBLIC_QONVERSION_API_KEY,
-      apiKeyGeocoderMap: process.env.EXPO_PUBLIC_API_KEY_GEOCODER_MAP,
-      apiBaseUser: process.env.EXPO_PUBLIC_API_USER_BASE_URL,
-      apiBaseMedia: process.env.EXPO_PUBLIC_API_MEDIA_BASE_URL,
-      apiBaseSong: process.env.EXPO_PUBLIC_API_SONG_BASE_URL,
-      apiBaseNews: process.env.EXPO_PUBLIC_API_NEWS_BASE_URL,
-      apiBaseQuiz: process.env.EXPO_PUBLIC_API_QUIZ_BASE_URL,
-      apiBaseVerse: process.env.EXPO_PUBLIC_API_VERSE_BASE_URL,
-      apiBaseSermon: process.env.EXPO_PUBLIC_API_SERMON_BASE_URL,
-      awsCognitoIdentityPoolId:
-        process.env.EXPO_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID,
-      awsUserPoolsId: process.env.EXPO_PUBLIC_AWS_USER_POOLS_ID,
-      awsUserPoolsWebClientId:
-        process.env.EXPO_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID,
-      domain: process.env.EXPO_PUBLIC_DOMAIN,
-      awsUserFilesS3Bucket: process.env.EXPO_PUBLIC_AWS_USER_FILES_S3_BUCKET,
     },
     plugins: [
       "@react-native-firebase/app",

@@ -1,0 +1,1 @@
+export { CustomInputFragment } from "./CustomInputFragment";

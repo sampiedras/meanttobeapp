@@ -1,1 +1,0 @@
-export {DetailSongScreen} from './DetailSongScreen';

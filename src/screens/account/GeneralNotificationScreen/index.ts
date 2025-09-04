@@ -1,1 +1,0 @@
-export {GeneralNotificationsScreen} from './GeneralNotificationsScreen'

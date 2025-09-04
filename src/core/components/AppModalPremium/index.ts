@@ -1,0 +1,1 @@
+export { AppModalPremium } from "./AppModalPremium";

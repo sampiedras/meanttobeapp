@@ -1,0 +1,1 @@
+export { RenderItemsArtistFragment } from "./RenderItemsArtistFragment";

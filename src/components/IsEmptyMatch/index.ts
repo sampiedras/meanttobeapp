@@ -1,1 +1,0 @@
-export {IsEmptyMatch} from './IsEmptyMatch';

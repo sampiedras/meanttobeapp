@@ -1,0 +1,1 @@
+export { DetailSermonScreen } from "./DetailSermonScreen";

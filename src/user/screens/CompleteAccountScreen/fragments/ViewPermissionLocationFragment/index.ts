@@ -1,0 +1,1 @@
+export { ViewPermissionLocationFragment } from "./ViewPermissionLocationFragment";

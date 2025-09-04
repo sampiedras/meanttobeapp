@@ -1,0 +1,26 @@
+export const signInScreen = {
+  en: {
+    "signIn.btn.label": "Log In",
+    "signIn.title": "Welcome back!",
+    "signIn.text": "We are glad see you again!",
+    "signIn.phone.required": "Required",
+    "signIn.password.required": "Please provide a password",
+    "signIn.label.email": "Email",
+    "signIn.label.password": "Password",
+    "signIn.resent.code": "Code sent",
+    "signIn.label.error": "Username or password incorrect",
+    "signIn.label.phone": "Phone number",
+  },
+  es: {
+    "signIn.btn.label": "Iniciar sesión",
+    "signIn.title": "Bienvenido de nuevo!",
+    "signIn.text": "¡Nos alegra verte de nuevo!",
+    "signIn.phone.required": "Required",
+    "signIn.password.required": "Por favor proporcione una contraseña",
+    "signIn.label.email": "Email",
+    "signIn.label.password": "Contraseña",
+    "signIn.resent.code": "Código enviado",
+    "signIn.label.error": "Nombre de usuario o contraseña incorrectos",
+    "signIn.label.phone": "Número de Teléfono",
+  },
+};

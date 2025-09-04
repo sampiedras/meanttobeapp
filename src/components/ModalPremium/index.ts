@@ -1,1 +1,0 @@
-export {ModalPremium} from './ModalPremium';

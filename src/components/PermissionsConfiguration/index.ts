@@ -1,1 +1,0 @@
-export {PermissionsConfiguration} from './PermissionsConfiguration';

@@ -1,0 +1,1 @@
+export { ViewBirthdayFragment } from "./ViewBirthdayFragment";

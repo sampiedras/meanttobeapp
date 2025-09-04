@@ -1,1 +1,0 @@
-export {VersesScreen} from './VersesScreen';

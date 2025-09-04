@@ -1,0 +1,1 @@
+export { RenderItemFavoriteFragment } from "./RenderItemFavoriteFragment";

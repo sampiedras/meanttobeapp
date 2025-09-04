@@ -1,1 +1,0 @@
-export {VerifyCodeScreen} from './VerifyCodeScreen'

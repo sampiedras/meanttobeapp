@@ -1,0 +1,1 @@
+export { DetailQuizScreen } from "./DetailQuizScreen";
