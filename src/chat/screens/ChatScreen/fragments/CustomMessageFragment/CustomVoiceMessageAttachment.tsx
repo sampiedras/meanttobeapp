@@ -1,10 +1,14 @@
 import React, { useRef, useState } from "react";
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import AudioRecorderPlayer, {
   PlayBackType,
 } from "react-native-audio-recorder-player";
-import { View } from "react-native-ui-lib";
 import { useMessageContext } from "stream-chat-react-native";
 import {
   PauseVoiceMessageIcon,
@@ -106,20 +110,28 @@ export const CustomVoiceMessageAttachment = ({
 
   return (
     <View
-      paddingV-9
-      paddingL-9
-      paddingR-16
-      row
-      backgroundColor={
-        isMyMessage ? colorsLight.PRIMARY_COLOR : colorsLight.GRAY_04
-      }
-      style={styles.container}
+      style={[
+        styles.container,
+        styles.paddingV9,
+        styles.paddingL9,
+        styles.paddingR16,
+        styles.row,
+        {
+          backgroundColor: isMyMessage
+            ? colorsLight.PRIMARY_COLOR
+            : colorsLight.GRAY_04,
+        },
+      ]}
     >
       <View
-        backgroundColor={
-          isMyMessage ? colorsLight.PRIMARY_COLOR : colorsLight.GRAY_04
-        }
-        style={styles.audioPlayerContainer}
+        style={[
+          styles.audioPlayerContainer,
+          {
+            backgroundColor: isMyMessage
+              ? colorsLight.PRIMARY_COLOR
+              : colorsLight.GRAY_04,
+          },
+        ]}
       >
         {message.status === "sending" || loadingAudio ? (
           <View style={styles.loadingIndicatorContainer}>
@@ -152,10 +164,14 @@ export const CustomVoiceMessageAttachment = ({
           currentPositionInSeconds={currentPositionSec}
         />
         <View
-          backgroundColor={
-            isMyMessage ? colorsLight.WHITE : colorsLight.PRIMARY_TEXT_COLOR
-          }
-          style={styles.progressDetailsContainer}
+          style={[
+            styles.progressDetailsContainer,
+            {
+              backgroundColor: isMyMessage
+                ? colorsLight.WHITE
+                : colorsLight.PRIMARY_TEXT_COLOR,
+            },
+          ]}
         >
           {paused ? (
             <Text
@@ -201,6 +217,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  paddingV9: { paddingVertical: 9 },
+  paddingL9: { paddingLeft: 9 },
+  paddingR16: { paddingRight: 16 },
+  row: { flexDirection: "row" },
   audioPlayerContainer: {
     flexDirection: "row",
     alignItems: "center",

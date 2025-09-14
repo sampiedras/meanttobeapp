@@ -1,8 +1,7 @@
 import React from "react";
-import { Modal, StyleSheet, Text } from "react-native";
+import { Modal, StyleSheet, Text, View } from "react-native";
 import { format } from "date-fns";
 import { Product } from "react-native-qonversion";
-import { View } from "react-native-ui-lib";
 import {
   PersonOneIcon,
   PersonThreeIcon,
@@ -50,25 +49,34 @@ export const ModalPlan = ({ visible, subscriptions, onClose }: IModalPlan) => {
       visible={visible}
       onRequestClose={onClose}
     >
-      <View flex-1 center backgroundColor="rgba(0, 0, 0, 0.5)">
+      <View style={[styles.flex1, styles.center, styles.backdrop]}>
         <View
-          width="80%"
-          center
-          spread
-          backgroundColor="white"
-          paddingV-24
-          paddingH-24
-          style={styles.container}
+          style={[
+            styles.container,
+            styles.width80,
+            styles.center,
+            styles.spread,
+            styles.paddingV24,
+            styles.paddingH24,
+            { backgroundColor: "white" },
+          ]}
         >
           <Text style={styles.title}>Premium subscription</Text>
           <View>
-            <View row style={styles.containerImages}>
+            <View style={[styles.row, styles.containerImages]}>
               <PersonOneIcon style={styles.images} width={60} />
               <PersonTwoIcon style={styles.images} width={60} />
               <PersonThreeIcon width={60} />
             </View>
           </View>
-          <View style={styles.box} width="100%" marginT-2 marginB-24>
+          <View
+            style={[
+              styles.box,
+              styles.fullWidth,
+              styles.marginT2,
+              styles.marginB24,
+            ]}
+          >
             <Text style={styles.textProduct}>
               {handleGetNameSubscription()}
             </Text>
@@ -77,17 +85,17 @@ export const ModalPlan = ({ visible, subscriptions, onClose }: IModalPlan) => {
                 ? `${productSub?.prettyPrice} ${productSub?.skProduct?.currencyCode}`
                 : ""}
             </Text>
-            <View row spread centerV>
+            <View style={[styles.row, styles.spread, styles.centerV]}>
               <Text style={styles.text}>Status</Text>
               <Text style={styles.textInfo}>Subscribed</Text>
             </View>
-            <View row spread centerV>
+            <View style={[styles.row, styles.spread, styles.centerV]}>
               <Text style={styles.text}>Expires</Text>
               <Text style={styles.textInfo}>
                 {format(userSubscription?.expirationDate || 0, "MMMM d, yyyy")}
               </Text>
             </View>
-            <View row spread centerV>
+            <View style={[styles.row, styles.spread, styles.centerV]}>
               <Text style={styles.text}>Pay plan</Text>
               <Text style={styles.textInfo}>{handleGetNameSubscription()}</Text>
             </View>
@@ -106,6 +114,18 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 24,
   },
+  flex1: { flex: 1 },
+  center: { alignItems: "center", justifyContent: "center" },
+  backdrop: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+  width80: { width: "80%" },
+  spread: { justifyContent: "space-between" },
+  paddingV24: { paddingVertical: 24 },
+  paddingH24: { paddingHorizontal: 24 },
+  row: { flexDirection: "row" },
+  fullWidth: { width: "100%" },
+  marginT2: { marginTop: 2 },
+  marginB24: { marginBottom: 24 },
+  centerV: { alignItems: "center" },
   containerImages: {
     marginVertical: 24,
   },

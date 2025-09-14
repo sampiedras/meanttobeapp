@@ -1,8 +1,7 @@
 import React from "react";
-import { Animated, StyleSheet, TouchableOpacity } from "react-native";
+import { Animated, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import {
   ArrowRightWhiteIcon,
   HeartActiveIcon,
@@ -54,10 +53,12 @@ export const CardFragment = ({
         ]}
       >
         <View
-          padding-16
-          backgroundColor={colorsLight.WHITE}
-          height={"90%"}
-          style={styles.item}
+          style={[
+            styles.item,
+            styles.padding16,
+            styles.height90,
+            { backgroundColor: colorsLight.WHITE },
+          ]}
         >
           <TouchableOpacity onPress={handleToggleLike} style={styles.heart}>
             {like ? <HeartActiveIcon /> : <HeartGrayIcon />}
@@ -128,4 +129,6 @@ const styles = StyleSheet.create({
     padding: 12,
     alignSelf: "flex-end",
   },
+  padding16: { padding: 16 },
+  height90: { height: "90%" },
 });

@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { ActivityIndicator, StyleSheet } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetFlatList,
   BottomSheetTextInput,
 } from "@gorhom/bottom-sheet";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import {
   RadioButtonCheckIcon,
   RadioButtonIcon,
@@ -70,7 +70,6 @@ export const ChurchContent =
               Do you belong to a church?
             </Text>
             <TouchableOpacity
-              centerV
               style={[
                 styles.radioButton,
                 {
@@ -78,18 +77,18 @@ export const ChurchContent =
                     ? colorsLight.PRIMARY_COLOR
                     : colorsLight.GRAY_02,
                 },
+                styles.centerV,
               ]}
               onPress={() => setAddChurch(true)}
             >
-              <View row centerV spread>
+              <View style={styles.rowCenterVSpread}>
                 <Text variant="body1" style={styles.textRadio}>
                   Yes
                 </Text>
                 {addChurch ? <RadioButtonCheckIcon /> : <RadioButtonIcon />}
               </View>
               <TouchableOpacity
-                style={styles.buttonFind}
-                marginT-16
+                style={[styles.buttonFind, styles.marginT16]}
                 disabled={!addChurch}
                 onPress={() => bottomSheetRef?.current?.snapToIndex(1)}
               >
@@ -99,8 +98,6 @@ export const ChurchContent =
               </TouchableOpacity>
             </TouchableOpacity>
             <TouchableOpacity
-              row
-              centerV
               style={[
                 styles.radioButton,
                 {
@@ -108,6 +105,7 @@ export const ChurchContent =
                     ? colorsLight.PRIMARY_COLOR
                     : colorsLight.GRAY_02,
                 },
+                styles.rowCenterV,
               ]}
               onPress={() => {
                 setAddChurch(false);
@@ -129,7 +127,7 @@ export const ChurchContent =
             backdropComponent={renderBackdrop}
             onChange={handleSheetChanges}
           >
-            <View style={styles.boxTextInput} centerV row spread>
+            <View style={[styles.boxTextInput, styles.rowCenterVSpread]}>
               <SearchIconV1 width={18} height={18} />
               <BottomSheetTextInput
                 value={searchText}
@@ -147,7 +145,7 @@ export const ChurchContent =
               contentContainerStyle={styles.contentContainer}
             />
           </BottomSheet>
-          <View marginH-16 marginB-10>
+          <View style={[styles.marginH16, styles.marginB10]}>
             <AppGradientButton
               label="Continue"
               loading={loading}
@@ -227,6 +225,16 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 20,
   },
+  centerV: { alignItems: "center" },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  rowCenterVSpread: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  marginT16: { marginTop: 16 },
+  marginH16: { marginHorizontal: 16 },
+  marginB10: { marginBottom: 10 },
 });
 
 export const ChurchScreen = (

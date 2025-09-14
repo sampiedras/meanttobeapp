@@ -4,11 +4,12 @@ import {
   FlatList,
   ImageBackground,
   StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import LinearGradient from "react-native-linear-gradient";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -70,13 +71,8 @@ export const DetailArtistContent =
             </View>
           </ImageBackground>
         )}
-        <View
-          paddingH-20
-          flex
-          backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-          style={styles.listContainer}
-        >
-          <View height={6} width={50} marginV-14 />
+        <View style={[styles.listBody, styles.listContainer]}>
+          <View style={styles.listHandle} />
           <FlatList
             data={itemsSong}
             renderItem={renderItemsSongs}
@@ -89,7 +85,14 @@ export const DetailArtistContent =
             ListEmptyComponent={
               <>
                 {songs?.count === 0 && (
-                  <View centerH flex height={200} paddingT-90>
+                  <View
+                    style={[
+                      styles.centerH,
+                      styles.flex,
+                      styles.height200,
+                      styles.paddingT90,
+                    ]}
+                  >
                     <Text
                       style={styles.textNoFound}
                       variant="body1"
@@ -118,6 +121,19 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: -24,
+  },
+  listBody: {
+    paddingHorizontal: 20,
+    flex: 1,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+  },
+  listHandle: {
+    height: 6,
+    width: 50,
+    marginVertical: 14,
+    alignSelf: "center",
+    borderRadius: 100,
+    backgroundColor: colorsLight.GRAY_04,
   },
   shadowOverlay: {
     position: "absolute",
@@ -156,6 +172,10 @@ const styles = StyleSheet.create({
   textNoFound: {
     fontFamily: "Satoshi-Regular",
   },
+  centerH: { alignItems: "center" },
+  flex: { flex: 1 },
+  height200: { height: 200 },
+  paddingT90: { paddingTop: 90 },
 });
 
 export const DetailArtistScreen = (

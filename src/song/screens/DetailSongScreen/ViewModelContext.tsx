@@ -6,10 +6,9 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Platform, Share, StyleSheet } from "react-native";
+import { Platform, Share, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { SongType } from "@/song/data/remote/entities/songEntity";
 import { useGetSongByIdQuery } from "@/song/data/remote/songApi";

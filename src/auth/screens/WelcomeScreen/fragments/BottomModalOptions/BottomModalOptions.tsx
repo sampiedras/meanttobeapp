@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { View } from "react-native-ui-lib";
 import { AppleIcon, EmailIcon, PhoneIcon } from "@/auth/assets/svg";
 import { AuthStackRoutes } from "@/auth/routes";
 import { AppGradientButton, BottomModal, Button } from "@/core/components";
@@ -15,7 +14,7 @@ export const BottomModalOptions = () => {
     useViewModelProvider();
 
   return (
-    <BottomModal modalRef={bottomSheetRef} snapPoints={snapPoints} index={1}>
+    <BottomModal modalRef={bottomSheetRef} snapPoints={snapPoints}>
       <View style={styles.contentContainer}>
         <Button
           label="Continue with Phone"
@@ -26,7 +25,7 @@ export const BottomModalOptions = () => {
           style={styles.buttonNavigate}
           onPress={() => {
             bottomSheetRef?.current?.close();
-            navigate(AuthStackRoutes.LOGIN_PHONE);
+            navigate(AuthStackRoutes.LOGIN_PHONE as never);
           }}
         />
         <Button
@@ -47,7 +46,7 @@ export const BottomModalOptions = () => {
           style={styles.buttonNavigate}
           onPress={() => {
             bottomSheetRef?.current?.close();
-            navigate(AuthStackRoutes.LOGIN_EMAIL);
+            navigate(AuthStackRoutes.LOGIN_EMAIL as never);
           }}
         />
         <Text

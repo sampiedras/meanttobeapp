@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { ChevronRightIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { S_SettingsStackRoutes } from "@/settings/routes";
@@ -22,7 +21,7 @@ export const OptionsRouteFragment: React.FC<option> = (props) => {
       }
       style={styles.itemButtonContainer}
     >
-      <View height={44} style={styles.itemContainer} row spread>
+      <View style={[styles.itemContainer, styles.rowSpread, styles.h44]}>
         <Text style={styles.title} color={colorsLight.PRIMARY_TEXT_COLOR}>
           {props.title}
         </Text>
@@ -39,6 +38,8 @@ const styles = StyleSheet.create({
   itemContainer: {
     alignItems: "center",
   },
+  rowSpread: { flexDirection: "row", justifyContent: "space-between" },
+  h44: { height: 44 },
   title: {
     fontSize: 16,
     fontFamily: "Satoshi-Regular",

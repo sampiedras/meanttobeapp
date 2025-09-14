@@ -6,9 +6,10 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { ProgressBar, TouchableOpacity, View } from "react-native-ui-lib";
+import * as RNProgress from "react-native-progress";
 import { RadioButtonCheckIcon, SettingsIcon } from "@/core/assets/svg";
 import { AppContainerSafeArea, Button, Tag } from "@/core/components";
 import { useAuthProvider } from "@/core/context/AuthContext";
@@ -57,7 +58,7 @@ export const ProfileContent =
                 uri: userProfile?.avatar,
               }}
             >
-              <View row style={styles.containerOptionsHeader}>
+              <View style={[styles.row, styles.containerOptionsHeader]}>
                 <Button
                   backgroundColor={colorsLight.GRAY_LIGHT}
                   label="Filters"
@@ -73,15 +74,24 @@ export const ProfileContent =
                   <SettingsIcon />
                 </TouchableOpacity>
               </View>
-              <View paddingB-28 flex style={styles.containerImages}>
+              <View
+                style={[styles.paddingB28, styles.flex, styles.containerImages]}
+              >
                 <ImagesUserFragment />
               </View>
             </ImageBackground>
           )}
 
-          <View flex-1 style={styles.containerBox}>
-            <View row marginT-18 centerV style={styles.container}>
-              <View centerV row>
+          <View style={[styles.flex1, styles.containerBox]}>
+            <View
+              style={[
+                styles.row,
+                styles.marginT18,
+                styles.centerV,
+                styles.container,
+              ]}
+            >
+              <View style={[styles.centerV, styles.row]}>
                 {totalPercentageProfile < 100 ? null : (
                   <RadioButtonCheckIcon style={styles.tagCheck} />
                 )}
@@ -110,8 +120,8 @@ export const ProfileContent =
                 ) : null}
               </View>
             </View>
-            <View marginT-20 style={styles.containerChurchLocation}>
-              <View row style={styles.subContainerChurch}>
+            <View style={[styles.marginT20, styles.containerChurchLocation]}>
+              <View style={[styles.row, styles.subContainerChurch]}>
                 <ChurchIcon />
                 <Text
                   style={styles.text}
@@ -120,7 +130,7 @@ export const ProfileContent =
                   {userProfile?.church || "Don't have a church"}
                 </Text>
               </View>
-              <View row style={styles.subContainerLocation}>
+              <View style={[styles.row, styles.subContainerLocation]}>
                 <LocationIcon />
                 <Text
                   style={styles.text}
@@ -133,20 +143,26 @@ export const ProfileContent =
               </View>
             </View>
             {totalPercentageProfile < 100 ? (
-              <ProgressBar
+              <RNProgress.Bar
                 style={styles.progressBar}
-                progress={totalPercentageProfile}
-                progressColor={colorsLight.PRIMARY_COLOR}
+                progress={totalPercentageProfile / 100}
+                color={colorsLight.PRIMARY_COLOR}
+                width={null}
+                height={4}
+                unfilledColor={colorsLight.GRAY_02}
+                borderWidth={0}
               />
             ) : (
               <View
-                width="100%"
-                height={1}
-                marginT-24
-                backgroundColor={colorsLight.GRAY_02}
+                style={[
+                  styles.fullWidth,
+                  styles.height1,
+                  styles.marginT24,
+                  { backgroundColor: colorsLight.GRAY_02 },
+                ]}
               />
             )}
-            <View row marginT-24>
+            <View style={[styles.row, styles.marginT24]}>
               <Button
                 backgroundColor={
                   selectedPage === "pricing"
@@ -204,6 +220,7 @@ export const ProfileScreen = (
 );
 
 const styles = StyleSheet.create({
+  row: { flexDirection: "row" },
   containerBox: {
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
     paddingHorizontal: 16,
@@ -215,6 +232,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  paddingB28: { paddingBottom: 28 },
+  flex: { flex: 1 },
+  flex1: { flex: 1 },
   tagCheck: {
     marginRight: 12,
   },
@@ -240,6 +260,12 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     marginTop: 16,
   },
+  marginT20: { marginTop: 20 },
+  marginT18: { marginTop: 18 },
+  centerV: { alignItems: "center" },
+  fullWidth: { width: "100%" },
+  height1: { height: 1 },
+  marginT24: { marginTop: 24 },
   text: {
     paddingLeft: 17,
     fontFamily: "Satoshi-Regular",

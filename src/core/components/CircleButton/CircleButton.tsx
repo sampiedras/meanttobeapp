@@ -1,6 +1,11 @@
 import React from "react";
-import { DimensionValue, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import { TouchableOpacity } from "react-native-ui-lib";
+import {
+  DimensionValue,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  ViewStyle,
+} from "react-native";
 import { colorsLight } from "@/core/theme";
 
 interface Props {

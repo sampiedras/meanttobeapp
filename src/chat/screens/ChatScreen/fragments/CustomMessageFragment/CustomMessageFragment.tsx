@@ -6,13 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Platform, StyleSheet } from "react-native";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
 import Toast from "react-native-toast-message";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import {
   FileAttachment,
   Gallery,
@@ -32,7 +30,7 @@ export const CustomMessageFragment = () => {
   const { userProfile } = useAuthProvider();
   const { channel } = useViewModelProvider();
 
-  const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const bottomSheetRef = useRef<BottomSheetModalMethods>(null);
   const snapPoints = useMemo(() => ["1%", "30%"], []);
 
   const {
@@ -70,7 +68,7 @@ export const CustomMessageFragment = () => {
           },
           { enforce_unique: true },
         );
-      } catch (error) {
+      } catch {
         Toast.show({
           text1: "Error adding reaction",
         });
@@ -83,7 +81,7 @@ export const CustomMessageFragment = () => {
     async (messageID: string, type: string) => {
       try {
         await channel.deleteReaction(messageID, type);
-      } catch (error) {
+      } catch {
         Toast.show({
           text1: "Error deleting message",
         });
@@ -95,7 +93,7 @@ export const CustomMessageFragment = () => {
   const handleGetReactionsAndOpenModal = useCallback(
     async (
       messageID: string,
-      ref: React.RefObject<BottomSheetModalMethods>,
+      ref: React.MutableRefObject<BottomSheetModalMethods | null>,
     ) => {
       try {
         const result: ReactionData = await channel.getReactions(messageID, {
@@ -103,7 +101,7 @@ export const CustomMessageFragment = () => {
         });
         await ref.current?.present();
         return result;
-      } catch (error) {
+      } catch {
         Toast.show({
           text1: "Error to get reaction data",
         });
@@ -115,7 +113,7 @@ export const CustomMessageFragment = () => {
   const uniqueTypes = new Set();
   const duplicateTypes = new Set();
 
-  message.latest_reactions?.map((e) => {
+  message.latest_reactions?.map((e: any) => {
     if (uniqueTypes.has(e.type)) {
       duplicateTypes.add(e.type);
     } else {
@@ -160,12 +158,14 @@ export const CustomMessageFragment = () => {
           </Text>
         </View>
         <View
-          style={{
-            marginRight: isMyMessage ? 5 : 0,
-            marginLeft: isMyMessage ? 0 : 5,
-          }}
-          marginT-2
-          marginB-2
+          style={[
+            {
+              marginRight: isMyMessage ? 5 : 0,
+              marginLeft: isMyMessage ? 0 : 5,
+            },
+            styles.marginT2,
+            styles.marginB2,
+          ]}
         >
           <Text
             style={[
@@ -198,9 +198,11 @@ export const CustomMessageFragment = () => {
               ]}
             >
               <View
-                padding-12
-                backgroundColor={colorsLight.WHITE}
-                style={styles.containerQuotedMessage}
+                style={[
+                  styles.containerQuotedMessage,
+                  { backgroundColor: colorsLight.WHITE },
+                  { padding: 12 },
+                ]}
               >
                 <TouchableOpacity>
                   <Text
@@ -223,8 +225,8 @@ export const CustomMessageFragment = () => {
                       {message.quoted_message.text?.trim()}
                     </Text>
                   ) : voiceMessageReply[0]?.audio_length ? (
-                    <View centerV row height={30}>
-                      <View marginT-4>
+                    <View style={styles.rowCenterVHeight30}>
+                      <View style={styles.marginT4}>
                         <MicrophoneBlackIcon width={12} height={12} />
                       </View>
                       <Text
@@ -316,19 +318,19 @@ export const CustomMessageFragment = () => {
                     );
                     setReactions(result?.reactions || []);
                   }}
-                  row
-                  backgroundColor={colorsLight.WHITE}
-                  paddingV-4
-                  paddingH-10
                   style={[
                     styles.containerMessageReplyReaction,
+                    styles.row,
+                    styles.paddingV4,
+                    styles.paddingH10,
+                    { backgroundColor: colorsLight.WHITE },
                     isMyMessage ? { right: 19 } : { left: 19 },
                   ]}
                 >
                   {message.latest_reactions?.map((e) => (
                     <View key={Math.random()}>
                       <Text variant="caption" key={Math.random()}>
-                        {e.myCustomField as ReactNode}
+                        {e?.myCustomField}
                       </Text>
                     </View>
                   ))}
@@ -396,12 +398,12 @@ export const CustomMessageFragment = () => {
                     );
                     setReactions(result?.reactions || []);
                   }}
-                  row
-                  backgroundColor={colorsLight.WHITE}
-                  paddingV-4
-                  paddingH-10
                   style={[
                     styles.containerMessageReaction,
+                    styles.row,
+                    styles.paddingV4,
+                    styles.paddingH10,
+                    { backgroundColor: colorsLight.WHITE },
                     isMyMessage ? { right: 19 } : { left: 19 },
                   ]}
                 >
@@ -448,8 +450,8 @@ export const CustomMessageFragment = () => {
                 message.latest_reactions && message.latest_reactions.length > 0
                   ? { marginTop: Platform.OS === "ios" ? 18 : 20 }
                   : { marginTop: 2 },
+                styles.marginB10,
               ]}
-              marginB-10
             >
               <Text
                 style={[
@@ -487,12 +489,12 @@ export const CustomMessageFragment = () => {
                     );
                     setReactions(result?.reactions || []);
                   }}
-                  row
-                  backgroundColor={colorsLight.WHITE}
-                  paddingV-4
-                  paddingH-10
                   style={[
                     styles.containerAttachmentReaction,
+                    styles.row,
+                    styles.paddingV4,
+                    styles.paddingH10,
+                    { backgroundColor: colorsLight.WHITE },
                     isMyMessage ? { right: 19 } : { left: 19 },
                   ]}
                 >
@@ -566,12 +568,12 @@ export const CustomMessageFragment = () => {
                     );
                     setReactions(result?.reactions || []);
                   }}
-                  row
-                  backgroundColor={colorsLight.WHITE}
-                  paddingV-4
-                  paddingH-10
                   style={[
                     styles.containerAttachmentReaction,
+                    styles.row,
+                    styles.paddingV4,
+                    styles.paddingH10,
+                    { backgroundColor: colorsLight.WHITE },
                     isMyMessage ? { right: 19 } : { left: 19 },
                   ]}
                 >
@@ -623,12 +625,12 @@ export const CustomMessageFragment = () => {
                     );
                     setReactions(result?.reactions || []);
                   }}
-                  row
-                  backgroundColor={colorsLight.WHITE}
-                  paddingV-4
-                  paddingH-10
                   style={[
                     styles.containerAttachmentReaction,
+                    styles.row,
+                    styles.paddingV4,
+                    styles.paddingH10,
+                    { backgroundColor: colorsLight.WHITE },
                     isMyMessage ? { right: 19 } : { left: 19 },
                   ]}
                 >
@@ -677,8 +679,8 @@ export const CustomMessageFragment = () => {
             message.latest_reactions && message.latest_reactions.length > 0
               ? { marginTop: 20 }
               : { marginTop: 2 },
+            styles.marginB10,
           ]}
-          marginB-10
         >
           <Text
             style={[
@@ -699,6 +701,18 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
   },
+  row: { flexDirection: "row" },
+  paddingV4: { paddingVertical: 4 },
+  paddingH10: { paddingHorizontal: 10 },
+  marginB10: { marginBottom: 10 },
+  marginT2: { marginTop: 2 },
+  marginB2: { marginBottom: 2 },
+  rowCenterVHeight30: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: 30,
+  },
+  marginT4: { marginTop: 4 },
   containerMessageReaction: {
     gap: 2,
     borderWidth: 1,

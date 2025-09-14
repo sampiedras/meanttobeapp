@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { ArrowBackIcon } from "@/core/assets/svg";
 import { Stack } from "@/core/navigation";
 import { colorsLight } from "@/core/theme";
@@ -28,7 +27,10 @@ export const useChatGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.headerLeftBtn}
+              >
                 <ArrowBackIcon />
                 <Text style={styles.text}>Feed</Text>
               </TouchableOpacity>
@@ -48,5 +50,9 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Bold",
     fontSize: 14,
     color: colorsLight.SECONDARY_TEXT_COLOR,
+  },
+  headerLeftBtn: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, TextInput } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useController } from "react-hook-form";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { useViewModelProvider } from "../../ViewModelContext";
 
@@ -19,20 +18,21 @@ export const ViewStoryFragment = () => {
   });
 
   return (
-    <View style={styles.container} paddingH-16>
+    <View style={[styles.container, styles.paddingHorizontal]}>
       <Text variant="h6" style={styles.title}>
         Share your story with the world
       </Text>
       <View style={styles.boxInput}>
         <TextInput
           style={styles.input}
-          value={field.value}
-          multiline
+          value={field.value ?? ""}
+          multiline={true}
           numberOfLines={4}
           maxLength={750}
           placeholder="Your story"
           placeholderTextColor={colorsLight.GRAY_ONBOARDING}
           onChangeText={field.onChange}
+          textAlignVertical="top"
         />
       </View>
       {!!errors?.story && (
@@ -73,5 +73,8 @@ const styles = StyleSheet.create({
     textAlign: "left",
     alignSelf: "flex-start",
     fontFamily: "Satoshi-Regular",
+  },
+  paddingHorizontal: {
+    paddingHorizontal: 16,
   },
 });

@@ -1,7 +1,6 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { optionsNotifications } from "@/core/fakeDb/optionsNotifications";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -13,16 +12,11 @@ import { ViewModelProvider } from "./ViewModelContext";
 export const NewMessageContent =
   ({}: RootStackScreenProps<S_SettingsStackRoutes.NEW_MESSAGE_SCREEN>) => {
     return (
-      <View
-        paddingH-20
-        centerH
-        backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-        flex
-      >
+      <View style={styles.container}>
         <Text color={colorsLight.PRIMARY_TEXT_COLOR} style={styles.subtitle}>
           {generalNotificationsCopies.subtitle}
         </Text>
-        <View width="100%">
+        <View style={styles.fullWidth}>
           <FlatList
             style={styles.flatLisOptionsNotifications}
             data={optionsNotifications}
@@ -40,6 +34,12 @@ export const NewMessageContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+    alignItems: "center",
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+    flex: 1,
+  },
   subtitle: {
     width: "80%",
     fontSize: 14,
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colorsLight.GRAY_02,
   },
+  fullWidth: { width: "100%" },
 });
 
 export const NewMessageScreen = (

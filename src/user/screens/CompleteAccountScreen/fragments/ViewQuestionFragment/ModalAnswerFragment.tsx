@@ -5,9 +5,9 @@ import {
   Platform,
   StyleSheet,
   TextInput,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { CloseDisabledIcon } from "@/core/assets/svg";
 import { AppGradientButton, CircleButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -46,8 +46,8 @@ export const ModalAnswerFragment = ({
       >
         <View style={styles.contentContainer}>
           <View style={styles.container}>
-            <View flex-1>
-              <View row centerV>
+            <View style={styles.flex1}>
+              <View style={styles.rowCenterV}>
                 <CircleButton
                   style={styles.buttonClose}
                   onPress={onClose}
@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 16,
     borderTopEndRadius: 16,
   },
+  flex1: { flex: 1 },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   titleFind: {
     textAlign: "left",
     alignSelf: "flex-start",

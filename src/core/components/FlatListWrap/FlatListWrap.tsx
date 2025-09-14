@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 const numColumns = 2;
@@ -75,8 +74,8 @@ export const FlatListWrap = ({
         onPress={() => onPressNavigation && onPressNavigation(item.id)}
         style={styles.itemContainer}
       >
-        <View flex-1 style={styles.item}>
-          <View flex-1 style={styles.imageContainer}>
+        <View style={[styles.item, styles.flex1]}>
+          <View style={[styles.imageContainer, styles.flex1]}>
             <FastImage
               style={styles.image}
               source={{
@@ -92,7 +91,9 @@ export const FlatListWrap = ({
               end={{ x: 0.5, y: 0.6 }}
             />
           </View>
-          <View paddingV-4 paddingH-8 style={styles.textContainer}>
+          <View
+            style={[styles.textContainer, styles.paddingV4, styles.paddingH8]}
+          >
             <Text style={styles.text}>{item.name}</Text>
           </View>
         </View>
@@ -101,7 +102,7 @@ export const FlatListWrap = ({
   };
 
   return (
-    <View flex-1 style={styles.container}>
+    <View style={[styles.container, styles.flex1]}>
       <FlatList
         refreshing={isLoading}
         onRefresh={refreshing}
@@ -123,6 +124,9 @@ export const FlatListWrap = ({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: padding,
+  },
+  flex1: {
+    flex: 1,
   },
   itemContainer: {
     flex: 1,
@@ -154,6 +158,12 @@ const styles = StyleSheet.create({
     right: 0,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
+  },
+  paddingV4: {
+    paddingVertical: 4,
+  },
+  paddingH8: {
+    paddingHorizontal: 8,
   },
   text: {
     color: colorsLight.WHITE,

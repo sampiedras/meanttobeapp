@@ -1,7 +1,12 @@
 import React from "react";
-import { DimensionValue, StyleProp, StyleSheet, TextStyle } from "react-native";
+import {
+  DimensionValue,
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 
 interface Props {
   title?: string | number;

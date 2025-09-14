@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { Reaction } from "stream-chat-react-native";
 import { BottomModal } from "@/core/components";
 import { useAuthProvider } from "@/core/context/AuthContext";
@@ -33,7 +32,7 @@ export const ModalReaction = ({
       index={1}
       enablePanDownToClose={true}
     >
-      <View flex-1 paddingH-16 paddingV-16>
+      <View style={styles.flex1Padding16}>
         {reactions && reactions.length > 0 ? (
           <>
             {reactions.map((e: any, index) => (
@@ -42,21 +41,25 @@ export const ModalReaction = ({
                   handleDeleteMessage(e.message_id, e.type);
                   deleteReactionByIndex(index, e.user_id);
                 }}
-                marginV-8
                 key={e.user_id}
-                centerV
-                style={styles.btn}
-                row
+                style={[styles.btn, styles.marginV8, styles.rowCenterV]}
               >
-                <View flex-1 center row style={styles.containerBtn}>
-                  <View row center>
-                    <View width={56} height={56}>
+                <View
+                  style={[
+                    styles.flex1,
+                    styles.center,
+                    styles.row,
+                    styles.containerBtn,
+                  ]}
+                >
+                  <View style={styles.rowCenter}>
+                    <View style={styles.size56}>
                       <FastImage
                         source={{ uri: e.user.image }}
                         style={styles.image}
                       />
                     </View>
-                    <View marginL-12>
+                    <View style={styles.marginL12}>
                       {String(e.user_id) === String(user?.id) ? (
                         <>
                           <Text
@@ -88,7 +91,7 @@ export const ModalReaction = ({
             ))}
           </>
         ) : (
-          <View flex center>
+          <View style={styles.flexCenter}>
             <Text
               color={colorsLight.SECONDARY_TEXT_COLOR}
               style={styles.textEmpty}
@@ -103,6 +106,16 @@ export const ModalReaction = ({
 };
 
 const styles = StyleSheet.create({
+  flex1Padding16: { flex: 1, paddingHorizontal: 16, paddingVertical: 16 },
+  flexCenter: { flex: 1, justifyContent: "center", alignItems: "center" },
+  row: { flexDirection: "row" },
+  rowCenter: { flexDirection: "row", alignItems: "center" },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  center: { justifyContent: "center", alignItems: "center" },
+  flex1: { flex: 1 },
+  marginV8: { marginVertical: 8 },
+  size56: { width: 56, height: 56 },
+  marginL12: { marginLeft: 12 },
   containerBtn: {
     justifyContent: "space-between",
   },

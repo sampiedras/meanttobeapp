@@ -1,7 +1,6 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import {
   AppContainerSafeArea,
   AppViewPagerProgressBar,
@@ -23,12 +22,12 @@ export const DetailQuizContent = ({
   return (
     <AppContainerSafeArea>
       {count > 0 ? (
-        <View flex paddingH-16>
+        <View style={styles.container}>
           <Text style={styles.counter} color={colorsLight.GRAY_03}>
             {current + " / " + count}
           </Text>
 
-          <View marginV-12>
+          <View style={styles.marginV12}>
             <AppViewPagerProgressBar
               progress={{
                 position: current,
@@ -39,7 +38,7 @@ export const DetailQuizContent = ({
           </View>
 
           {count === current ? (
-            <View flex marginT-16>
+            <View style={styles.flexMarginT16}>
               <FlatList
                 data={tags}
                 style={styles.list}
@@ -49,7 +48,7 @@ export const DetailQuizContent = ({
               />
             </View>
           ) : (
-            <View flex>
+            <View style={styles.flex}>
               <Text style={styles.title}>{quizName}</Text>
               {cards.map((item: QuizQuestionType, index: number) => {
                 return (
@@ -66,7 +65,7 @@ export const DetailQuizContent = ({
           )}
         </View>
       ) : (
-        <View flex center marginV-16>
+        <View style={styles.flexCenterMarginV16}>
           <Text style={styles.resultsText}>No questions found</Text>
         </View>
       )}
@@ -75,6 +74,7 @@ export const DetailQuizContent = ({
 };
 
 const styles = StyleSheet.create({
+  container: { flex: 1, paddingHorizontal: 16 },
   list: {
     flex: 1,
     borderRadius: 24,
@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Satoshi-Bold",
   },
+  marginV12: { marginVertical: 12 },
+  flexMarginT16: { flex: 1, marginTop: 16 },
+  flex: { flex: 1 },
   title: {
     alignSelf: "center",
     fontSize: 16,
@@ -93,6 +96,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Satoshi-Regular",
     textAlign: "center",
+  },
+  flexCenterMarginV16: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 16,
   },
 });
 

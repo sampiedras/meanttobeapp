@@ -1,9 +1,8 @@
 import React from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { View } from "react-native-ui-lib";
 import { EyeIcon } from "@/core/assets/svg";
 import { useAuthProvider } from "@/core/context/AuthContext";
 import { colorsLight } from "@/core/theme";
@@ -54,7 +53,7 @@ export const RenderCardFragment = ({ item }: { item: UserMatchType }) => {
             ? `${item?.name}, ${age}`
             : "Don't have info yet "}
         </Text>
-        <View row centerV marginT-8>
+        <View style={[styles.rowCenterV, styles.marginT8]}>
           <LocationIcon />
           <Text variant="h6" style={styles.textDistance}>
             {distanceOfUsers !== 0
@@ -65,7 +64,7 @@ export const RenderCardFragment = ({ item }: { item: UserMatchType }) => {
           </Text>
         </View>
       </View>
-      <View style={styles.textTopContainer} row spread>
+      <View style={[styles.textTopContainer, styles.rowSpread]}>
         <View style={styles.contentTextTop}>
           <Text variant="h6" style={styles.textCategory}>
             {item?.searching || "No searching "}
@@ -146,6 +145,9 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Medium",
     lineHeight: 18.2,
   },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  rowSpread: { flexDirection: "row", justifyContent: "space-between" },
+  marginT8: { marginTop: 8 },
   textName: {
     color: colorsLight.WHITE,
     fontSize: 24,

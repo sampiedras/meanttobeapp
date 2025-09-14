@@ -5,13 +5,13 @@ import {
   RefreshControl,
   ScrollView,
   StyleSheet,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useIsFocused } from "@react-navigation/native";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
 import Carousel from "react-native-reanimated-carousel";
-import { View } from "react-native-ui-lib";
 import { AppContainerSafeArea, SearchBarButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { TabsHomeScreenProps } from "@/core/types/StackRoutes";
@@ -104,7 +104,7 @@ export const ExplorerContent =
                   setCurrentIndex(index);
                 }}
               />
-              <View center>
+              <View style={styles.center}>
                 <FlatList
                   data={data}
                   renderItem={({ item, index }) => (
@@ -136,7 +136,7 @@ export const ExplorerContent =
             showsHorizontalScrollIndicator={false}
             horizontal
           />
-          <View row center marginB-28 style={styles.sections}>
+          <View style={[styles.rowCenter, styles.marginB28, styles.sections]}>
             <Text
               variant="body1"
               color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -175,7 +175,7 @@ export const ExplorerContent =
             />
           )}
 
-          <View row center marginV-28 style={styles.sections}>
+          <View style={[styles.rowCenter, styles.marginV28, styles.sections]}>
             <Text
               variant="body1"
               color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -215,7 +215,7 @@ export const ExplorerContent =
             />
           )}
 
-          <View row center marginV-28 style={styles.sections}>
+          <View style={[styles.rowCenter, styles.marginV28, styles.sections]}>
             <Text
               variant="body1"
               color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -304,4 +304,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  center: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  marginB28: { marginBottom: 28 },
+  marginV28: { marginVertical: 28 },
 });

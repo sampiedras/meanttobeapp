@@ -1,8 +1,13 @@
 import React from "react";
-import { FlatList, Platform, StyleSheet } from "react-native";
+import {
+  FlatList,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { EditIcon, LoveIcon, QuestionCircleIcon } from "@/core/assets/svg";
 import { GradientBanner } from "@/core/components";
 import { useAuthProvider } from "@/core/context/AuthContext";
@@ -17,17 +22,17 @@ export const ViewProfileDetailFragment = () => {
     useViewModelProvider();
 
   return (
-    <View marginT-24 style={styles.content}>
-      <View row style={styles.container}>
+    <View style={[styles.marginT24, styles.content]}>
+      <View style={[styles.row, styles.container]}>
         <Text style={styles.title}>My story</Text>
         <TouchableOpacity onPress={() => navigate(E_UserStackRoutes.STORY)}>
           <EditIcon />
         </TouchableOpacity>
       </View>
-      <View marginT-16>
+      <View style={styles.marginT16}>
         <Text style={styles.text}>{userProfile?.descriptionStory}</Text>
       </View>
-      <View center marginT-24>
+      <View style={[styles.center, styles.marginT24]}>
         {totalPercentageProfile < 100 ? (
           <GradientBanner
             title={`${totalPercentageProfile}% complete`}
@@ -40,8 +45,16 @@ export const ViewProfileDetailFragment = () => {
           ""
         )}
       </View>
-      <View marginT-24 paddingT-8 paddingB-8 row style={styles.container}>
-        <View row>
+      <View
+        style={[
+          styles.marginT24,
+          styles.paddingT8,
+          styles.paddingB8,
+          styles.row,
+          styles.container,
+        ]}
+      >
+        <View style={styles.row}>
           <LoveIcon />
           <Text style={styles.titlePrincipal}>Drives you</Text>
         </View>
@@ -70,8 +83,16 @@ export const ViewProfileDetailFragment = () => {
           )),
         )}
       </View>
-      <View marginT-24 paddingT-8 paddingB-8 row style={styles.container}>
-        <View row>
+      <View
+        style={[
+          styles.marginT24,
+          styles.paddingT8,
+          styles.paddingB8,
+          styles.row,
+          styles.container,
+        ]}
+      >
+        <View style={styles.row}>
           <QuestionCircleIcon color={colorsLight.SECONDARY_TEXT_COLOR} />
           <Text style={styles.titlePrincipal}>Deep questions</Text>
         </View>
@@ -81,7 +102,7 @@ export const ViewProfileDetailFragment = () => {
       </View>
       <View>
         {userProfile?.verse && (
-          <View marginV-8>
+          <View style={styles.marginV8}>
             <Text style={styles.itemsQuestion}>
               My favorite Bible verse is....
             </Text>
@@ -97,7 +118,7 @@ export const ViewProfileDetailFragment = () => {
           showsVerticalScrollIndicator={false}
           data={dataQuestions}
           renderItem={({ item }) => (
-            <View marginV-8>
+            <View style={styles.marginV8}>
               <Text style={styles.itemsQuestion}>{item?.question}</Text>
               <View style={styles.itemsQuestionContainer}>
                 <Text style={styles.itemsAnswer}>{item.answer}</Text>
@@ -116,6 +137,8 @@ const styles = StyleSheet.create({
     paddingBottom: Platform.OS === "ios" ? 80 : 100,
     flex: 1,
   },
+  row: { flexDirection: "row" },
+  marginT24: { marginTop: 24 },
   container: {
     justifyContent: "space-between",
   },
@@ -123,6 +146,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Satoshi-Black",
   },
+  marginT16: { marginTop: 16 },
+  center: { alignItems: "center", justifyContent: "center" },
   text: {
     fontSize: 14,
     fontFamily: "Satoshi-Regular",
@@ -156,6 +181,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Satoshi-Regular",
   },
+  paddingT8: { paddingTop: 8 },
+  paddingB8: { paddingBottom: 8 },
+  marginV8: { marginVertical: 8 },
   itemsQuestion: {
     textAlign: "left",
     fontFamily: "Satoshi-Medium",

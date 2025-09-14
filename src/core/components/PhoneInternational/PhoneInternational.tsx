@@ -5,9 +5,9 @@ import {
   useColorScheme,
   ViewStyle,
 } from "react-native";
+import { View } from "react-native";
 import { I18n } from "aws-amplify/utils";
 import { CountryPicker } from "react-native-country-codes-picker";
-import { View } from "react-native-ui-lib";
 import { colorsDark, colorsLight } from "@/core/theme";
 import { fonts } from "@/core/theme/fonts";
 import { AppText, AppTextVariant } from "../AppText";

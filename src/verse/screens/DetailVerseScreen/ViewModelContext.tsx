@@ -1,9 +1,8 @@
 import React, { createContext, ReactNode, useContext, useEffect } from "react";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import Share from "react-native-share";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { useLazyGetVerseReferenceByIdQuery } from "@/core/data/remote/bibleApi";
 import { VerseEntity } from "@/core/data/remote/entities/bibleEntity";
 import { colorsLight } from "@/core/theme";

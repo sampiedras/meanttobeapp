@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 import {
   ListRenderItem,
   StyleSheet,
+  View,
   ViewToken,
   VirtualizedList,
 } from "react-native";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
-import { View } from "react-native-ui-lib";
 import { colorsDark, colorsLight } from "@/core/theme";
 import { AppShowEmptyList } from "../AppShowEmptyList";
 import { BottomModal } from "../BottomModal";
@@ -71,7 +71,7 @@ export const AppBottomModalList = <
       }
       enableContentPanningGesture={false}
     >
-      <View flex-1>
+      <View style={styles.containerList}>
         {isFetching ? listLoadingComponent : null}
         <VirtualizedList
           windowSize={10}

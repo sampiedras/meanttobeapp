@@ -1,12 +1,11 @@
 import React from "react";
-import { Platform, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { View as UiLibView } from "react-native-ui-lib";
 import { useSelector } from "react-redux";
 import { selectTabBar } from "@/core/slices/tabBarSlice";
 import { E_ExplorerStackRoutes } from "@/explorer";
@@ -94,7 +93,7 @@ export function CustomTabBar({
             key={index}
           >
             {getIcon(route?.name)}
-            {isFocused ? <DotIcon /> : <UiLibView height={6} />}
+            {isFocused ? <DotIcon /> : <View style={{ height: 6 }} />}
           </TouchableOpacity>
         );
       })}

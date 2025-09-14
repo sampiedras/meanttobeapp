@@ -6,13 +6,13 @@ import React, {
   useState,
 } from "react";
 import { ActivityIndicator, Alert, Keyboard, StyleSheet } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetFlatList,
   BottomSheetTextInput,
 } from "@gorhom/bottom-sheet";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import {
   RadioButtonCheckIcon,
   RadioButtonIcon,
@@ -42,7 +42,7 @@ export const ViewChurchFragment = () => {
     Keyboard.dismiss();
     try {
       await triggerGetAllChurches(text);
-    } catch (error) {
+    } catch {
       Alert.alert("Error", "Not found");
     }
     setLoadingSearch(false);
@@ -98,7 +98,6 @@ export const ViewChurchFragment = () => {
           Do you belong to a church?
         </Text>
         <TouchableOpacity
-          centerV
           style={[
             styles.radioButton,
             {
@@ -109,15 +108,14 @@ export const ViewChurchFragment = () => {
           ]}
           onPress={() => setAddChurch(true)}
         >
-          <View row centerV spread>
+          <View style={styles.rowCenterSpread}>
             <Text variant="body1" style={styles.textRadio}>
               Yes
             </Text>
             {addChurch ? <RadioButtonCheckIcon /> : <RadioButtonIcon />}
           </View>
           <TouchableOpacity
-            style={styles.buttonFind}
-            marginT-16
+            style={[styles.buttonFind, styles.marginT16]}
             disabled={!addChurch}
             onPress={() => bottomSheetRef?.current?.snapToIndex(1)}
           >
@@ -127,10 +125,9 @@ export const ViewChurchFragment = () => {
           </TouchableOpacity>
         </TouchableOpacity>
         <TouchableOpacity
-          row
-          centerV
           style={[
             styles.radioButton,
+            styles.rowCenter,
             {
               borderColor: !addChurch
                 ? colorsLight.PRIMARY_COLOR
@@ -157,7 +154,7 @@ export const ViewChurchFragment = () => {
         backdropComponent={renderBackdrop}
         onChange={handleSheetChanges}
       >
-        <View style={styles.boxTextInput} centerV row spread>
+        <View style={[styles.boxTextInput, styles.rowCenterSpread]}>
           <SearchIconV1 width={18} height={18} />
           <BottomSheetTextInput
             value={searchText}
@@ -228,6 +225,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 8,
     paddingHorizontal: 16,
+  },
+  rowCenterSpread: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  marginT16: {
+    marginTop: 16,
   },
   textInput: {
     flex: 1,

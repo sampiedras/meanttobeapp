@@ -10,8 +10,8 @@ import {
   useColorScheme,
   ViewStyle,
 } from "react-native";
+import { View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { View } from "react-native-ui-lib";
 import { colorsDark, colorsLight } from "@/core/theme";
 import { AppText, AppTextVariant } from "../AppText";
 
@@ -190,9 +190,7 @@ export const AppButton = ({
 
   // eslint-disable-next-line react/no-unstable-nested-components
   const IconWrapper = ({ children }: { children: React.ReactNode }) => (
-    <View width={24} height={24} center>
-      {children}
-    </View>
+    <View style={styles.iconWrapper}>{children}</View>
   );
 
   const colorsGradient = isDarkMode
@@ -275,5 +273,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  iconWrapper: {
+    width: 24,
+    height: 24,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { format, parseISO } from "date-fns";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { ISermonResponse } from "@/sermon/data/remote/entities/sermonEntity";
 import { HartActiveIcon, HartGrayIcon } from "@/song/assets/svg";

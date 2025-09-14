@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Alert, StyleSheet } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { format, parseISO } from "date-fns";
 import { useController } from "react-hook-form";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { useViewModelProvider } from "../../ViewModelContext";
 

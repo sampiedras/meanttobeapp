@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme, View } from "react-native";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { I18n } from "aws-amplify/utils";
-import { View } from "react-native-ui-lib";
 import { colorsDark, colorsLight } from "@/core/theme";
 import {
   AppButton,
@@ -39,14 +38,14 @@ export const AppModalMedia = ({
       }
     >
       <View
-        flex-1
-        paddingT-16
-        centerH
-        backgroundColor={
-          isDarkMode
-            ? colorsDark.BACKGROUND_SCREEN_COLOR
-            : colorsLight.BACKGROUND_SCREEN_COLOR
-        }
+        style={[
+          styles.container,
+          {
+            backgroundColor: isDarkMode
+              ? colorsDark.BACKGROUND_SCREEN_COLOR
+              : colorsLight.BACKGROUND_SCREEN_COLOR,
+          },
+        ]}
       >
         <AppText variant={AppTextVariant.h6} style={styles.text}>
           {I18n.get("app.modal.media.title")}
@@ -73,6 +72,11 @@ export const AppModalMedia = ({
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 16,
+    alignItems: "center",
+  },
   text: {
     marginVertical: 8,
   },

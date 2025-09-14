@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { ArrowDownIcon, CheckSuccessIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { IQuestionResponse } from "@/user/data/remote/entities/questionEntity";
@@ -19,17 +18,14 @@ export const RenderButtonFragment = ({
 }: IRenderButtonFragment) => {
   return (
     <TouchableOpacity
-      row
-      centerV
-      spread
-      style={styles.button}
+      style={[styles.button, styles.rowSpreadCenterV]}
       onPress={() =>
         item.question.trim() === "My favorite bible verse is"
           ? toggleModalSelectQuestion()
           : toggleModalAnswer(item)
       }
     >
-      <View centerV row>
+      <View style={styles.rowCenterV}>
         {item.answer && <CheckSuccessIcon style={styles.checkSuccessIcon} />}
         <Text variant="body1" style={styles.textItem} numberOfLines={2}>
           {item.question}
@@ -52,6 +48,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderColor: colorsLight.GRAY_02,
   },
+  rowSpreadCenterV: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   checkSuccessIcon: {
     marginRight: 4,
   },

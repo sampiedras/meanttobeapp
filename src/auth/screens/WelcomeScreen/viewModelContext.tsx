@@ -6,13 +6,12 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { signInWithRedirect } from "aws-amplify/auth";
 
 type ViewModelContextType = {
   snapPoints: string[];
-  bottomSheetRef: React.RefObject<BottomSheetModalMethods>;
+  bottomSheetRef: React.RefObject<BottomSheetModalMethods | null>;
   handleSignInApple: () => Promise<void>;
 };
 
@@ -21,9 +20,9 @@ const ViewModelContext = createContext<ViewModelContextType | undefined>(
 );
 
 export function ViewModelProvider({ children }: { children: ReactNode }) {
-  const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const bottomSheetRef = useRef<BottomSheetModalMethods>(null);
 
-  const snapPoints = useMemo(() => ["25%", "50%"], []);
+  const snapPoints = useMemo(() => ["50%"], []);
 
   const handleSignInApple = useCallback(async () => {
     signInWithRedirect({ provider: "Apple" });

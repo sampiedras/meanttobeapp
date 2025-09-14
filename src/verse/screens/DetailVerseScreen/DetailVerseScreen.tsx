@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { View } from "react-native-ui-lib";
 import { LogoHeartIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -17,11 +16,7 @@ export const DetailVerseContent =
     const { data, verseReference, isFetching } = useViewModelProvider();
 
     return (
-      <View
-        flex
-        paddingH-16
-        backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-      >
+      <View style={styles.container}>
         {isFetching ? (
           <MotiView
             transition={{
@@ -45,11 +40,11 @@ export const DetailVerseContent =
                 colors={["rgba(31, 31, 35, 0.5)", "#000"]}
               >
                 <View
-                  row
-                  centerV
-                  absT
-                  marginT-32
-                  style={styles.appNameContainer}
+                  style={[
+                    styles.rowCenterVAbsT,
+                    styles.appNameContainer,
+                    styles.marginT32,
+                  ]}
                 >
                   <LogoHeartIcon />
                   <Text color={colorsLight.WHITE} style={styles.appName}>
@@ -72,6 +67,11 @@ export const DetailVerseContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+  },
   title: {
     fontSize: 24,
     color: colorsLight.BLACK,
@@ -92,6 +92,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "flex-start",
   },
+  rowCenterVAbsT: {
+    position: "absolute",
+    top: 0,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  marginT32: { marginTop: 32 },
   appNameContainer: {
     alignSelf: "center",
   },

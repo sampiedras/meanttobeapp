@@ -1,9 +1,15 @@
 import React from "react";
-import { Modal, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import {
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { TouchableOpacity, View } from "react-native-ui-lib";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthProvider } from "@/core/context/AuthContext";
 import { colorsLight } from "@/core/theme";
 import {
@@ -53,14 +59,14 @@ export const ModalCardInformation = ({
       onRequestClose={() => setModalVisible(false)}
     >
       <SafeAreaView style={styles.container}>
-        <View flex-1>
+        <View style={styles.flex1}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             style={styles.scroll}
             scrollEventThrottle={32}
           >
             <View style={styles.containerCard}>
-              <View marginB-12 height={500}>
+              <View style={[styles.marginB12, styles.height500]}>
                 <FastImage
                   source={{
                     uri: item?.avatar?.toString() || "",
@@ -80,7 +86,7 @@ export const ModalCardInformation = ({
                       ? `${item?.name}, ${age}`
                       : "Don't have info yet "}
                   </Text>
-                  <View row centerV marginT-8>
+                  <View style={[styles.rowCenterV, styles.marginT8]}>
                     <LocationIcon />
                     <Text variant="h6" style={styles.textDistance}>
                       {distanceOfUsers !== 0
@@ -91,7 +97,7 @@ export const ModalCardInformation = ({
                     </Text>
                   </View>
                 </View>
-                <View style={styles.textTopContainer} row spread>
+                <View style={[styles.textTopContainer, styles.rowSpread]}>
                   <View style={styles.contentTextTop}>
                     <Text variant="h6" style={styles.textCategory}>
                       {item?.searching || "No searching "}
@@ -106,7 +112,7 @@ export const ModalCardInformation = ({
                 </View>
               </View>
 
-              <View paddingH-16 paddingB-20>
+              <View style={[styles.paddingH16, styles.paddingB20]}>
                 <Text style={styles.tite}>My story</Text>
                 <Text style={styles.textStory}>
                   {item?.descriptionStory || "Don't have a story yet"}
@@ -121,7 +127,7 @@ export const ModalCardInformation = ({
 
               <TouchableOpacity
                 // onPress={() => handleBlockUser(item.id, index)}
-                marginB-100
+                style={styles.marginB100}
               >
                 <Text style={styles.blockText}>
                   Block and report this person
@@ -130,7 +136,7 @@ export const ModalCardInformation = ({
             </View>
           </ScrollView>
 
-          <View marginV-20 row style={styles.containerButtons}>
+          <View style={[styles.marginV20, styles.row, styles.containerButtons]}>
             <TouchableOpacity onPress={handleSwipeLeft}>
               <BtnDiscardIcon />
             </TouchableOpacity>
@@ -148,6 +154,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  flex1: { flex: 1 },
   image: {
     height: 500,
     borderRadius: 30,
@@ -197,6 +204,9 @@ const styles = StyleSheet.create({
     top: 10,
     paddingHorizontal: 16,
   },
+  row: { flexDirection: "row" },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  rowSpread: { flexDirection: "row", justifyContent: "space-between" },
   textName: {
     color: colorsLight.WHITE,
     fontSize: 24,
@@ -249,4 +259,11 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Medium",
     lineHeight: 18.2,
   },
+  marginB12: { marginBottom: 12 },
+  height500: { height: 500 },
+  marginT8: { marginTop: 8 },
+  paddingH16: { paddingHorizontal: 16 },
+  paddingB20: { paddingBottom: 20 },
+  marginB100: { marginBottom: 100 },
+  marginV20: { marginVertical: 20 },
 });

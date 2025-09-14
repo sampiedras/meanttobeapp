@@ -1,7 +1,6 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
 import { E_VerseStackRoutes } from "@/verse";
@@ -27,14 +26,10 @@ export const VerseListContent =
     const verseText = numberOfVerses === 1 ? "Verse" : "Verses";
 
     return (
-      <View
-        flex
-        paddingH-16
-        backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-      >
+      <View style={styles.container}>
         <FlatList
           ListHeaderComponent={
-            <View row center style={styles.titleAndCounterContainer}>
+            <View style={[styles.rowCenter, styles.titleAndCounterContainer]}>
               <Text style={styles.title}>{dataTypeVerse?.name}</Text>
               <View style={styles.containerCounter}>
                 <Text style={styles.textCounter}>
@@ -53,7 +48,14 @@ export const VerseListContent =
           onEndReached={handleNextPageVerse}
           onEndReachedThreshold={1}
           ListEmptyComponent={
-            <View centerH flex height={200} paddingT-90>
+            <View
+              style={[
+                styles.centerH,
+                styles.flex,
+                styles.height200,
+                styles.paddingT90,
+              ]}
+            >
               <Text
                 style={styles.textNoFound}
                 variant="body1"
@@ -69,6 +71,16 @@ export const VerseListContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+  },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   title: {
     color: "black",
     fontSize: 36,
@@ -93,6 +105,10 @@ const styles = StyleSheet.create({
   textNoFound: {
     fontFamily: "Satoshi-Regular",
   },
+  centerH: { alignItems: "center" },
+  flex: { flex: 1 },
+  height200: { height: 200 },
+  paddingT90: { paddingTop: 90 },
 });
 
 export const VerseListScreen = (

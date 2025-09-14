@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { FlatListWrap, SearchBar } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -19,18 +18,13 @@ export const VersesContent =
       handleNavigate,
     } = useViewModelProvider();
     return (
-      <View
-        flex
-        paddingH-16
-        paddingB-26
-        backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-      >
+      <View style={styles.container}>
         <FlatListWrap
           refreshing={handleRefresh}
           isLoading={isFetching}
           onPressNavigation={handleNavigate}
           ListHeaderComponent={
-            <View paddingH-8>
+            <View style={styles.paddingH8}>
               <Text style={styles.title}>Verses</Text>
               <SearchBar
                 placeholder="Search"
@@ -47,7 +41,7 @@ export const VersesContent =
         {data && data.length === 0 ? (
           <>
             {searchText ? (
-              <View flex-1 centerH>
+              <View style={[styles.flex1, styles.centerH]}>
                 <Text
                   color={colorsLight.PRIMARY_TEXT_COLOR}
                   variant="h6"
@@ -64,7 +58,14 @@ export const VersesContent =
                 </Text>
               </View>
             ) : (
-              <View centerH flex height={200} paddingT-90>
+              <View
+                style={[
+                  styles.centerH,
+                  styles.flex,
+                  styles.height200,
+                  styles.paddingT90,
+                ]}
+              >
                 <Text
                   style={styles.textNoFound}
                   variant="body1"
@@ -81,6 +82,13 @@ export const VersesContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingBottom: 26,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+  },
+  paddingH8: { paddingHorizontal: 8 },
   title: {
     color: "black",
     fontSize: 34,
@@ -107,6 +115,11 @@ const styles = StyleSheet.create({
   textNoFound: {
     fontFamily: "Satoshi-Regular",
   },
+  centerH: { alignItems: "center" },
+  flex: { flex: 1 },
+  flex1: { flex: 1 },
+  height200: { height: 200 },
+  paddingT90: { paddingTop: 90 },
 });
 
 export const VersesScreen = (

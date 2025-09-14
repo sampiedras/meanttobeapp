@@ -2,11 +2,11 @@ import React from "react";
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   StyleProp,
   StyleSheet,
   ViewStyle,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { colorsLight } from "../../theme/colorsLight";
 
 interface Props {

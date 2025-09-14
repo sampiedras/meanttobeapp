@@ -3,11 +3,11 @@ import {
   StyleProp,
   StyleSheet,
   TouchableOpacity,
+  View,
   ViewStyle,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import { CountryItem, CountryPicker } from "react-native-country-codes-picker";
-import { View } from "react-native-ui-lib";
 import { ChevronDownIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 
@@ -32,7 +32,7 @@ export const SelectPickerCountry = ({
   const [countryCode, setCountryCode] = useState([
     countrySelected?.flag +
       " " +
-      countrySelected?.name.es +
+      (countrySelected?.name as any)?.es +
       " " +
       "(" +
       countrySelected?.dial_code +
@@ -40,7 +40,7 @@ export const SelectPickerCountry = ({
   ]);
 
   return (
-    <View width="100%" style={[styles.container, style]}>
+    <View style={[styles.container, style, styles.fullWidth]}>
       <View style={styles.containerLabel}>
         <Text style={styles.title}>{label}</Text>
       </View>
@@ -88,7 +88,13 @@ export const SelectPickerCountry = ({
         show={show}
         pickerButtonOnPress={(item) => {
           setCountryCode([
-            item.flag + " " + item.name.es + " " + "(" + item.dial_code + ") ",
+            item.flag +
+              " " +
+              (item.name as any).es +
+              " " +
+              "(" +
+              item.dial_code +
+              ") ",
           ]);
           setShow(false);
           setCountrySelected(item);
@@ -106,6 +112,9 @@ const styles = StyleSheet.create({
     height: 75,
     justifyContent: "center",
     alignItems: "center",
+  },
+  fullWidth: {
+    width: "100%",
   },
   containerLabel: {
     width: "100%",

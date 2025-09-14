@@ -4,19 +4,32 @@ import React, {
   useImperativeHandle,
   useRef,
 } from "react";
-import { Dimensions, Platform, Pressable, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  Platform,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { View } from "react-native-ui-lib";
 import { CardItemHandle, TinderCard } from "rn-tinder-card";
 import { useAuthProvider } from "@/core/context/AuthContext";
 import { colorsLight } from "@/core/theme";
-import { LocationIcon } from "@/explorer/assets/svg";
+import {
+  BtnDiscardIcon,
+  BtnYesIcon,
+  LocationIcon,
+} from "@/explorer/assets/svg";
 import { calculateAge } from "@/explorer/utils/calculateAge";
 import { calculateDistance } from "@/explorer/utils/calculateDistance";
 import { UserMatchType } from "@/user/data/remote/entities/userEntity";
 import { useViewModelProvider } from "../../ViewModelContext";
+import { BasicSectionFragment } from "./BasicSectionFragment";
+import { InterestSectionFragment } from "./InterestSectionFragment";
+import { MediaSectionFragment } from "./MediaSectionFragment";
 import { OverlayLeft } from "./OverlayLeft";
 import { OverlayRight } from "./OverlayRight";
 
@@ -63,7 +76,9 @@ export const CardFragment = forwardRef(
     return (
       <View style={styles.cardContainer} pointerEvents="box-none">
         <TinderCard
-          ref={(el) => (tinderCardsRef.current[index] = el)}
+          ref={(el) => {
+            tinderCardsRef.current[index] = el;
+          }}
           disableTopSwipe
           disableBottomSwipe
           onSwipedRight={() => {
@@ -113,7 +128,7 @@ export const CardFragment = forwardRef(
                   ? `${item?.name}, ${age}`
                   : "Don't have info yet "}
               </Text>
-              <View row centerV marginT-8>
+              <View style={[styles.rowCenterV, styles.marginT8]}>
                 <LocationIcon />
                 <Text variant="h6" style={styles.textDistance}>
                   {distanceOfUsers !== 0
@@ -132,7 +147,7 @@ export const CardFragment = forwardRef(
               </View>
             </View>
 
-            {/* <View paddingH-16 paddingB-20>
+            <View style={styles.paddingHB16_20}>
               <Text style={styles.tite}>My story</Text>
               <Text style={styles.textStory}>
                 {item?.descriptionStory || "Don't have a story yet"}
@@ -143,9 +158,11 @@ export const CardFragment = forwardRef(
               <InterestSectionFragment item={item} />
             </View>
 
-            <MediaSectionFragment item={item} /> */}
+            <MediaSectionFragment item={item} />
 
-            {/* <View marginV-20 row style={styles.containerButtons}>
+            <View
+              style={[styles.containerButtons, styles.marginV20, styles.row]}
+            >
               <TouchableOpacity onPress={() => swipeLeft(index)}>
                 <BtnDiscardIcon />
               </TouchableOpacity>
@@ -157,7 +174,7 @@ export const CardFragment = forwardRef(
             // onPress={() => handleBlockUser(item.id, index)}
             >
               <Text style={styles.blockText}>Block and report this person</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </Pressable>
         </TinderCard>
       </View>
@@ -247,5 +264,24 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontFamily: "Satoshi-Medium",
     lineHeight: 18.2,
+  },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  marginT8: { marginTop: 8 },
+  paddingHB16_20: { paddingHorizontal: 16, paddingBottom: 20 },
+  containerButtons: { justifyContent: "space-between", alignItems: "center" },
+  marginV20: { marginVertical: 20 },
+  row: { flexDirection: "row" },
+  tite: {
+    fontFamily: "Satoshi-Bold",
+    fontSize: 16,
+    marginTop: 12,
+    marginBottom: 8,
+  },
+  textStory: { fontFamily: "Satoshi-Regular", fontSize: 14, marginBottom: 12 },
+  blockText: {
+    fontFamily: "Satoshi-Regular",
+    fontSize: 12,
+    alignSelf: "center",
+    marginTop: 12,
   },
 });

@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CheckBox from "@react-native-community/checkbox";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 interface ICheckBoxFragmentProps {
@@ -17,7 +16,7 @@ export const CheckBoxFragment = ({
   label,
 }: ICheckBoxFragmentProps) => {
   return (
-    <View row spread centerV>
+    <View style={styles.rowSpreadCenterV}>
       <Text
         color={colorsLight.PRIMARY_TEXT_COLOR}
         style={styles.textsLookingFor}
@@ -47,6 +46,11 @@ const styles = StyleSheet.create({
   checkBox: {
     width: 20,
     height: 20,
+  },
+  rowSpreadCenterV: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   textsLookingFor: {
     fontSize: 12,

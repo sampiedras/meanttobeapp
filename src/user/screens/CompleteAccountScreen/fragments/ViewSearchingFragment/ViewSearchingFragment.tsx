@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import _ from "lodash";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { SearchingEntityResponse } from "@/user/data/remote/entities/searchingEntity";
 import { useGetAllSearchingsQuery } from "@/user/data/remote/userApi";
@@ -49,7 +48,7 @@ export const ViewSearchingFragment = () => {
         )}
         style={styles.list}
         ListFooterComponent={
-          <View marginT-33 center>
+          <View style={[styles.marginT33, styles.center]}>
             {dataSearch &&
             dataSearch.some((item) => item.selected && item.name === "Love") ? (
               <Text variant="h6" style={styles.helperText}>
@@ -83,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 12,
   },
+  center: { alignItems: "center", justifyContent: "center" },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Regular",
@@ -99,4 +99,5 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     textAlign: "center",
   },
+  marginT33: { marginTop: 33 },
 });

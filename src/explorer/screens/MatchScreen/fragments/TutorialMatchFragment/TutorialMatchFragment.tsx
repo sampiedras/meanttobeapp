@@ -7,13 +7,14 @@ import {
   StyleProp,
   StyleSheet,
   TextStyle,
+  TouchableOpacity,
+  View,
   ViewStyle,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BlurView } from "@react-native-community/blur";
 import { Text } from "@react-native-material/core";
 import * as Animatable from "react-native-animatable";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { useAppDispatch } from "@/core/hooks/useRedux";
 import { setShowTabBar } from "@/core/slices/tabBarSlice";
 import { HEAR_V2_IMAGE } from "@/explorer/assets/images";

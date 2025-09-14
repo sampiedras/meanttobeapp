@@ -1,9 +1,14 @@
 import React from "react";
-import { Modal, ScrollView, StyleSheet } from "react-native";
+import {
+  Modal,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { RangeSlider, Slider } from "@react-native-assets/slider";
 import CheckBox from "@react-native-community/checkbox";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { AppContainerSafeArea, CircleButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { CloseDisableIcon } from "@/explorer/assets/svg";
@@ -36,7 +41,9 @@ export const ModalFiltersFragment = () => {
   return (
     <Modal animationType="slide" transparent={false} visible={modalFilters}>
       <AppContainerSafeArea>
-        <View row centerV paddingH-16 paddingV-8 spread>
+        <View
+          style={[styles.rowCenterVSpread, styles.paddingH16, styles.paddingV8]}
+        >
           <CircleButton
             onPress={handleToggleModalFilters}
             backgroundColor="#74748014"
@@ -57,21 +64,25 @@ export const ModalFiltersFragment = () => {
           </TouchableOpacity>
         </View>
         <View
-          height={2}
-          width="100%"
-          marginB-8
-          backgroundColor={colorsLight.GRAY_02}
+          style={[
+            styles.height2,
+            styles.fullWidth,
+            styles.marginB8,
+            { backgroundColor: colorsLight.GRAY_02 },
+          ]}
         />
         <ScrollView
           scrollEnabled={scrollEnabled}
           style={styles.scrollContainer}
         >
-          <View flex-1 paddingH-16>
+          <View style={[styles.flex1, styles.paddingH16]}>
             <Text color={colorsLight.GRAY_03} style={styles.textAge}>
               Age
             </Text>
           </View>
-          <View marginT-8 padding-16 style={styles.containerItems}>
+          <View
+            style={[styles.marginT8, styles.padding16, styles.containerItems]}
+          >
             <Text
               color={colorsLight.PRIMARY_TEXT_COLOR}
               style={styles.itemAge}
@@ -90,8 +101,13 @@ export const ModalFiltersFragment = () => {
               onValueChange={setFilterAge}
               onSlidingStart={disableScroll}
               onSlidingComplete={enableScroll}
+              CustomThumb={() => (
+                <View style={styles.thumbOuter}>
+                  <View style={styles.thumbInner} />
+                </View>
+              )}
             />
-            <View row centerV>
+            <View style={[styles.row, styles.centerV]}>
               <CheckBox
                 disabled={false}
                 value={ageCheckBox}
@@ -118,11 +134,13 @@ export const ModalFiltersFragment = () => {
 
           <Text
             color={colorsLight.SECONDARY_TEXT_COLOR}
-            style={styles.titleItem}
+            style={[styles.titleItem, styles.paddingH16]}
           >
             Distance
           </Text>
-          <View padding-16 marginT-8 style={styles.containerItems}>
+          <View
+            style={[styles.padding16, styles.marginT8, styles.containerItems]}
+          >
             <CheckBoxFragment
               label="Locally"
               value={isNearMe}
@@ -135,7 +153,7 @@ export const ModalFiltersFragment = () => {
               onChange={handleSetNerMe}
             />
 
-            <View marginV-16 style={styles.separator} />
+            <View style={[styles.marginV16, styles.separator]} />
             <Text
               color={colorsLight.PRIMARY_TEXT_COLOR}
               style={styles.titleSlideDistance}
@@ -156,7 +174,7 @@ export const ModalFiltersFragment = () => {
               onSlidingStart={disableScroll}
               onSlidingComplete={enableScroll}
             />
-            <View row centerV>
+            <View style={[styles.row, styles.centerV]}>
               <CheckBox
                 disabled={false}
                 value={distanceCheckBox}
@@ -183,11 +201,13 @@ export const ModalFiltersFragment = () => {
 
           <Text
             color={colorsLight.SECONDARY_TEXT_COLOR}
-            style={styles.titleItem}
+            style={[styles.titleItem, styles.paddingH16]}
           >
             What are you looking for?
           </Text>
-          <View padding-16 marginT-8 style={styles.containerItems}>
+          <View
+            style={[styles.padding16, styles.marginT8, styles.containerItems]}
+          >
             {dataSearching.map((item, index) => (
               <CheckBoxFragment
                 key={index}
@@ -204,11 +224,32 @@ export const ModalFiltersFragment = () => {
 };
 
 const styles = StyleSheet.create({
+  thumbOuter: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: "transparent",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  thumbInner: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: colorsLight.PRIMARY_COLOR,
+  },
   title: {
     fontSize: 16,
     fontFamily: "Satoshi-Medium",
     textAlign: "center",
   },
+  rowCenterVSpread: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  paddingH16: { paddingHorizontal: 16 },
+  paddingV8: { paddingVertical: 8 },
   textButtonDone: {
     fontSize: 17,
     fontFamily: "Satoshi-Medium",
@@ -225,6 +266,14 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     justifyContent: "center",
   },
+  height2: { height: 2 },
+  fullWidth: { width: "100%" },
+  marginB8: { marginBottom: 8 },
+  flex1: { flex: 1 },
+  marginT8: { marginTop: 8 },
+  padding16: { padding: 16 },
+  row: { flexDirection: "row" },
+  centerV: { alignItems: "center" },
   itemAge: {
     fontSize: 16,
     fontFamily: "Satoshi-Medium",
@@ -234,6 +283,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     fontFamily: "Satoshi-Regular",
   },
+  marginV16: { marginVertical: 16 },
   titleItem: {
     fontSize: 16,
     marginTop: 20,
@@ -243,6 +293,7 @@ const styles = StyleSheet.create({
   checkbox: {
     width: 20,
     height: 20,
+    marginLeft: -6,
   },
   separator: {
     borderColor: colorsLight.GRAY_02,

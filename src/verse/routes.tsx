@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { ArrowBackIcon } from "@/core/assets/svg";
 import { Stack } from "@/core/navigation";
 import { colorsLight } from "@/core/theme";
@@ -29,7 +28,10 @@ export const useVerseGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.rowCenterV}
+              >
                 <ArrowBackIcon />
                 <Text style={styles.text}>Feed</Text>
               </TouchableOpacity>
@@ -48,7 +50,10 @@ export const useVerseGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.rowCenterV}
+              >
                 <ArrowBackIcon />
                 <Text style={styles.text}>Feed</Text>
               </TouchableOpacity>
@@ -67,7 +72,10 @@ export const useVerseGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.rowCenterV}
+              >
                 <ArrowBackIcon />
                 <Text style={styles.text}>Feed</Text>
               </TouchableOpacity>
@@ -83,6 +91,7 @@ export const useVerseGroupScreens = () => {
 };
 
 const styles = StyleSheet.create({
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   text: {
     fontFamily: "Satoshi-Bold",
     fontSize: 14,

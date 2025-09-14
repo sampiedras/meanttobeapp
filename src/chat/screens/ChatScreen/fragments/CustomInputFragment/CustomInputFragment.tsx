@@ -7,10 +7,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import AudioRecorderPlayer from "react-native-audio-recorder-player";
-import { View } from "react-native-ui-lib";
 import {
   AutoCompleteInput,
   FileUploadPreview,
@@ -88,7 +88,7 @@ export const CustomInputFragment = () => {
       // Send the message on channel.
       await channel.sendMessage(messageWithoutReservedFields);
     },
-    [channel, client.user, recordTime, updateMessage]
+    [channel, client.user, recordTime, updateMessage],
   );
 
   const handleOnStartRecord = useCallback(async () => {
@@ -98,7 +98,7 @@ export const CustomInputFragment = () => {
     audioRecorderPlayer.addRecordBackListener((e) => {
       setRecordSecs(e.currentPosition);
       setRecordTime(
-        audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)) as any
+        audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)) as any,
       );
 
       return;
@@ -128,13 +128,13 @@ export const CustomInputFragment = () => {
       "keyboardDidShow",
       () => {
         setKeyboardVisible(true);
-      }
+      },
     );
     const keyboardDidHideListener = Keyboard.addListener(
       "keyboardDidHide",
       () => {
         setKeyboardVisible(false);
-      }
+      },
     );
 
     return () => {
@@ -149,13 +149,12 @@ export const CustomInputFragment = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <KeyboardAvoidingView style={styles.containerKeyboardAvoidingView}>
-        <View width="100%">
+        <View style={{ width: "100%" }}>
           <ImageUploadPreview />
           <FileUploadPreview />
           <View
-            width="100%"
-            row
             style={[
+              styles.row,
               styles.inputContainer,
               isKeyboardVisible && Platform.OS === "ios"
                 ? // eslint-disable-next-line react-native/no-inline-styles
@@ -165,7 +164,9 @@ export const CustomInputFragment = () => {
           >
             {!recordingActive ? (
               <>
-                <View center marginL-16 marginR-19>
+                <View
+                  style={[styles.center, styles.marginL16, styles.marginR19]}
+                >
                   <TouchableOpacity onPress={toggleAttachmentPicker}>
                     <AttachIcon />
                   </TouchableOpacity>
@@ -182,15 +183,15 @@ export const CustomInputFragment = () => {
                   }}
                 />
                 {isDisabled ? (
-                  <View center marginH-12 row>
-                    <View marginV-29 style={styles.lineDivider} />
+                  <View style={[styles.center, styles.marginH12, styles.row]}>
+                    <View style={[styles.marginV29, styles.lineDivider]} />
                     <TouchableOpacity onLongPress={handleOnStartRecord}>
                       <MicrophoneIcon />
                     </TouchableOpacity>
                   </View>
                 ) : (
-                  <View center marginH-12 row>
-                    <View marginV-29 style={styles.lineDivider} />
+                  <View style={[styles.center, styles.marginH12, styles.row]}>
+                    <View style={[styles.marginV29, styles.lineDivider]} />
                     <TouchableOpacity onPress={() => sendMessage()}>
                       <SendIcon />
                     </TouchableOpacity>
@@ -199,19 +200,21 @@ export const CustomInputFragment = () => {
               </>
             ) : (
               <View
-                row
-                style={styles.containerRecording}
-                backgroundColor={colorsLight.PRIMARY_TEXT_COLOR}
-                flex-1
-                paddingH-16
-                paddingV-10
-                centerV
+                style={[
+                  styles.row,
+                  styles.containerRecording,
+                  styles.flex1,
+                  styles.paddingH16,
+                  styles.paddingV10,
+                  styles.centerV,
+                  { backgroundColor: colorsLight.PRIMARY_TEXT_COLOR },
+                ]}
               >
-                <View row centerV>
+                <View style={styles.rowCenterV}>
                   <TouchableOpacity onPress={handleResetRecording}>
                     <CloseAudioIcon />
                   </TouchableOpacity>
-                  <View marginL-9>
+                  <View style={styles.marginL9}>
                     <Text color={colorsLight.WHITE}>
                       {formatTime(recordTime)}
                     </Text>
@@ -239,6 +242,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colorsLight.GRAY_04,
   },
+  row: { flexDirection: "row" },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
+  center: { justifyContent: "center", alignItems: "center" },
+  marginL16: { marginLeft: 16 },
+  marginR19: { marginRight: 19 },
+  marginH12: { marginHorizontal: 12 },
+  marginV29: { marginVertical: 29 },
+  paddingH16: { paddingHorizontal: 16 },
+  paddingV10: { paddingVertical: 10 },
+  centerV: { alignItems: "center" },
+  flex1: { flex: 1 },
   lineDivider: {
     width: 24,
     height: 0,

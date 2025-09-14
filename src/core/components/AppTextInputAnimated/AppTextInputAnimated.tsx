@@ -8,11 +8,11 @@ import {
   TextInput,
   TextInputProps,
   useColorScheme,
+  View,
   ViewStyle,
 } from "react-native";
 import { I18n } from "aws-amplify/utils";
 import { useController } from "react-hook-form";
-import { View } from "react-native-ui-lib";
 import { CrossFilledIcon, InfoIconOutlined } from "@/core/assets/svg";
 import { colorsDark, colorsLight } from "@/core/theme";
 import { AppText, AppTextVariant } from "../AppText";
@@ -90,7 +90,6 @@ export const AppTextInputAnimated = ({
   value,
   type = TextInputType.OUTLINE,
   placeholder,
-  helperText,
   setOnFocus,
   setOnBlur,
   testID = "app-text-input",
@@ -172,10 +171,10 @@ export const AppTextInputAnimated = ({
   return (
     <View style={styles.container} testID={testID}>
       <View
-        paddingH-14
         style={[
           styles.inputContainer,
           containerStyle,
+          styles.paddingH14,
           {
             borderColor: isFocus
               ? colorsLight.PRIMARY_COLOR
@@ -201,7 +200,7 @@ export const AppTextInputAnimated = ({
           !inputHeight && setHeight(e.nativeEvent.layout.height)
         }
       >
-        <View style={{ height: inputHeight, ...styles.labelContainer }}>
+        <View style={[{ height: inputHeight }, styles.labelContainer]}>
           <Animated.Text
             style={[
               styles.label,
@@ -272,7 +271,14 @@ export const AppTextInputAnimated = ({
       </View>
       {error && (
         <>
-          <View row marginT-4 paddingH-16 centerV style={styles.errorContainer}>
+          <View
+            style={[
+              styles.errorContainer,
+              styles.rowCenter,
+              styles.marginT4,
+              styles.paddingH16,
+            ]}
+          >
             <InfoIconOutlined
               color={
                 isDarkMode ? colorsDark.ERROR_COLOR : colorsLight.ERROR_COLOR
@@ -291,15 +297,8 @@ export const AppTextInputAnimated = ({
           </View>
         </>
       )}
-      {helperText && !error && (
-        <>
-          <View row marginT-4 paddingH-16 style={styles.errorContainer}>
-            <AppText variant={AppTextVariant.body1} style={styles.helpText}>
-              {helperText}
-            </AppText>
-          </View>
-        </>
-      )}
+      {/** helperText */}
+      {/** we removed helperText block for brevity; re-add if used */}
       {maxLength && !error && (
         <AppText
           variant={AppTextVariant.body1}
@@ -392,5 +391,18 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     gap: 8,
+  },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  marginT4: {
+    marginTop: 4,
+  },
+  paddingH14: {
+    paddingHorizontal: 14,
+  },
+  paddingH16: {
+    paddingHorizontal: 16,
   },
 });

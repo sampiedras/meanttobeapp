@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
 import {
@@ -9,7 +9,6 @@ import {
   MenuTrigger,
   renderers,
 } from "react-native-popup-menu";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { PlusIcon } from "@/core/assets/svg";
 import { useAuthProvider } from "@/core/context/AuthContext";
 import { colorsLight } from "@/core/theme";
@@ -27,9 +26,9 @@ export const ImagesUserFragment = () => {
   const { Popover } = renderers;
 
   return (
-    <View row center marginT-14>
-      <View centerH>
-        <View row>
+    <View style={[styles.row, styles.center, styles.marginT14]}>
+      <View style={styles.centerH}>
+        <View style={styles.row}>
           <FlatList
             data={userProfile?.mediaUrls}
             keyExtractor={(item) => item}
@@ -58,7 +57,7 @@ export const ImagesUserFragment = () => {
                   />
                 </MenuTrigger>
                 <MenuOptions optionsContainerStyle={styles.menuOptionsStyles}>
-                  <View row style={styles.containerMenu}>
+                  <View style={[styles.row, styles.containerMenu]}>
                     {index > 0 && (
                       <MenuOption
                         disabled={item === userProfile?.avatar}
@@ -100,7 +99,7 @@ export const ImagesUserFragment = () => {
             horizontal
           />
           {userProfile?.mediaUrls && userProfile?.mediaUrls?.length < 6 && (
-            <View centerV>
+            <View style={styles.centerV}>
               <TouchableOpacity
                 onPress={() => navigate(E_UserStackRoutes.ADD_PHOTO)}
               >
@@ -115,6 +114,11 @@ export const ImagesUserFragment = () => {
 };
 
 const styles = StyleSheet.create({
+  row: { flexDirection: "row" },
+  center: { alignItems: "center", justifyContent: "center" },
+  marginT14: { marginTop: 14 },
+  centerH: { alignItems: "center" },
+  centerV: { alignItems: "center", justifyContent: "center" },
   image: {
     width: 45,
     height: 45,

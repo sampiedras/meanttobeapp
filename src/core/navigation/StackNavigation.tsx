@@ -1,8 +1,8 @@
 import React from "react";
 import { StatusBar, StyleSheet } from "react-native";
+import { View } from "react-native";
 import LottieView from "lottie-react-native";
 import { enableScreens } from "react-native-screens";
-import { View } from "react-native-ui-lib";
 import { AuthStackRoutes, useAuthGroupScreens } from "@/auth/routes";
 import { useChatGroupScreens } from "@/chat";
 import { useNewsGroupScreens } from "@/news";
@@ -11,6 +11,7 @@ import { useSermonGroupScreens } from "@/sermon";
 import { useSettingsGroupScreens } from "@/settings";
 import { useSongGroupScreens } from "@/song";
 import {
+  E_UserStackRoutes,
   PermissionScreen,
   useUserAuthGroupScreens,
   useUserGroupScreens,
@@ -70,9 +71,7 @@ export function StackNavigation() {
   if (isLoading) {
     return (
       <View
-        flex-1
-        center
-        backgroundColor={colorsBase.WHITE}
+        style={[styles.loadingContainer, { backgroundColor: colorsBase.WHITE }]}
         testID="loading-animation"
       >
         <StatusBar
@@ -91,10 +90,24 @@ export function StackNavigation() {
     );
   }
 
+  const hasMandatoryScreen =
+    isAuthenticated &&
+    userProfile?.name &&
+    (!permissionLocation ||
+      !permissionNotification ||
+      !permissionLocationLocal ||
+      !permissionNotificationLocal);
+
   return (
     <Stack.Navigator
       initialRouteName={
-        isAuthenticated ? E_RootStackRoutes.TABS_HOME : AuthStackRoutes.WELCOME
+        hasMandatoryScreen
+          ? E_RootStackRoutes.PERMISSION
+          : isAuthenticated
+            ? isUserComplete
+              ? E_RootStackRoutes.TABS_HOME
+              : E_UserStackRoutes.COMPLETE_ACCOUNT
+            : AuthStackRoutes.WELCOME
       }
     >
       {mandatoryScreen() ||
@@ -126,5 +139,6 @@ export function StackNavigation() {
 }
 
 const styles = StyleSheet.create({
+  loadingContainer: { flex: 1, alignItems: "center", justifyContent: "center" },
   icon: { width: 160, height: 160 },
 });

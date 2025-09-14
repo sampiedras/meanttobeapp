@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import {
   ChannelList,
   DefaultStreamChatGenerics,
@@ -37,7 +36,7 @@ export const MessageContent =
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.container}
           >
-            <View paddingH-16>
+            <View style={styles.paddingH16}>
               <Text
                 style={styles.titlePrincipal}
                 variant="h5"
@@ -53,17 +52,21 @@ export const MessageContent =
               />
             </View>
             <View
-              backgroundColor={colorsLight.GRAY_LIST_CHAT}
-              style={styles.listContainer}
+              style={[
+                styles.listContainer,
+                { backgroundColor: colorsLight.GRAY_LIST_CHAT },
+              ]}
             >
-              <View center>
+              <View style={styles.center}>
                 <View
-                  height={6}
-                  width={50}
-                  marginT-14
-                  marginB-19
-                  backgroundColor={colorsLight.GRAY_04}
-                  style={styles.bottomSheet}
+                  style={[
+                    styles.bottomSheet,
+                    styles.height6,
+                    styles.width50,
+                    styles.marginT14,
+                    styles.marginB19,
+                    { backgroundColor: colorsLight.GRAY_04 },
+                  ]}
                 />
               </View>
 
@@ -76,7 +79,7 @@ export const MessageContent =
             </View>
           </ScrollView>
         ) : (
-          <View flex-1 centerV paddingH-16>
+          <View style={[styles.flex1, styles.centerV, styles.paddingH16]}>
             <FastImage source={PERSONS_IMAGE} style={styles.image} />
             <View>
               <Text style={styles.title}>This is a premium feature</Text>
@@ -103,6 +106,7 @@ const styles = StyleSheet.create({
     paddingBottom: 96,
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
   },
+  paddingH16: { paddingHorizontal: 16 },
   titlePrincipal: {
     fontFamily: "Satoshi-Black",
     marginBottom: 24,
@@ -119,6 +123,13 @@ const styles = StyleSheet.create({
   bottomSheet: {
     borderRadius: 100,
   },
+  center: { alignItems: "center", justifyContent: "center" },
+  height6: { height: 6 },
+  width50: { width: 50 },
+  marginT14: { marginTop: 14 },
+  marginB19: { marginBottom: 19 },
+  flex1: { flex: 1 },
+  centerV: { alignItems: "center" },
   buttonPremium: {
     marginBottom: 20,
   },

@@ -1,9 +1,9 @@
+import "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import messaging from "@react-native-firebase/messaging";
 import { Amplify } from "aws-amplify";
 import { registerRootComponent } from "expo";
 import { Application } from "@/App";
-import "react-native-gesture-handler";
 import "@/core/translate";
 import { awsmobile } from "./src/aws-exports";
 

@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { AppGradientButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { EmptyMatchIcon } from "@/explorer/assets/svg";

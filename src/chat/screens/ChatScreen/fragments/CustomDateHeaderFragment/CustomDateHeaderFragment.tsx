@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 export const CustomDateHeaderFragment = ({
@@ -11,12 +10,14 @@ export const CustomDateHeaderFragment = ({
 }) => {
   return (
     <View
-      marginT-8
-      paddingH-16
-      paddingV-5
-      backgroundColor={colorsLight.PRIMARY_COLOR}
-      center
-      style={styles.containerDateHeader}
+      style={[
+        styles.containerDateHeader,
+        styles.marginT8,
+        styles.paddingH16,
+        styles.paddingV5,
+        styles.center,
+        { backgroundColor: colorsLight.PRIMARY_COLOR },
+      ]}
     >
       <Text style={styles.textDateHeader} color={colorsLight.WHITE}>
         {dateString}
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
   containerDateHeader: {
     borderRadius: 100,
   },
+  center: { justifyContent: "center", alignItems: "center" },
+  marginT8: { marginTop: 8 },
+  paddingH16: { paddingHorizontal: 16 },
+  paddingV5: { paddingVertical: 5 },
   textDateHeader: {
     fontFamily: "Satoshi-Medium",
     fontSize: 12,

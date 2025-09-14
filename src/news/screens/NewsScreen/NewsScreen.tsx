@@ -1,7 +1,6 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -25,25 +24,16 @@ export const NewsContent =
 
     return (
       <AppContainerSafeArea>
-        <View
-          flex
-          backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-          paddingH-20
-        >
-          <View row spread centerV width={"100%"}>
+        <View style={styles.container}>
+          <View style={styles.headerRow}>
             <Text style={styles.title}>News</Text>
 
-            <View
-              backgroundColor={colorsLight.FILL_COUNTER}
-              paddingV-4
-              paddingH-15
-              br100
-            >
+            <View style={styles.counter}>
               <Text style={styles.counterText}>{news?.count || 0} News</Text>
             </View>
           </View>
 
-          <View style={styles.listTypes} marginT-16 paddingB-4>
+          <View style={[styles.listTypes, styles.marginT16, styles.paddingB4]}>
             <FlatList
               horizontal
               renderItem={({ item }) => (
@@ -75,7 +65,7 @@ export const NewsContent =
             ListEmptyComponent={
               <>
                 {news?.count === 0 && (
-                  <View centerH flex height={200} paddingT-90>
+                  <View style={styles.emptyContainer}>
                     <Text
                       style={styles.textNoFound}
                       variant="body1"
@@ -94,6 +84,23 @@ export const NewsContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+    paddingHorizontal: 20,
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+  },
+  counter: {
+    backgroundColor: colorsLight.FILL_COUNTER,
+    paddingVertical: 4,
+    paddingHorizontal: 15,
+    borderRadius: 100,
+  },
   title: {
     fontFamily: "Satoshi-Bold",
     fontSize: 34,
@@ -101,6 +108,8 @@ const styles = StyleSheet.create({
   listTypes: {
     overflow: "hidden",
   },
+  marginT16: { marginTop: 16 },
+  paddingB4: { paddingBottom: 4 },
   listNews: {
     flex: 1,
   },
@@ -111,6 +120,13 @@ const styles = StyleSheet.create({
   },
   textNoFound: {
     fontFamily: "Satoshi-Regular",
+  },
+  emptyContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 200,
+    paddingTop: 90,
+    flex: 1,
   },
 });
 

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { Platform } from "react-native";
-import { TouchableOpacity } from "react-native-ui-lib";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { ArrowBackIcon } from "@/core/assets/svg";
 import { Stack } from "@/core/navigation";
 import {
@@ -36,7 +35,10 @@ export const useSettingsGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.headerBtn}
+              >
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -57,7 +59,10 @@ export const useSettingsGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.headerBtn}
+              >
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -78,7 +83,10 @@ export const useSettingsGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.headerBtn}
+              >
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -99,7 +107,10 @@ export const useSettingsGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                style={styles.headerBtn}
+              >
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -112,3 +123,10 @@ export const useSettingsGroupScreens = () => {
     return SettingsGroupScreens;
   }, []);
 };
+
+const styles = StyleSheet.create({
+  headerBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});

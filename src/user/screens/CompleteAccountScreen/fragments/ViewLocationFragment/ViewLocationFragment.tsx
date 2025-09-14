@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useController } from "react-hook-form";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { RadioButtonCheckIcon, RadioButtonIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { useViewModelProvider } from "../../ViewModelContext";
@@ -20,15 +19,14 @@ export const ViewLocationFragment = () => {
   });
 
   return (
-    <View style={styles.container} paddingH-16>
+    <View style={[styles.container, styles.paddingH16]}>
       <Text variant="h6" style={styles.title}>
         Where do you want to meet people from?
       </Text>
 
       <TouchableOpacity
-        row
-        centerV
         style={[
+          styles.rowCenterV,
           styles.radioButton,
           {
             borderColor:
@@ -50,9 +48,8 @@ export const ViewLocationFragment = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        row
-        centerV
         style={[
+          styles.rowCenterV,
           styles.radioButton,
           {
             borderColor:
@@ -82,6 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 12,
   },
+  paddingH16: { paddingHorizontal: 16 },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Regular",
@@ -96,6 +94,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: "space-between",
   },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   textRadio: {
     fontFamily: "Satoshi-Medium",
   },

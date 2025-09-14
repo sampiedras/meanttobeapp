@@ -1,8 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { I18n } from "aws-amplify/utils";
-import { View } from "react-native-ui-lib";
 import { GoogleIcon } from "@/core/assets/svg";
 import {
   AppButton,

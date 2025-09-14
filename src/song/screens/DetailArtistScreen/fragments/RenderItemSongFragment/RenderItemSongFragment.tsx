@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { HartActiveIcon, HartGrayIcon } from "@/song/assets/svg";
 import { ISongResponse } from "@/song/data/remote/entities/songEntity";
@@ -77,13 +76,7 @@ export const RenderItemSongFragment = ({ item }: Props) => {
           </View>
         </View>
       </TouchableOpacity>
-      <View
-        height={0.5}
-        width="100%"
-        backgroundColor={colorsLight.GRAY_04}
-        style={styles.crossBar}
-        marginV-20
-      />
+      <View style={[styles.crossBar, styles.crossBarDims]} />
     </View>
   );
 };
@@ -121,5 +114,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  crossBar: { alignSelf: "center", borderRadius: 20 },
+  crossBar: {
+    alignSelf: "center",
+    borderRadius: 20,
+    backgroundColor: colorsLight.GRAY_04,
+    marginVertical: 20,
+  },
+  crossBarDims: { height: 0.5, width: "100%" },
 });

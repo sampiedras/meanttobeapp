@@ -1,7 +1,12 @@
 import React from "react";
-import { Animated, FlatList, StyleSheet } from "react-native";
+import {
+  Animated,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { QuizQuestionType } from "@/quiz/data/remote/entities/quiestionEntity";
 import { QuizAnswersType } from "@/quiz/data/remote/entities/quizEntity";
@@ -55,11 +60,13 @@ export const CardFragment = ({ item, index, removeItem, quantity }: Props) => {
         ]}
       >
         <View
-          padding-16
-          backgroundColor={colorsLight.FILL_QUIZZES_QUESTION_CARD}
-          height={"90%"}
-          centerH
-          style={styles.item}
+          style={[
+            styles.item,
+            styles.padding16,
+            styles.height90,
+            styles.centerH,
+            { backgroundColor: colorsLight.FILL_QUIZZES_QUESTION_CARD },
+          ]}
         >
           <Text color={colorsLight.WHITE} style={styles.questionText}>
             {item.name}
@@ -78,7 +85,7 @@ export const CardFragment = ({ item, index, removeItem, quantity }: Props) => {
               )}
             />
           ) : (
-            <View flex center>
+            <View style={styles.centerFlex}>
               <Text style={styles.questionText} color={colorsLight.WHITE}>
                 No options found
               </Text>
@@ -96,6 +103,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderColor: colorsLight.GRAY_BR,
   },
+  padding16: { padding: 16 },
+  height90: { height: "90%" },
+  centerH: { alignItems: "center" },
   animateContainer: {
     width: "90%",
   },
@@ -103,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  centerFlex: { flex: 1, alignItems: "center", justifyContent: "center" },
   answerList: {
     marginTop: 16,
     width: "100%",

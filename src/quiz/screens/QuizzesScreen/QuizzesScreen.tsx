@@ -1,7 +1,6 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -17,18 +16,19 @@ export const QuizzesContent =
     return (
       <AppContainerSafeArea>
         <View
-          flex
-          backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-          padding-16
+          style={[
+            styles.container,
+            { backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR },
+          ]}
         >
-          <View row spread centerV width={"100%"}>
+          <View style={[styles.rowSpreadCenterV, styles.fullWidth]}>
             <Text style={styles.title}>Quizzes</Text>
 
             <View
-              backgroundColor={colorsLight.FILL_COUNTER_QUIZZES}
-              paddingV-4
-              paddingH-15
-              br100
+              style={[
+                styles.pillCounter,
+                { backgroundColor: colorsLight.FILL_COUNTER_QUIZZES },
+              ]}
             >
               <Text style={styles.counterText}>{cards.length} Quizzes</Text>
             </View>
@@ -37,7 +37,7 @@ export const QuizzesContent =
           {isFetching ? (
             <ActivityIndicator color={colorsLight.PRIMARY_COLOR} />
           ) : (
-            <View flex>
+            <View style={styles.flex}>
               {cards.length > 0 ? (
                 cards.map((item, index: number) => (
                   <CardFragment
@@ -50,7 +50,7 @@ export const QuizzesContent =
                   />
                 ))
               ) : (
-                <View flex center>
+                <View style={styles.flexCenter}>
                   <Text>No quizzes found</Text>
                 </View>
               )}
@@ -62,6 +62,13 @@ export const QuizzesContent =
   };
 
 const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16 },
+  rowSpreadCenterV: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  fullWidth: { width: "100%" },
   title: {
     fontFamily: "Satoshi-Bold",
     fontSize: 34,
@@ -71,6 +78,9 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Bold",
     fontSize: 12,
   },
+  pillCounter: { paddingVertical: 4, paddingHorizontal: 15, borderRadius: 100 },
+  flex: { flex: 1 },
+  flexCenter: { flex: 1, alignItems: "center", justifyContent: "center" },
 });
 
 export const QuizzesScreen = (

@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { IconSelectImage, IconSelectImageTwo } from "@/core/assets/svg";
 import { AppContainerSafeArea, AppGradientButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -24,11 +23,11 @@ export const AddPhotoContent =
     return (
       <AppContainerSafeArea>
         <ScrollView style={styles.container}>
-          <View flex-1 centerH>
+          <View style={styles.flex1CenterH}>
             <Text variant="h6" style={styles.title}>
               Add you first photo
             </Text>
-            <View width="70%">
+            <View style={styles.w70}>
               <Text variant="caption" style={styles.text}>
                 The first impression always gives a boom! upload your best photo
               </Text>
@@ -65,7 +64,9 @@ export const AddPhotoContent =
               imagesSelected.image1 ||
               imagesSelected.image2 ||
               imagesSelected.image3) && (
-              <View row centerV spread marginT-4 width="100%">
+              <View
+                style={[styles.rowCenterVSpread, styles.marginT4, styles.w100]}
+              >
                 <TouchableOpacity
                   style={styles.btn}
                   onPress={() => onButtonPress("image1")}
@@ -160,7 +161,13 @@ export const AddPhotoContent =
                 imagesSelected.image4 ||
                 imagesSelected.image5 ||
                 imagesSelected.image6) && (
-                <View row centerV spread marginT-16 width="100%">
+                <View
+                  style={[
+                    styles.rowCenterVSpread,
+                    styles.marginT16,
+                    styles.w100,
+                  ]}
+                >
                   <TouchableOpacity
                     style={styles.btn}
                     onPress={() => onButtonPress("image4")}
@@ -250,7 +257,7 @@ export const AddPhotoContent =
             </>
           </View>
         </ScrollView>
-        <View marginV-20 marginH-16>
+        <View style={styles.marginV20H16}>
           <AppGradientButton
             // loading={loading}
             label="Save changes"
@@ -268,6 +275,16 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingHorizontal: 16,
   },
+  flex1CenterH: { flex: 1, alignItems: "center" },
+  w70: { width: "70%" },
+  rowCenterVSpread: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  marginT4: { marginTop: 4 },
+  marginT16: { marginTop: 16 },
+  w100: { width: "100%" },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Regular",
@@ -303,6 +320,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 16,
   },
+  marginV20H16: { marginVertical: 20, marginHorizontal: 16 },
 });
 
 export const AddPhotoScreen = (

@@ -4,10 +4,10 @@ import {
   DimensionValue,
   StyleProp,
   StyleSheet,
+  TouchableOpacity,
   ViewStyle,
 } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 
 interface Props {
   label: string;
@@ -39,11 +39,10 @@ export const Button = (props: Props) => {
   } = props;
   return (
     <TouchableOpacity
-      row
-      center
       onPress={onPress}
       disabled={disabled}
       style={[
+        styles.btn,
         style,
         // eslint-disable-next-line react-native/no-inline-styles
         {
@@ -74,5 +73,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontFamily: "Satoshi-Medium",
+  },
+  btn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

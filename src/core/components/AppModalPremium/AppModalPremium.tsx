@@ -2,13 +2,13 @@ import React from "react";
 import {
   Modal,
   Platform,
-  SafeAreaView,
   StyleSheet,
+  View,
   VirtualizedList,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import { Product } from "react-native-qonversion";
-import { View } from "react-native-ui-lib";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   CloseDisabledIcon,
   LineDashedIcon,
@@ -74,14 +74,14 @@ export const AppModalPremium = () => {
               <>
                 <View>
                   <LineDashedIcon />
-                  <View row style={styles.containerImages}>
+                  <View style={[styles.containerImages, styles.row]}>
                     <PersonOneIcon style={styles.images} />
                     <PersonTwoIcon style={styles.images} />
                     <PersonThreeIcon />
                   </View>
                 </View>
-                <View marginB-20>
-                  <View center>
+                <View style={styles.marginB20}>
+                  <View style={styles.center}>
                     <Text
                       style={styles.title}
                       color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -211,5 +211,14 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Black",
     lineHeight: 20.8,
     fontWeight: "500",
+  },
+  row: {
+    flexDirection: "row",
+  },
+  center: {
+    alignItems: "center",
+  },
+  marginB20: {
+    marginBottom: 20,
   },
 });

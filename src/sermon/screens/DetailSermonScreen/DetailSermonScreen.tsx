@@ -1,11 +1,16 @@
 import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import { format, parseISO } from "date-fns";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -39,7 +44,7 @@ export const DetailSermonContent =
           </MotiView>
         ) : (
           <ScrollView style={styles.containerScroll}>
-            <View marginT-36>
+            <View style={styles.marginT36}>
               <TouchableOpacity onPress={handlePress}>
                 {!playing ? (
                   <>
@@ -73,10 +78,7 @@ export const DetailSermonContent =
               {format(parseISO(data?.creationDate || ""), "MMMM dd yyyy")}
             </Text>
             <View
-              width="100%"
-              backgroundColor={colorsLight.GRAY_DIVIDER}
-              height={1}
-              marginV-28
+              style={[styles.fullWidth, styles.divider, styles.marginV28]}
             />
             <Text
               color={colorsLight.SECONDARY_TEXT_COLOR}
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
     paddingHorizontal: 16,
   },
+  marginT36: { marginTop: 36 },
   image: {
     flex: 1,
     borderRadius: 16,
@@ -120,6 +123,9 @@ const styles = StyleSheet.create({
   description: {
     fontFamily: "Satoshi-Regular",
   },
+  fullWidth: { width: "100%" },
+  divider: { height: 1, backgroundColor: colorsLight.GRAY_DIVIDER },
+  marginV28: { marginVertical: 28 },
   iconPlay: {
     alignSelf: "center",
     top: 82,

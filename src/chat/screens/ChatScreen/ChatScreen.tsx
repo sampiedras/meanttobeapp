@@ -1,7 +1,6 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { Channel, MessageInput, MessageList } from "stream-chat-react-native";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -50,7 +49,7 @@ export const ChatContent =
               <MessageInput />
             </Channel>
           ) : (
-            <View center marginT-20>
+            <View style={[styles.center, styles.marginT20]}>
               <Text
                 variant="body1"
                 color={colorsLight.SECONDARY_TEXT_COLOR}

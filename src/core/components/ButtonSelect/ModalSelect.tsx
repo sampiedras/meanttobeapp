@@ -5,9 +5,10 @@ import {
   SafeAreaView,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { SearchIconV1 } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 
@@ -16,7 +17,7 @@ interface IModalSelect {
   data: any[];
   keyToSearch: string;
   keyExtractor: (key: string) => string;
-  renderItem: (item: any) => JSX.Element;
+  renderItem: (item: any) => React.ReactNode;
   toggleVisible: () => void;
 }
 
@@ -51,8 +52,8 @@ export const ModalSelect = ({
       onRequestClose={() => null}
     >
       <SafeAreaView style={styles.container}>
-        <View flex-1 marginH-16 paddingV-16>
-          <View style={styles.boxTextInput} centerV row spread>
+        <View style={[styles.flex1, styles.marginH16, styles.paddingV16]}>
+          <View style={[styles.boxTextInput, styles.rowCenterSpread]}>
             <SearchIconV1 width={18} height={18} />
             <TextInput
               value={searchText}
@@ -80,10 +81,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  flex1: {
+    flex: 1,
+  },
+  marginH16: {
+    marginHorizontal: 16,
+  },
+  paddingV16: {
+    paddingVertical: 16,
+  },
   boxTextInput: {
     backgroundColor: colorsLight.GRAY_LIGHT,
     height: 40,
     borderRadius: 8,
+    paddingHorizontal: 16,
+  },
+  rowCenterSpread: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   textInput: {
     flex: 1,

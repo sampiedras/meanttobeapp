@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { TagEntity } from "@/quiz/data/remote/entities/tagEntity";
 
@@ -12,7 +11,7 @@ interface props {
 
 export const TagFragment = ({ tag: { name, description, img } }: props) => {
   return (
-    <View marginB-16>
+    <View style={styles.marginB16}>
       <FastImage
         source={{
           uri: img,
@@ -44,4 +43,5 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 24,
   },
+  marginB16: { marginBottom: 16 },
 });

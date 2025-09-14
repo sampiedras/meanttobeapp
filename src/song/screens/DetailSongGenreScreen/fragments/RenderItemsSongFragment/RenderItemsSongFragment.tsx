@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { HartActiveIcon, HartGrayIcon } from "@/song/assets/svg";
 import { ISongResponse } from "@/song/data/remote/entities/songEntity";

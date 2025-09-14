@@ -1,8 +1,14 @@
 import { useCallback, useEffect } from "react";
 import { Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import messaging from "@react-native-firebase/messaging";
-import { check, PERMISSIONS, request, RESULTS } from "react-native-permissions";
+import {
+  check,
+  checkNotifications,
+  PERMISSIONS,
+  request,
+  requestNotifications,
+  RESULTS,
+} from "react-native-permissions";
 import { requestTrackingPermission } from "react-native-tracking-transparency";
 import {
   selectUser,
@@ -53,24 +59,13 @@ export const usePermissions = () => {
   };
 
   const handleRequestPermissionNotification = async () => {
-    if (Platform.OS === "android") {
-      const resultRequestPermissionNotifications = await request(
-        PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
-      );
-      await dispatch(setPermissionNotificationLocal(true));
-      return (
-        resultRequestPermissionNotifications === RESULTS.GRANTED ||
-        resultRequestPermissionNotifications === RESULTS.LIMITED ||
-        resultRequestPermissionNotifications === RESULTS.UNAVAILABLE
-      );
-    } else {
-      const authStatus = await messaging().requestPermission();
-      await dispatch(setPermissionNotificationLocal(true));
-      return (
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL
-      );
-    }
+    const { status } = await requestNotifications(["alert", "sound"]);
+    await dispatch(setPermissionNotificationLocal(true));
+    return (
+      status === RESULTS.GRANTED ||
+      status === RESULTS.LIMITED ||
+      status === RESULTS.UNAVAILABLE
+    );
   };
 
   const handleRequestTrackingPermission = async () => {
@@ -105,22 +100,12 @@ export const usePermissions = () => {
   }, [dispatch]);
 
   const handleCheckPermissionNotification = useCallback(async () => {
-    if (Platform.OS === "android") {
-      const resultRequestPermissionNotifications = await check(
-        PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
-      );
-      const permissionStatusNotifications =
-        resultRequestPermissionNotifications === RESULTS.GRANTED ||
-        resultRequestPermissionNotifications === RESULTS.LIMITED ||
-        resultRequestPermissionNotifications === RESULTS.UNAVAILABLE;
-      dispatch(setPermissionNotification(permissionStatusNotifications));
-    } else {
-      const authStatus = await messaging().hasPermission();
-      const permissionStatusNotifications =
-        authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-        authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-      dispatch(setPermissionNotification(permissionStatusNotifications));
-    }
+    const { status } = await checkNotifications();
+    const permissionStatusNotifications =
+      status === RESULTS.GRANTED ||
+      status === RESULTS.LIMITED ||
+      status === RESULTS.UNAVAILABLE;
+    dispatch(setPermissionNotification(permissionStatusNotifications));
   }, [dispatch]);
 
   const checkPermission = useCallback(async () => {

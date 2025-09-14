@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { ISongResponse } from "@/song/data/remote/entities/songEntity";
 import { E_SongStackRoutes } from "@/song/routes";
@@ -30,8 +29,8 @@ export const RenderItemsSongFragment = ({ item }: Props) => {
         })
       }
     >
-      <View row style={styles.containerSong}>
-        <View row style={styles.content}>
+      <View style={[styles.row, styles.containerSong]}>
+        <View style={[styles.row, styles.content]}>
           <FastImage
             style={styles.image}
             source={{
@@ -57,6 +56,7 @@ export const RenderItemsSongFragment = ({ item }: Props) => {
 };
 
 const styles = StyleSheet.create({
+  row: { flexDirection: "row" },
   image: {
     width: 80,
     height: 75,

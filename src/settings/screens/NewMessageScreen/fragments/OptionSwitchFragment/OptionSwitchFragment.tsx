@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { Switch, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 interface option {
@@ -15,10 +14,11 @@ export const OptionSwitchFragment: React.FC<option> = (props) => {
   };
 
   return (
-    <View height={44} row spread centerV marginB-16>
+    <View style={styles.rowSpreadCenter}>
       <Text style={styles.title}>{props.title}</Text>
       <Switch
-        onColor={colorsLight.PRIMARY_COLOR}
+        trackColor={{ false: "#767577", true: colorsLight.PRIMARY_COLOR }}
+        thumbColor={enable ? colorsLight.WHITE : "#f4f3f4"}
         value={enable}
         onValueChange={handleSetEnable}
       />
@@ -27,6 +27,13 @@ export const OptionSwitchFragment: React.FC<option> = (props) => {
 };
 
 const styles = StyleSheet.create({
+  rowSpreadCenter: {
+    height: 44,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   title: {
     fontSize: 16,
     fontFamily: "Satoshi-Regular",

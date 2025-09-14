@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 import { Text } from "@react-native-material/core";
 // import {FlatList} from 'react-native-gesture-handler';
-import { Switch, View } from "react-native-ui-lib";
 import { AppContainerSafeArea } from "@/core/components";
 // import {generalOptions} from '@/core/fakeDb/generalOptions';
 import { colorsLight } from "@/core/theme";
@@ -18,24 +17,20 @@ export const NotificationContent =
 
     return (
       <AppContainerSafeArea>
-        <View
-          backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-          paddingH-20
-          flex
-          centerH
-        >
+        <View style={styles.container}>
           <Text color={colorsLight.PRIMARY_TEXT_COLOR} style={styles.subtitle}>
             Choose what activities matter to you to keep in touch with.
           </Text>
 
           <View
-            height={44}
-            row
-            spread
-            width="100%"
-            centerV
-            marginB-36
-            paddingH-8
+            style={[
+              styles.rowSpread,
+              styles.h44,
+              styles.fullWidth,
+              styles.centerV,
+              styles.marginB36,
+              styles.paddingH8,
+            ]}
           >
             <Text
               color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -44,7 +39,8 @@ export const NotificationContent =
               Enable notification
             </Text>
             <Switch
-              onColor={colorsLight.PRIMARY_COLOR}
+              trackColor={{ false: "#767577", true: colorsLight.PRIMARY_COLOR }}
+              thumbColor={enableNotifications ? colorsLight.WHITE : "#f4f3f4"}
               value={enableNotifications}
               onValueChange={handleEnableNotifications}
             />
@@ -75,6 +71,12 @@ export const NotificationContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+    paddingHorizontal: 20,
+    flex: 1,
+    alignItems: "center",
+  },
   subtitle: {
     textAlign: "center",
     width: "80%",
@@ -87,6 +89,12 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Medium",
     fontSize: 17,
   },
+  rowSpread: { flexDirection: "row", justifyContent: "space-between" },
+  h44: { height: 44 },
+  fullWidth: { width: "100%" },
+  centerV: { alignItems: "center" },
+  marginB36: { marginBottom: 36 },
+  paddingH8: { paddingHorizontal: 8 },
   // textGeneralNotification: {
   //   textAlign: 'left',
   //   fontSize: 16,

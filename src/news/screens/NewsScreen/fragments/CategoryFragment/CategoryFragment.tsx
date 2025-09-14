@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 interface props {

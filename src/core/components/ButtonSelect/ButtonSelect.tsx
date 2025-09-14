@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { ArrowDownIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { ModalSelect } from "./ModalSelect";
@@ -28,13 +27,7 @@ export const ButtonSelect = ({
   renderItem,
 }: IButtonSelect) => {
   return (
-    <TouchableOpacity
-      row
-      centerV
-      spread
-      style={styles.buttonSelect}
-      onPress={toggleVisible}
-    >
+    <TouchableOpacity style={styles.buttonSelect} onPress={toggleVisible}>
       {value ? (
         <Text variant="body1" style={styles.textSelected} numberOfLines={2}>
           {value}
@@ -69,6 +62,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
     borderColor: colorsLight.GRAY_02,
   },
   textSelected: {

@@ -2,7 +2,6 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { Animated } from "react-native";
 import type {
   default as PagerView,
-  PagerViewOnPageScrollEventData,
   PagerViewOnPageSelectedEventData,
   PageScrollStateChangedNativeEvent,
 } from "react-native-pager-view";
@@ -40,10 +39,19 @@ export function useNavigationPanel(
   const onPageSelectedPosition = useRef(new Animated.Value(0)).current;
 
   const setPage = useCallback(
-    (page: number) =>
-      isAnimated
-        ? ref.current?.setPage(page)
-        : ref.current?.setPageWithoutAnimation(page),
+    (page: number) => {
+      if (ref.current) {
+        if (isAnimated) {
+          ref.current.setPage(page);
+        } else {
+          ref.current.setPageWithoutAnimation(page);
+        }
+      } else {
+        // Manual mode fallback (no PagerView mounted)
+        setActivePage(page);
+        setProgress({ position: page, offset: 0 });
+      }
+    },
     [isAnimated],
   );
 
@@ -76,52 +84,36 @@ export function useNavigationPanel(
     [],
   );
 
-  const onPageScroll = useMemo(
-    () =>
-      Animated.event<PagerViewOnPageScrollEventData>(
-        [
-          {
-            nativeEvent: {
-              offset: onPageScrollOffset,
-              position: onPageScrollPosition,
-            },
-          },
-        ],
-        {
-          listener: ({ nativeEvent: { offset, position } }) => {
-            addLog({
-              event: "scroll",
-              text: `Position: ${position} Offset: ${offset}`,
-              timestamp: new Date(),
-            });
-            setProgress({
-              position,
-              offset,
-            });
-          },
-          useNativeDriver: true,
-        },
-      ),
+  const onPageScroll = useCallback(
+    ({ nativeEvent }: any) => {
+      const { offset = 0, position = 0 } = nativeEvent || {};
+      addLog({
+        event: "scroll",
+        text: `Position: ${position} Offset: ${offset}`,
+        timestamp: new Date(),
+      });
+      setProgress({ position, offset });
+      onPageScrollOffset.setValue(offset);
+      onPageScrollPosition.setValue(position);
+    },
     [addLog, onPageScrollOffset, onPageScrollPosition],
   );
 
-  const onPageSelected = useMemo(
-    () =>
-      Animated.event<PagerViewOnPageSelectedEventData>(
-        [{ nativeEvent: { position: onPageSelectedPosition } }],
-        {
-          listener: ({ nativeEvent: { position } }) => {
-            addLog({
-              event: "select",
-              text: `Page: ${position}`,
-              timestamp: new Date(),
-            });
-            setActivePage(position);
-            onPageSelectedCallback(position);
-          },
-          useNativeDriver: true,
-        },
-      ),
+  const onPageSelected = useCallback(
+    ({
+      nativeEvent: { position },
+    }: {
+      nativeEvent: PagerViewOnPageSelectedEventData;
+    }) => {
+      addLog({
+        event: "select",
+        text: `Page: ${position}`,
+        timestamp: new Date(),
+      });
+      setActivePage(position);
+      onPageSelectedCallback(position);
+      onPageSelectedPosition.setValue(position);
+    },
     [addLog, onPageSelectedCallback, onPageSelectedPosition],
   );
 

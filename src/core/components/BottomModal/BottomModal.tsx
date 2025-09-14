@@ -1,16 +1,18 @@
 import React, { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import {
-  BottomSheetBackdrop as Backdrop,
   BottomSheetBackdropProps as BackdropProps,
+  BottomSheetBackdrop,
+  BottomSheetBackgroundProps,
   BottomSheetModalProps,
+  BottomSheetView,
   BottomSheetModal as Modal,
 } from "@gorhom/bottom-sheet";
 import { BottomSheetModalMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { colorsLight } from "@/core/theme";
 
 interface Props extends BottomSheetModalProps {
-  children: JSX.Element;
+  children: React.ReactNode;
   modalRef: React.RefObject<BottomSheetModalMethods>;
   backgroundColor?: string;
 }
@@ -23,7 +25,7 @@ export const BottomModal = ({
 }: Props) => {
   const renderBackdrop = useCallback(
     (propsBackdrop: BackdropProps) => (
-      <Backdrop
+      <BottomSheetBackdrop
         {...propsBackdrop}
         disappearsOnIndex={-1}
         opacity={0.7}
@@ -33,9 +35,10 @@ export const BottomModal = ({
     [],
   );
 
-  const renderBackgroundComponent = () => (
+  const renderBackgroundComponent = ({ style }: BottomSheetBackgroundProps) => (
     <View
       style={[
+        style,
         styles.modalContainer,
         { backgroundColor: backgroundColor || colorsLight.WHITE },
       ]}
@@ -50,7 +53,7 @@ export const BottomModal = ({
       ref={modalRef}
       {...props}
     >
-      {children}
+      <BottomSheetView style={styles.content}>{children}</BottomSheetView>
     </Modal>
   );
 };
@@ -60,5 +63,8 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+  },
+  content: {
+    flex: 1,
   },
 });

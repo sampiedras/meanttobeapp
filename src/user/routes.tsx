@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { Platform } from "react-native";
-import { TouchableOpacity } from "react-native-ui-lib";
+import { Platform, TouchableOpacity } from "react-native";
 import { ArrowBackIcon } from "@/core/assets/svg";
 import { Stack } from "@/core/navigation";
 import {
@@ -63,7 +62,7 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -81,7 +80,7 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -99,7 +98,7 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -117,7 +116,7 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),
@@ -135,7 +134,7 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity onPress={navigation.goBack}>
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),

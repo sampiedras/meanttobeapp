@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { UserMatchType } from "@/user/data/remote/entities/userEntity";
 import { useGetDriveByUserIdQuery } from "@/user/data/remote/userApi";
@@ -23,10 +22,10 @@ export const InterestSectionFragment = ({
             <View key={index} style={styles.group}>
               <View
                 key={index}
-                backgroundColor={colorsLight.GRAY_02}
                 style={[
                   styles.item,
                   {
+                    backgroundColor: colorsLight.GRAY_02,
                     borderColor: colorsLight.GRAY_02,
                   },
                 ]}
@@ -37,7 +36,7 @@ export const InterestSectionFragment = ({
           )),
         )
       ) : (
-        <View center>
+        <View style={styles.centeredContent}>
           <Text style={styles.textEmpty}>don't have Interests yet</Text>
         </View>
       )}
@@ -62,6 +61,10 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     borderWidth: 1,
     margin: 4,
+  },
+  centeredContent: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   itemText: {
     textAlign: "center",

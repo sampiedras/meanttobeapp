@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { IArtistResponse } from "@/song/data/remote/entities/artistEntity";
 import { E_SongStackRoutes } from "@/song/routes";
 

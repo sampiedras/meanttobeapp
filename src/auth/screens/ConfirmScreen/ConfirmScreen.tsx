@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { CodeField, Cursor } from "react-native-confirmation-code-field";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { AuthStackRoutes } from "@/auth/routes";
 import { AppContainerSafeArea, AppGradientButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -59,7 +58,7 @@ export const ConfirmScreen = ({
             </Text>
           )}
         />
-        <View marginT-30>
+        <View style={styles.marginT30}>
           <Text
             style={styles.textCodeReceive}
             variant="body2"
@@ -68,7 +67,7 @@ export const ConfirmScreen = ({
             Check your spam or junk mail folder for the verification code.
           </Text>
         </View>
-        <View row marginT-24>
+        <View style={[styles.row, styles.marginT24]}>
           <Text
             style={styles.textCodeReceive}
             variant="body2"
@@ -84,7 +83,7 @@ export const ConfirmScreen = ({
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <View marginH-16>
+      <View style={styles.marginH16}>
         <AppGradientButton
           label="Verify Account"
           loading={loading}
@@ -134,4 +133,8 @@ const styles = StyleSheet.create({
   focusCell: {
     borderColor: "#000",
   },
+  row: { flexDirection: "row", alignItems: "center" },
+  marginT24: { marginTop: 24 },
+  marginT30: { marginTop: 30 },
+  marginH16: { marginHorizontal: 16 },
 });

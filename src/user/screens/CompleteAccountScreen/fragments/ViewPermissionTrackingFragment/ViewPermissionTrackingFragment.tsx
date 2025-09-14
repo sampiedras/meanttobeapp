@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { PermissionNotificationIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 
@@ -12,7 +11,7 @@ export const ViewPermissionTrackingFragment = () => {
         This app uses tracking to enhance your experience. Can you allow
         tracking for personalized recommendations?
       </Text>
-      <View flex-1 center>
+      <View style={styles.centerFill}>
         <PermissionNotificationIcon />
       </View>
     </View>
@@ -25,6 +24,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 12,
   },
+  centerFill: { flex: 1, alignItems: "center", justifyContent: "center" },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Medium",

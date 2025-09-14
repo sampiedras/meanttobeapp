@@ -5,7 +5,9 @@ import {
   Modal,
   StyleSheet,
   TextStyle,
+  TouchableOpacity,
   useWindowDimensions,
+  View,
   ViewStyle,
 } from "react-native";
 import { Text } from "@react-native-material/core";
@@ -13,7 +15,6 @@ import { useNavigation } from "@react-navigation/native";
 import { View as ViewMoti } from "moti";
 import * as Animatable from "react-native-animatable";
 import { Easing } from "react-native-reanimated";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { E_ChatStackRoutes } from "@/chat";
 import { AppGradientButton } from "@/core/components";
 import { useAuthProvider } from "@/core/context/AuthContext";
@@ -202,9 +203,9 @@ export const ItsMatchFragment = () => {
       transparent={true}
       style={styles.heartContainer}
     >
-      <View style={styles.modalContainer} flex-1>
+      <View style={[styles.modalContainer, styles.flex1]}>
         <TutorialMatchFragment />
-        <View marginT-120>
+        <View style={styles.marginT120}>
           {showCircle && (
             <View style={styles.rippleContainer}>
               {[...Array(3).keys()].map((_, index) => {
@@ -301,7 +302,7 @@ export const ItsMatchFragment = () => {
             onPress={onGoToChat}
           />
           <TouchableOpacity onPress={() => setShowIsMatch(false)}>
-            <View row center paddingT-24>
+            <View style={[styles.rowCenter, styles.paddingT24]}>
               <Text style={styles.notNowText}>Not now,</Text>
               <Text style={styles.continueText}>continue searching</Text>
             </View>
@@ -329,12 +330,20 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
   },
+  flex1: { flex: 1 },
+  marginT120: { marginTop: 120 },
   heartContainer: {
     backgroundColor: "red",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paddingT24: { paddingTop: 24 },
   notNowText: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontSize: 14,

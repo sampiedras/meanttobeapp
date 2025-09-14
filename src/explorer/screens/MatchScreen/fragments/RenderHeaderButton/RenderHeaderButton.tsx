@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { CircleButton } from "@/core/components";
 import { FilterIcon, ReloadIcon } from "@/explorer/assets/svg";
 import { useViewModelProvider } from "../../ViewModelContext";
@@ -21,7 +20,7 @@ export const RenderHeaderButton = () => {
           icon={<ReloadIcon />}
         />
       ) : (
-        <View width={40} height={40} />
+        <View style={styles.size40} />
       )}
       <Text style={styles.textHeader}>Start Matching </Text>
       <CircleButton
@@ -45,6 +44,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: 10,
   },
+  size40: { width: 40, height: 40 },
   textHeader: {
     color: "black",
     fontSize: 20,

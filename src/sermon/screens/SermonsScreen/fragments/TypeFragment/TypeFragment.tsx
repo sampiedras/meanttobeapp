@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 interface Props {
@@ -15,8 +14,8 @@ export const TypeFragment = ({ name, isActive, item, handleSelect }: Props) => {
   return (
     <TouchableOpacity
       onPress={() => handleSelect(item.toString())}
-      marginR-4
       style={[
+        styles.marginR4,
         {
           backgroundColor: isActive
             ? colorsLight.PRIMARY_COLOR
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
   },
+  marginR4: { marginRight: 4 },
   text: {
     fontFamily: "Satoshi-Medium",
     fontSize: 14,

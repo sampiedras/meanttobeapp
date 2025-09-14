@@ -12,7 +12,10 @@ import Qonversion, {
   LaunchMode,
   QonversionConfigBuilder,
 } from "react-native-qonversion";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -131,7 +134,7 @@ export default Sentry.wrap(App);
 
 export const Application = () => (
   <Provider store={store}>
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.container}>
       <PersistGate loading={null} persistor={persistor}>
         <MenuProvider>
           <App />

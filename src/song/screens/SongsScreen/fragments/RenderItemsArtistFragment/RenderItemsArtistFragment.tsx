@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { IArtistResponse } from "@/song/data/remote/entities/artistEntity";
 import { E_SongStackRoutes } from "@/song/routes";
@@ -41,7 +40,7 @@ export const RenderItemsArtistFragment = ({ item }: Props) => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={handleNavigateToArtist}>
-      <View center style={styles.containerItem}>
+      <View style={[styles.center, styles.containerItem]}>
         <FastImage
           style={[styles.img, { borderColor: randomBorderColor }]}
           source={{
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
   containerItem: {
     alignItems: "center",
   },
+  center: { alignItems: "center", justifyContent: "center" },
   img: {
     height: 72,
     width: 72,

@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { Product } from "react-native-qonversion";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { RadioButtonCheckIcon, RadioButtonIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { getNameSubscription } from "@/core/utils/subscriptionsUtils";
@@ -22,7 +21,7 @@ export const RenderItemFragment = ({
   handleSelectPlan,
 }: RenderItemType) => {
   return (
-    <View center>
+    <View style={styles.center}>
       <TouchableOpacity
         style={[
           {
@@ -47,12 +46,14 @@ export const RenderItemFragment = ({
           />
         )}
         <View
-          paddingV-12
-          height={80}
-          style={styles.containerLicenses}
-          width="90%"
+          style={[
+            styles.containerLicenses,
+            styles.paddingV12,
+            styles.h80,
+            styles.w90,
+          ]}
         >
-          <View row style={styles.containerRadioButton}>
+          <View style={[styles.row, styles.containerRadioButton]}>
             <Text
               style={styles.textDuration}
               color={colorsLight.SECONDARY_TEXT_COLOR}
@@ -75,6 +76,11 @@ export const RenderItemFragment = ({
 };
 
 const styles = StyleSheet.create({
+  center: { justifyContent: "center", alignItems: "center" },
+  row: { flexDirection: "row", alignItems: "center" },
+  w90: { width: "90%" },
+  h80: { height: 80 },
+  paddingV12: { paddingVertical: 12 },
   // Item
   buttonLicense: {
     width: "100%",

@@ -6,12 +6,13 @@ import {
   StyleProp,
   StyleSheet,
   TextStyle,
+  TouchableOpacity,
+  View,
   ViewStyle,
 } from "react-native";
 import { BlurView } from "@react-native-community/blur";
 import { Text } from "@react-native-material/core";
 import * as Animatable from "react-native-animatable";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { CircleButton } from "@/core/components";
 import { useAppDispatch } from "@/core/hooks/useRedux";
 import { setShowTabBar } from "@/core/slices/tabBarSlice";
@@ -192,7 +193,7 @@ export const TutorialFragment = () => {
                       />
                     </View>
                   )}
-                  <View flex-1 />
+                  <View style={styles.flex1} />
                   {tutorial === 5 && (
                     <CircleButton
                       backgroundColor="#E9ECE9"
@@ -255,6 +256,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     flexDirection: "row",
   },
+  flex1: { flex: 1 },
   text: {
     color: "#FEFEFF",
     fontFamily: "Satoshi-Regular",

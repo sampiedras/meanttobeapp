@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { useLazyGetPassagesByOriginQuery } from "@/core/data/remote/bibleApi";
 import { colorsLight } from "@/core/theme";
 import { IQuestionResponse } from "@/user/data/remote/entities/questionEntity";

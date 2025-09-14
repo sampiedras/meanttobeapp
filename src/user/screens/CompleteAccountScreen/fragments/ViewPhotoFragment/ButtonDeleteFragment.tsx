@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-ui-lib";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { DeleteIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 

@@ -1,9 +1,8 @@
 import React from "react";
-import { ScrollView, StyleSheet, TextInput } from "react-native";
+import { ScrollView, StyleSheet, TextInput, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import _ from "lodash";
 import { useController } from "react-hook-form";
-import { View } from "react-native-ui-lib";
 import { AppContainerSafeArea, AppGradientButton } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -33,7 +32,7 @@ export const StoryContent =
 
     return (
       <AppContainerSafeArea>
-        <View style={styles.container} paddingH-16>
+        <View style={[styles.container, styles.paddingH16]}>
           <ScrollView contentContainerStyle={styles.scroll}>
             <Text variant="h6" style={styles.title}>
               Share your story with the world
@@ -72,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 12,
   },
+  paddingH16: { paddingHorizontal: 16 },
   scroll: {
     flex: 1,
   },

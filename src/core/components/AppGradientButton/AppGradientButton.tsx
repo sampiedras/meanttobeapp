@@ -4,11 +4,12 @@ import {
   DimensionValue,
   StyleProp,
   StyleSheet,
+  TouchableOpacity,
+  View,
   ViewStyle,
 } from "react-native";
 import { Text } from "@react-native-material/core";
 import LinearGradient from "react-native-linear-gradient";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 
 interface AppGradientButtonProps {
@@ -55,26 +56,32 @@ export const AppGradientButton = ({
         {loading ? (
           <ActivityIndicator color="white" size={24} />
         ) : (
-          <>
-            {iconLeft}
-            <Text
+          <View style={styles.contentRow}>
+            <View
               style={[
-                styles.text,
-                // eslint-disable-next-line react-native/no-inline-styles
-                {
-                  marginLeft: iconLeft ? 4 : 0,
-                  marginRight: iconRight ? 4 : 0,
-                  fontSize,
-                },
+                styles.iconSlot,
+                iconLeft ? styles.iconLeftPadding : null,
               ]}
+            >
+              {iconLeft}
+            </View>
+            <Text
+              style={[styles.text, { fontSize }]}
               color={
                 disabled ? colorsLight.DISABLED_TEXT_COLOR : colorsLight.WHITE
               }
             >
               {label}
             </Text>
-            {iconRight}
-          </>
+            <View
+              style={[
+                styles.iconSlot,
+                iconRight ? styles.iconRightPadding : null,
+              ]}
+            >
+              {iconRight}
+            </View>
+          </View>
         )}
       </LinearGradient>
     </TouchableOpacity>
@@ -91,8 +98,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 16,
+  },
+  contentRow: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconSlot: {
+    width: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconLeftPadding: {
+    paddingRight: 4,
+  },
+  iconRightPadding: {
+    paddingLeft: 4,
   },
   text: {
     fontFamily: "Satoshi-Medium",
+    textAlign: "center",
   },
 });

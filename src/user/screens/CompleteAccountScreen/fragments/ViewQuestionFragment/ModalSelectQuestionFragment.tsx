@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet } from "react-native";
+import { Alert, Modal, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { CloseDisabledIcon } from "@/core/assets/svg";
 import {
   AppGradientButton,
@@ -90,10 +89,7 @@ export const ModalSelectQuestionFragment = ({
 
   const renderItemBooks = ({ item }: { item: BooksEntity }) => (
     <TouchableOpacity
-      row
-      centerV
-      spread
-      style={styles.button}
+      style={[styles.button, styles.rowSpreadCenterV]}
       onPress={() => handleGetBook(item)}
     >
       <Text variant="body1" style={styles.textItem} numberOfLines={2}>
@@ -104,10 +100,7 @@ export const ModalSelectQuestionFragment = ({
 
   const renderItemChapters = ({ item }: { item: ChapterEntity }) => (
     <TouchableOpacity
-      row
-      centerV
-      spread
-      style={styles.button}
+      style={[styles.button, styles.rowSpreadCenterV]}
       onPress={() => handleGetChapters(item)}
     >
       <Text variant="body1" style={styles.textItem} numberOfLines={2}>
@@ -118,10 +111,7 @@ export const ModalSelectQuestionFragment = ({
 
   const renderItemVerses = ({ item }: { item: VerseEntity }) => (
     <TouchableOpacity
-      row
-      centerV
-      spread
-      style={styles.button}
+      style={[styles.button, styles.rowSpreadCenterV]}
       onPress={() => handleGetVerses(item)}
     >
       <Text variant="body1" style={styles.textItem} numberOfLines={2}>
@@ -137,11 +127,11 @@ export const ModalSelectQuestionFragment = ({
       visible={visible}
       onRequestClose={() => null}
     >
-      <View flex-1 backgroundColor="rgba(0, 0, 0, 0.5)">
+      <View style={styles.modalBackdrop}>
         <View style={styles.contentContainer}>
           <View style={styles.container}>
-            <View flex-1>
-              <View row centerV>
+            <View style={styles.flex1}>
+              <View style={styles.rowCenterV}>
                 <CircleButton
                   style={styles.buttonClose}
                   onPress={onClose}
@@ -222,6 +212,7 @@ export const ModalSelectQuestionFragment = ({
 };
 
 const styles = StyleSheet.create({
+  modalBackdrop: { flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)" },
   contentContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -237,6 +228,8 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 16,
     borderTopEndRadius: 16,
   },
+  flex1: { flex: 1 },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   containerTextFind: {
     justifyContent: "center",
     alignContent: "center",
@@ -277,6 +270,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     justifyContent: "space-between",
     borderColor: colorsLight.GRAY_02,
+  },
+  rowSpreadCenterV: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   textItem: {
     flex: 1,

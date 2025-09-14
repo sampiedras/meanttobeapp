@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import {
   AppContainerSafeArea,
   Button,
@@ -31,7 +30,7 @@ export const EditProfileContent =
     const renderContactField = () => {
       if (userProfile?.phone) {
         return (
-          <View flex-1>
+          <View style={styles.flex1}>
             <SelectPickerCountry
               label="Country / Region"
               countrySelected={countrySelected}
@@ -54,7 +53,7 @@ export const EditProfileContent =
         );
       } else if (userProfile?.email) {
         return (
-          <View flex-1>
+          <View style={styles.flex1}>
             <TextInputAnimatedDisabled
               name="email"
               label="Email address"
@@ -73,7 +72,7 @@ export const EditProfileContent =
 
     return (
       <AppContainerSafeArea>
-        <View flex-1 center paddingH-16 paddingT-16>
+        <View style={styles.container}>
           <FastImage
             source={{
               uri: userProfile?.avatar?.toString() || "",
@@ -81,7 +80,7 @@ export const EditProfileContent =
             }}
             style={styles.image}
           />
-          <View width="100%" paddingT-20 gap-24 flex-1>
+          <View style={styles.formBlock}>
             <TextInputAnimatedDisabled
               name="name"
               label="Name"
@@ -121,6 +120,12 @@ export const EditProfileContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
   image: {
     marginVertical: 16,
     width: 121,
@@ -128,6 +133,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: colorsLight.GRAY_ONBOARDING,
   },
+  flex1: { flex: 1 },
+  formBlock: { width: "100%", paddingTop: 20, gap: 24, flex: 1 },
 });
 
 export const EditProfileScreen = (

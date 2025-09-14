@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { HeartGreenIcon, ImageIcon, UserCircleIcon } from "@/core/assets/svg";
 import { AppContainerSafeArea, Tag } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -23,8 +22,8 @@ export const CompleteProfileContent =
 
     return (
       <AppContainerSafeArea>
-        <View row center paddingH-10 marginT-8>
-          <View flex centerH>
+        <View style={[styles.rowCenter, styles.paddingH10, styles.marginT8]}>
+          <View style={[styles.flex, styles.centerH]}>
             <Text style={styles.textHeader}>
               {totalPercentageProfile < 100
                 ? `${totalPercentageProfile}% complete`
@@ -33,7 +32,7 @@ export const CompleteProfileContent =
           </View>
         </View>
         <ScrollView>
-          <View centerH marginT-40>
+          <View style={[styles.centerH, styles.marginT40]}>
             <Text style={styles.title}>
               {completeProfileScreenCopies.title}
             </Text>
@@ -41,7 +40,7 @@ export const CompleteProfileContent =
               {completeProfileScreenCopies.subtitle}
             </Text>
           </View>
-          <View marginT-40 style={styles.container}>
+          <View style={[styles.marginT40, styles.container]}>
             <View style={styles.column}>
               <TouchableOpacity
                 onPress={() => navigate(E_UserStackRoutes.DRIVES)}
@@ -136,6 +135,13 @@ export const CompleteProfileContent =
   };
 
 const styles = StyleSheet.create({
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paddingH10: { paddingHorizontal: 10 },
+  marginT8: { marginTop: 8 },
   title: {
     fontSize: 24,
     color: colorsLight.PRIMARY_TEXT_COLOR,
@@ -150,6 +156,7 @@ const styles = StyleSheet.create({
     width: "90%",
     fontFamily: "Satoshi-Medium",
   },
+  marginT40: { marginTop: 40 },
   containerItems: {
     flexDirection: "column",
     backgroundColor: colorsLight.GRAY_LIGHT,
@@ -173,6 +180,8 @@ const styles = StyleSheet.create({
     color: colorsLight.PRIMARY_TEXT_COLOR,
     textAlign: "center",
   },
+  centerH: { alignItems: "center" },
+  flex: { flex: 1 },
   itemContainer: {
     flex: 1,
     margin: spacing / 2,

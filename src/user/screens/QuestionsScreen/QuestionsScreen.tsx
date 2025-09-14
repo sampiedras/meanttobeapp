@@ -1,9 +1,8 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
-import { View } from "react-native-ui-lib";
 import {
   AppContainerSafeArea,
   AppGradientButton,

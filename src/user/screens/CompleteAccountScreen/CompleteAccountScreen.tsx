@@ -1,7 +1,7 @@
 import React from "react";
-import { Animated, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { Animated, ScrollView, StyleSheet, View } from "react-native";
 import PagerView from "react-native-pager-view";
-import { View } from "react-native-ui-lib";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LogoHeartIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -35,10 +35,10 @@ export const CompleteAccountContent =
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.flex}>
-          <View centerH marginB-24 marginT-32>
+          <View style={[styles.centerH, styles.marginB24, styles.marginT32]}>
             <LogoHeartIcon />
           </View>
-          <View marginH-16>
+          <View style={styles.marginH16}>
             <ProgressBarFragment
               numberOfPages={pages.length}
               progress={progress}
@@ -51,48 +51,48 @@ export const CompleteAccountContent =
             scrollEnabled={true}
             initialPage={0}
           >
-            <View paddingH-16 flex-1>
+            <View style={[styles.paddingH16, styles.flex1]}>
               <ViewNameFragment />
             </View>
-            <View paddingH-16 flex-1>
+            <View style={[styles.paddingH16, styles.flex1]}>
               <ViewBirthdayFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewGenderFragment />
             </View>
-            <View paddingH-16 flex-1>
+            <View style={[styles.paddingH16, styles.flex1]}>
               <ViewSearchingFragment />
             </View>
-            <View paddingH-16 flex-1>
+            <View style={[styles.paddingH16, styles.flex1]}>
               <ViewPhotoFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewChurchFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewDriversFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewQuestionFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewStoryFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewLocationFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewPermissionLocationFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewPermissionNotificationFragment />
             </View>
-            <View flex-1>
+            <View style={styles.flex1}>
               <ViewPermissionTrackingFragment />
             </View>
           </AnimatedPagerView>
         </ScrollView>
-        <View width="100%" paddingH-16>
+        <View style={[styles.fullWidth, styles.paddingH16]}>
           <RenderTextFragment />
           <RenderButtonFragment />
         </View>
@@ -113,6 +113,13 @@ const styles = StyleSheet.create({
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
     paddingTop: 16,
   },
+  centerH: { alignItems: "center" },
+  marginB24: { marginBottom: 24 },
+  marginT32: { marginTop: 32 },
+  marginH16: { marginHorizontal: 16 },
+  paddingH16: { paddingHorizontal: 16 },
+  flex1: { flex: 1 },
+  fullWidth: { width: "100%" },
 });
 
 export const CompleteAccountScreen = (

@@ -6,11 +6,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import Share from "react-native-share";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { QuizQuestionsType } from "@/quiz/data/remote/entities/quiestionEntity";
 import { TagEntity } from "@/quiz/data/remote/entities/tagEntity";

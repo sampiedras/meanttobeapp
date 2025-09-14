@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { RadioButtonCheckIcon, RadioButtonIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { SearchingEntityResponse } from "@/user/data/remote/entities/searchingEntity";
@@ -15,9 +14,8 @@ export const RenderItemFragment = ({
 }) => {
   return (
     <TouchableOpacity
-      row
-      centerV
       style={[
+        styles.rowCenterV,
         styles.radioButton,
         {
           borderColor: item.selected
@@ -46,6 +44,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: "space-between",
   },
+  rowCenterV: { flexDirection: "row", alignItems: "center" },
   textRadio: {
     fontFamily: "Satoshi-Black",
   },

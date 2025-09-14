@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { WELCOME_PEOPLE } from "@/auth/assets/images";
 import { PhoneIcon } from "@/auth/assets/svg";
 import { AuthStackRoutes } from "@/auth/routes";
@@ -20,7 +19,6 @@ export const WelcomeContent =
     return (
       <AppContainer style={styles.container}>
         <ScrollView contentContainerStyle={styles.containerScroll}>
-          <PhoneIcon style={styles.icon} />
           <FastImage
             style={styles.imageIcon}
             resizeMode="cover"
@@ -58,9 +56,6 @@ const styles = StyleSheet.create({
   },
   containerScroll: {
     paddingTop: 32,
-  },
-  icon: {
-    marginLeft: 16,
   },
   imageIcon: {
     width: "100%",

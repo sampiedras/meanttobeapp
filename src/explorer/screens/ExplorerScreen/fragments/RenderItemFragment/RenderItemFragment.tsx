@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import FastImage from "react-native-fast-image";
 import LinearGradient from "react-native-linear-gradient";
-import { TouchableOpacity } from "react-native-ui-lib";
 import { Tag } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { useViewModelProvider } from "../../ViewModelContext";

@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import _ from "lodash";
-import { View } from "react-native-ui-lib";
 import { AuthStackRoutes } from "@/auth/routes";
 import {
   AppContainerSafeArea,
@@ -57,7 +56,7 @@ export const LoginPhoneContent =
             You´ll receive a 6 digit code to verify next.
           </Text>
         </ScrollView>
-        <View marginH-16>
+        <View style={styles.marginH16}>
           <AppGradientButton
             label="Continue"
             loading={loading}
@@ -90,6 +89,7 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 8,
   },
+  marginH16: { marginHorizontal: 16 },
 });
 
 export const LoginPhoneScreen = (

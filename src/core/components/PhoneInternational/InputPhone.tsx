@@ -6,11 +6,11 @@ import {
   StyleSheet,
   TextInput,
   useColorScheme,
+  View,
   ViewStyle,
 } from "react-native";
 import { I18n } from "aws-amplify/utils";
 import { phone as E164Phones } from "phone";
-import { View } from "react-native-ui-lib";
 import { CrossFilledIcon, InfoIconOutlined } from "@/core/assets/svg";
 import { colorsDark, colorsLight } from "@/core/theme";
 import { fonts } from "@/core/theme/fonts";
@@ -112,10 +112,10 @@ export const InputPhone: React.FC<PhoneCountry> = ({
   return (
     <View>
       <View
-        paddingH-13
         style={[
           styles.inputContainer,
           containerStyle,
+          styles.paddingH13,
           {
             backgroundColor: isDarkMode
               ? colorsDark.BACKGROUND_SCREEN_COLOR
@@ -137,7 +137,7 @@ export const InputPhone: React.FC<PhoneCountry> = ({
         ]}
         onLayout={(e) => !inputHeight && setHeight(e.nativeEvent.layout.height)}
       >
-        <View style={{ height: inputHeight, ...styles.labelContainer }}>
+        <View style={[{ height: inputHeight }, styles.labelContainer]}>
           <Animated.Text
             style={[
               styles.label,
@@ -202,7 +202,14 @@ export const InputPhone: React.FC<PhoneCountry> = ({
       </View>
       {!isValid && !isEmpty && (
         <>
-          <View row marginT-4 paddingH-16 style={styles.errorContainer}>
+          <View
+            style={[
+              styles.errorContainer,
+              styles.row,
+              styles.marginT4,
+              styles.paddingH16,
+            ]}
+          >
             <InfoIconOutlined
               fill={colorsLight.ERROR_COLOR}
               width={16}
@@ -277,5 +284,18 @@ export const styles = StyleSheet.create({
     gap: 8,
     alignItems: "flex-start",
     alignSelf: "stretch",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  marginT4: {
+    marginTop: 4,
+  },
+  paddingH13: {
+    paddingHorizontal: 13,
+  },
+  paddingH16: {
+    paddingHorizontal: 16,
   },
 });

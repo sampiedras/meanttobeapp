@@ -1,8 +1,8 @@
 import React from "react";
 import { Linking, StyleSheet, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import { INewsResponse } from "@/news/data/remote/entities/newsEntity";
 
@@ -22,17 +22,18 @@ export const CardFragment = ({ newData }: props) => {
       style={styles.container}
       onPress={() => handleGoToDetail(newsUrl)}
     >
-      <View style={styles.headContent} height={193} width={"100%"}>
+      <View style={[styles.headContent, styles.h193, styles.w100]}>
         <View
-          style={styles.category}
-          backgroundColor={colorsLight.WHITE}
-          absT
-          absR
-          marginT-16
-          marginR-16
-          paddingH-16
-          paddingV-4
-          br100
+          style={[
+            styles.category,
+            styles.absTR,
+            styles.marginT16,
+            styles.marginR16,
+            styles.paddingH16,
+            styles.paddingV4,
+            styles.br100,
+            { backgroundColor: colorsLight.WHITE },
+          ]}
         >
           <Text color={colorsLight.PRIMARY_COLOR} numberOfLines={1}>
             {/* {newsCategory?.name.split('\n')[0]} */}
@@ -41,7 +42,7 @@ export const CardFragment = ({ newData }: props) => {
         </View>
         <FastImage source={{ uri: mediaUrls[0] }} style={styles.img} />
       </View>
-      <View padding-16>
+      <View style={styles.padding16}>
         <Text style={styles.title} color={colorsLight.BLACK}>
           {name}
         </Text>
@@ -84,6 +85,15 @@ const styles = StyleSheet.create({
   category: {
     zIndex: 200,
   },
+  absTR: { position: "absolute", top: 0, right: 0 },
+  padding16: { padding: 16 },
+  marginT16: { marginTop: 16 },
+  marginR16: { marginRight: 16 },
+  paddingH16: { paddingHorizontal: 16 },
+  paddingV4: { paddingVertical: 4 },
+  br100: { borderRadius: 100 },
+  w100: { width: "100%" },
+  h193: { height: 193 },
   img: {
     flex: 1,
   },

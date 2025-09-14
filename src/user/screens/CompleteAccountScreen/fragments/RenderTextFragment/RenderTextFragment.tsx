@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { CheckCircleIcon, EyeIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 import { useViewModelProvider } from "../../ViewModelContext";
@@ -12,7 +11,7 @@ export const RenderTextFragment = () => {
   switch (activePage) {
     case 0:
       return (
-        <View row centerH marginB-16 centerV>
+        <View style={[styles.rowCenterH, styles.marginB16, styles.centerV]}>
           <EyeIcon />
           <Text variant="caption" style={styles.text}>
             You cannot change your name later
@@ -21,7 +20,7 @@ export const RenderTextFragment = () => {
       );
     case 1:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             Your possible connections only will see your age, not your birth
             date.
@@ -30,7 +29,7 @@ export const RenderTextFragment = () => {
       );
     case 2:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             You can update this information later on your Account Settings.
           </Text>
@@ -38,7 +37,7 @@ export const RenderTextFragment = () => {
       );
     case 3:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             You can update this information later on your Account Settings.
           </Text>
@@ -46,7 +45,7 @@ export const RenderTextFragment = () => {
       );
     case 5:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             You can update this information later on your Account Settings.
           </Text>
@@ -54,7 +53,7 @@ export const RenderTextFragment = () => {
       );
     case 6:
       return (
-        <View row centerH marginB-16 centerV>
+        <View style={[styles.rowCenterH, styles.marginB16, styles.centerV]}>
           <CheckCircleIcon />
           <Text variant="caption" style={styles.text}>
             You have selected{" "}
@@ -66,7 +65,7 @@ export const RenderTextFragment = () => {
       );
     case 8:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             You can update this information later on your profile
           </Text>
@@ -74,7 +73,7 @@ export const RenderTextFragment = () => {
       );
     case 9:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             You can update this information later on your Account Settings.
           </Text>
@@ -82,7 +81,7 @@ export const RenderTextFragment = () => {
       );
     case 10:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             We will use your location to show you possible connections near you.
           </Text>
@@ -90,7 +89,7 @@ export const RenderTextFragment = () => {
       );
     case 11:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             We will keep you inform about your new connections and messages.
           </Text>
@@ -98,7 +97,7 @@ export const RenderTextFragment = () => {
       );
     case 12:
       return (
-        <View row centerH marginB-16>
+        <View style={[styles.rowCenterH, styles.marginB16]}>
           <Text variant="caption" style={styles.text}>
             Please choose ‘Allow Tracking’ to access all of our features.
           </Text>
@@ -120,4 +119,7 @@ const styles = StyleSheet.create({
   textCount: {
     fontFamily: "Satoshi-Black",
   },
+  rowCenterH: { flexDirection: "row", justifyContent: "center" },
+  marginB16: { marginBottom: 16 },
+  centerV: { alignItems: "center" },
 });

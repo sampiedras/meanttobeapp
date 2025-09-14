@@ -1,9 +1,14 @@
 import React from "react";
-import { Dimensions, SectionList, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  SectionList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { CheckCircleIcon } from "@/core/assets/svg";
 import {
   AppContainerSafeArea,
@@ -95,7 +100,7 @@ export const DrivesContent =
           <Text variant="h6" style={styles.title}>
             What drives you?
           </Text>
-          <View row centerH marginV-16>
+          <View style={[styles.rowCenterH, styles.marginV16]}>
             <Text variant="caption" style={styles.text}>
               Select the interests that drive you.
             </Text>
@@ -123,7 +128,7 @@ export const DrivesContent =
               stickySectionHeadersEnabled={false}
             />
           )}
-          <View row centerH marginB-16 centerV>
+          <View style={[styles.rowCenterH, styles.marginB16, styles.centerV]}>
             <CheckCircleIcon />
             <Text variant="caption" style={styles.text}>
               You have selected{" "}
@@ -152,6 +157,8 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingHorizontal: 16,
   },
+  rowCenterH: { flexDirection: "row", justifyContent: "center" },
+  marginV16: { marginVertical: 16 },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Regular",
@@ -203,6 +210,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  marginB16: { marginBottom: 16 },
+  centerV: { alignItems: "center" },
 });
 
 export const DrivesScreen = (

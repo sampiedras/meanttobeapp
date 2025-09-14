@@ -5,9 +5,10 @@ import {
   NativeSyntheticEvent,
   Platform,
   StyleSheet,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import {
   DefaultStreamChatGenerics,
   MessageType,
@@ -63,18 +64,18 @@ export const OptionsModal = ({
     >
       <TouchableOpacity
         onPress={onRequestClose}
-        flex-1
-        paddingH-16
-        style={styles.modalContainer}
+        style={[styles.modalContainer, styles.flex1, styles.paddingH16]}
       >
         <View
-          height={50}
-          backgroundColor={colorsLight.WHITE}
           style={[
-            { alignSelf: isMyMessage ? "flex-end" : "flex-start" },
+            styles.height50,
+            {
+              backgroundColor: colorsLight.WHITE,
+              alignSelf: isMyMessage ? "flex-end" : "flex-start",
+            },
             styles.containerReactions,
+            styles.row,
           ]}
-          row
         >
           {emojiOptions.map((emoji) => (
             <TouchableOpacity
@@ -89,12 +90,12 @@ export const OptionsModal = ({
           ))}
         </View>
         <View
-          row
-          centerV
-          paddingH-24
-          paddingV-16
-          backgroundColor={colorsLight.WHITE}
           style={[
+            styles.row,
+            styles.centerV,
+            styles.paddingH24,
+            styles.paddingV16,
+            { backgroundColor: colorsLight.WHITE },
             styles.modalContent,
             {
               justifyContent: isMyMessage ? "space-between" : "center",
@@ -104,7 +105,7 @@ export const OptionsModal = ({
         >
           {isMyMessage ? (
             <>
-              <TouchableOpacity center row onPress={handleDelete}>
+              <TouchableOpacity style={styles.rowCenter} onPress={handleDelete}>
                 <DeleteRedIcon />
                 <Text
                   style={styles.textDelete}
@@ -113,7 +114,7 @@ export const OptionsModal = ({
                   Delete
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity center row onPress={handleReply}>
+              <TouchableOpacity style={styles.rowCenter} onPress={handleReply}>
                 <ReplyIcon />
                 <Text
                   style={styles.textReply}
@@ -125,7 +126,7 @@ export const OptionsModal = ({
             </>
           ) : (
             <>
-              <TouchableOpacity center row onPress={handleReply}>
+              <TouchableOpacity style={styles.rowCenter} onPress={handleReply}>
                 <ReplyIcon />
                 <Text
                   style={styles.textReply}
@@ -147,6 +148,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
+  flex1: { flex: 1 },
+  paddingH16: { paddingHorizontal: 16 },
+  height50: { height: 50 },
+  row: { flexDirection: "row" },
+  rowCenter: { flexDirection: "row", alignItems: "center" },
+  centerV: { alignItems: "center" },
+  paddingH24: { paddingHorizontal: 24 },
+  paddingV16: { paddingVertical: 16 },
   modalContent: {
     borderRadius: 34,
     position: "absolute",

@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect } from "react";
-import { Dimensions, SectionList, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  SectionList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@react-native-material/core";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { colorsLight } from "@/core/theme";
 import {
   useFindAllTypeDriveQuery,
@@ -90,12 +95,12 @@ export const ViewDriversFragment = () => {
       {item.map((cell) => (
         <TouchableOpacity
           key={cell.id}
-          backgroundColor={
-            cell.selected ? colorsLight.PRIMARY_COLOR : colorsLight.WHITE
-          }
           style={[
             styles.item,
             {
+              backgroundColor: cell.selected
+                ? colorsLight.PRIMARY_COLOR
+                : colorsLight.WHITE,
               borderColor: cell.selected
                 ? colorsLight.PRIMARY_COLOR
                 : colorsLight.GRAY_02,
@@ -142,7 +147,7 @@ export const ViewDriversFragment = () => {
       <Text variant="h6" style={styles.title}>
         What drives you?
       </Text>
-      <View row centerH marginV-16>
+      <View style={[styles.rowCenterH, styles.marginV16]}>
         <Text variant="caption" style={styles.text}>
           Select the interests that drive you.
         </Text>

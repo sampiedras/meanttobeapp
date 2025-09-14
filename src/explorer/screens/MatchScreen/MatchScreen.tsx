@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { Swiper, type SwiperCardRefType } from "rn-swiper-list";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -57,11 +56,12 @@ export const MatchContent =
         <RenderHeaderButton />
         {isFetching ? (
           <View
-            backgroundColor={colorsLight.WHITE}
-            width="100%"
-            height="100%"
-            flex-1
-            style={styles.containerLoading}
+            style={[
+              styles.containerLoading,
+              styles.bgWhite,
+              styles.fullWidthHeight,
+              styles.flex1,
+            ]}
           >
             <ActivityIndicator color={colorsLight.PRIMARY_COLOR} size={35} />
             <Text style={styles.textLoading}>Loading more profiles</Text>
@@ -69,7 +69,7 @@ export const MatchContent =
         ) : users.length === 0 ? (
           <IsEmptyMatchFragment />
         ) : (
-          <View flex-1>
+          <View style={styles.flex1}>
             <Swiper
               ref={ref}
               cardStyle={styles.cardStyle}
@@ -112,6 +112,16 @@ const styles = StyleSheet.create({
   containerLoading: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  bgWhite: {
+    backgroundColor: colorsLight.WHITE,
+  },
+  fullWidthHeight: {
+    width: "100%",
+    height: "100%",
+  },
+  flex1: {
+    flex: 1,
   },
   textLoading: {
     fontSize: 16,

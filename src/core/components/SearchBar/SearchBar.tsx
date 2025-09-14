@@ -1,6 +1,11 @@
 import React from "react";
-import { StyleProp, StyleSheet, TextInput, ViewStyle } from "react-native";
-import { View } from "react-native-ui-lib";
+import {
+  StyleProp,
+  StyleSheet,
+  TextInput,
+  View,
+  ViewStyle,
+} from "react-native";
 import { SearchIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 
@@ -18,14 +23,7 @@ export const SearchBar = ({
   style,
 }: Props) => {
   return (
-    <View
-      row
-      centerV
-      paddingH-16
-      width="100%"
-      height={42}
-      style={[styles.containerInput, style]}
-    >
+    <View style={[styles.containerInput, styles.rowCenter, style]}>
       <SearchIcon width={18} height={18} />
       <TextInput
         placeholder={placeholder}
@@ -45,6 +43,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     gap: 8,
+    paddingHorizontal: 16,
+    width: "100%",
+    height: 42,
+  },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   input: {
     width: "95%",

@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { PigeonIcon } from "@/explorer/assets/svg";
 import { UserMatchType } from "@/user/data/remote/entities/userEntity";
 import { useGetQuestionByUserIdQuery } from "@/user/data/remote/userApi";
@@ -20,10 +19,12 @@ export const MediaSectionFragment = ({ item }: MediaSectionFragmentProps) => {
         <View>
           <View>
             <View
-              backgroundColor="#4E6B51"
-              marginB-20
-              padding-18
-              style={styles.containerFirstQuestion}
+              style={[
+                styles.containerFirstQuestion,
+                styles.bgFirstQuestion,
+                styles.marginB20,
+                styles.padding18,
+              ]}
             >
               <Text style={styles.textQuestionOne}>
                 My favorite Bible verse is....
@@ -53,7 +54,7 @@ export const MediaSectionFragment = ({ item }: MediaSectionFragmentProps) => {
               />
             )}
           <View>
-            <View marginV-20 paddingH-18>
+            <View style={[styles.marginV20, styles.paddingH18]}>
               <Text style={styles.titleQuestion}>{i?.question || ""}</Text>
               <View style={styles.itemsQuestionContainer}>
                 <Text style={styles.textAnswer}>{i?.answer || ""}</Text>
@@ -109,4 +110,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
   },
+  bgFirstQuestion: { backgroundColor: "#4E6B51" },
+  marginB20: { marginBottom: 20 },
+  padding18: { padding: 18 },
+  marginV20: { marginVertical: 20 },
+  paddingH18: { paddingHorizontal: 18 },
 });

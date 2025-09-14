@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { ArrowBackIcon } from "@/core/assets/svg";
 import { colorsLight } from "@/core/theme";
 
@@ -19,14 +18,12 @@ export const CustomHeaderFragment = ({
   const { goBack } = useNavigation();
   return (
     <View
-      row
-      center
-      backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-      paddingH-16
-      height={60}
-      style={styles.container}
+      style={[
+        styles.header,
+        { backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR, height: 60 },
+      ]}
     >
-      <View row center>
+      <View style={styles.rowCenter}>
         <TouchableOpacity style={styles.btnArrowBack} onPress={goBack}>
           <ArrowBackIcon />
         </TouchableOpacity>
@@ -50,11 +47,20 @@ export const CustomHeaderFragment = ({
 };
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderColor: "#eaeaea",
+  },
   container: {
     justifyContent: "space-between",
     borderBottomWidth: 1,
     borderColor: "#eaeaea",
   },
+  rowCenter: { flexDirection: "row", alignItems: "center" },
   btnArrowBack: {
     marginRight: 19,
   },

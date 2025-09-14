@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Platform, SafeAreaView, StyleSheet } from "react-native";
+import { Alert, Platform, SafeAreaView, StyleSheet, View } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import { Text } from "@react-native-material/core";
 import * as Sentry from "@sentry/react-native";
-import { Toast, View } from "react-native-ui-lib";
 import {
   PermissionLocationIcon,
   PermissionNotificationIcon,
@@ -47,11 +46,7 @@ export const PermissionScreen =
                 location: { latitude, longitude },
               }).unwrap();
             } catch (errorResponse) {
-              Toast.show({
-                type: "error",
-                text1: "Error to update location",
-                visibilityTime: 3000,
-              });
+              Alert.alert("Error", "Error to update location");
             }
           },
           (Error: any) => {
@@ -68,6 +63,7 @@ export const PermissionScreen =
     }, [handleRequestPermissionLocation, handleUpdateUserPermissions]);
 
     const handlePermissionNotification = useCallback(async () => {
+      console.log("entssasa");
       await handleRequestPermissionNotification();
       handleCompleteProfile();
       checkPermission();
@@ -108,12 +104,12 @@ export const PermissionScreen =
       switch (currentPermissionStep) {
         case 2:
           return (
-            <View flex-1 paddingH-16>
+            <View style={[styles.flex1, styles.paddingH16]}>
               <Text style={styles.title}>
                 This app uses tracking to enhance your experience. Can you allow
                 tracking for personalized recommendations?
               </Text>
-              <View flex-1 center>
+              <View style={[styles.flex1, styles.center]}>
                 <PermissionNotificationIcon />
               </View>
               <AppGradientButton
@@ -128,12 +124,12 @@ export const PermissionScreen =
           );
         case 4:
           return (
-            <View flex-1 paddingH-16>
+            <View style={[styles.flex1, styles.paddingH16]}>
               <Text style={styles.title}>
                 Would you like to share your location to personalize your
                 experience?
               </Text>
-              <View flex-1 center>
+              <View style={[styles.flex1, styles.center]}>
                 <PermissionLocationIcon />
               </View>
               <AppGradientButton
@@ -148,12 +144,12 @@ export const PermissionScreen =
           );
         case 5:
           return (
-            <View flex-1 paddingH-16>
+            <View style={[styles.flex1, styles.paddingH16]}>
               <Text style={styles.title}>
                 Enabling notifications allows us to give you a personalized
                 experience and helps keep you informed of everything going on in
               </Text>
-              <View flex-1 center>
+              <View style={[styles.flex1, styles.center]}>
                 <PermissionNotificationIcon />
               </View>
               <AppGradientButton
@@ -182,6 +178,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  flex1: { flex: 1 },
+  paddingH16: { paddingHorizontal: 16 },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     textAlign: "center",
@@ -192,4 +190,5 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: 16,
   },
+  center: { alignItems: "center", justifyContent: "center" },
 });

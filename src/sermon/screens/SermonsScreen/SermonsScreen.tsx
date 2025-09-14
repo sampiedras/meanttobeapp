@@ -5,8 +5,8 @@ import {
   SafeAreaView,
   StyleSheet,
 } from "react-native";
+import { View } from "react-native";
 import { Text } from "@react-native-material/core";
-import { View } from "react-native-ui-lib";
 import { Tag } from "@/core/components";
 import { colorsLight } from "@/core/theme";
 import { RootStackScreenProps } from "@/core/types/StackRoutes";
@@ -45,11 +45,12 @@ export const SermonsContent =
             ListHeaderComponent={
               <>
                 <View
-                  row
-                  center
-                  marginT-10
-                  marginB-30
-                  style={styles.containerTitle}
+                  style={[
+                    styles.rowCenter,
+                    styles.marginT10,
+                    styles.marginB30,
+                    styles.containerTitle,
+                  ]}
                 >
                   <Text
                     variant="h4"
@@ -67,7 +68,14 @@ export const SermonsContent =
                     fontFamily="Satoshi-Medium"
                   />
                 </View>
-                <View row center marginB-20 paddingH-2 style={styles.sections}>
+                <View
+                  style={[
+                    styles.rowCenter,
+                    styles.marginB20,
+                    styles.paddingH2,
+                    styles.sections,
+                  ]}
+                >
                   <Text
                     variant="body1"
                     color={colorsLight.PRIMARY_TEXT_COLOR}
@@ -83,7 +91,7 @@ export const SermonsContent =
                 >
                   All sermons
                 </Text>
-                <View marginB-16>
+                <View style={styles.marginB16}>
                   <FlatList
                     horizontal
                     renderItem={({ item }) => (
@@ -121,7 +129,14 @@ export const SermonsContent =
             ListEmptyComponent={
               <>
                 {dataSermon?.count === 0 && (
-                  <View centerH flex height={200} paddingT-90>
+                  <View
+                    style={[
+                      styles.centerH,
+                      styles.flex,
+                      styles.height200,
+                      styles.paddingT90,
+                    ]}
+                  >
                     <Text
                       style={styles.textNoFound}
                       variant="body1"
@@ -143,6 +158,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  rowCenter: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
@@ -159,6 +179,10 @@ const styles = StyleSheet.create({
   sections: {
     justifyContent: "space-between",
   },
+  marginT10: { marginTop: 10 },
+  marginB30: { marginBottom: 30 },
+  marginB20: { marginBottom: 20 },
+  paddingH2: { paddingHorizontal: 2 },
   titleTopSermons: {
     fontFamily: "Satoshi-Black",
   },
@@ -177,6 +201,11 @@ const styles = StyleSheet.create({
   textNoFound: {
     fontFamily: "Satoshi-Regular",
   },
+  centerH: { alignItems: "center" },
+  flex: { flex: 1 },
+  height200: { height: 200 },
+  paddingT90: { paddingTop: 90 },
+  marginB16: { marginBottom: 16 },
 });
 
 export const SermonsScreen = (

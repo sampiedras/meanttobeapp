@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import { useGetVerseReferenceByIdQuery } from "@/core/data/remote/bibleApi";
 import { colorsLight } from "@/core/theme";
 import { IVerseResponse } from "@/verse/data/remote/entities/verseEntity";
@@ -41,11 +40,13 @@ export const RenderItemsVerseFragment = ({ item }: Props) => {
       }
     >
       <View
-        style={styles.cardContainer}
-        width="100%"
-        marginB-24
-        paddingH-20
-        paddingV-32
+        style={[
+          styles.cardContainer,
+          styles.fullWidth,
+          styles.marginB24,
+          styles.paddingH20,
+          styles.paddingV32,
+        ]}
       >
         <FastImage
           style={styles.image}
@@ -67,6 +68,10 @@ const styles = StyleSheet.create({
     borderColor: colorsLight.BORDER_GRAY_COLOR,
     borderRadius: 16,
   },
+  fullWidth: { width: "100%" },
+  marginB24: { marginBottom: 24 },
+  paddingH20: { paddingHorizontal: 20 },
+  paddingV32: { paddingVertical: 32 },
   title: {
     color: "black",
     fontSize: 20,

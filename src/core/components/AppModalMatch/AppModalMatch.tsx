@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { StyleSheet } from "react-native";
+import { View } from "react-native";
 import {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
@@ -15,7 +16,6 @@ import {
 import { BlurView } from "@react-native-community/blur";
 import { useNavigation } from "@react-navigation/native";
 import FastImage from "react-native-fast-image";
-import { View } from "react-native-ui-lib";
 import { E_ChatStackRoutes } from "@/chat";
 import { useAuthProvider } from "@/core/context/AuthContext";
 import { useAppDispatch, useAppSelector } from "@/core/hooks/useRedux";
@@ -90,7 +90,7 @@ export const AppModalMatch = () => {
       backdropComponent={renderBackdrop}
     >
       <BottomSheetView style={styles.contentContainer}>
-        <View width={80} height={80} marginV-24 center style={styles.boxImage}>
+        <View style={[styles.boxImage, styles.boxImageLayout]}>
           <FastImage
             source={{
               uri: newUserMatch?.image,
@@ -141,6 +141,13 @@ const styles = StyleSheet.create({
   },
   boxImage: {
     borderRadius: 80,
+  },
+  boxImageLayout: {
+    width: 80,
+    height: 80,
+    marginVertical: 24,
+    alignItems: "center",
+    justifyContent: "center",
   },
   image: {
     flex: 1,

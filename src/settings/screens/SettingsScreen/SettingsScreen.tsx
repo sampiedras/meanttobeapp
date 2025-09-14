@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { useNavigation } from "@react-navigation/native";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import {
   BellIcon,
   PrivacyIcon,
@@ -25,17 +24,15 @@ export const SettingsContent =
 
     return (
       <AppContainerSafeArea>
-        <View
-          flex
-          backgroundColor={colorsLight.BACKGROUND_SCREEN_COLOR}
-          paddingH-20
-        >
-          <View paddingT-30 paddingB-48>
+        <View style={styles.container}>
+          <View style={styles.sectionBlock}>
             <Text style={styles.title}>General</Text>
             <TouchableOpacity
               onPress={() => navigate(S_SettingsStackRoutes.EDIT_PROFILE)}
             >
-              <View marginV-30 row style={styles.containerItems}>
+              <View
+                style={[styles.containerItems, styles.marginV30, styles.row]}
+              >
                 <Text style={styles.text}>User profile</Text>
                 <UserCircleGrayIcon />
               </View>
@@ -43,13 +40,13 @@ export const SettingsContent =
             <TouchableOpacity
               onPress={() => navigate(S_SettingsStackRoutes.NOTIFICATION)}
             >
-              <View row style={styles.containerItems}>
+              <View style={[styles.containerItems, styles.row]}>
                 <Text style={styles.text}>Notification</Text>
                 <BellIcon />
               </View>
             </TouchableOpacity>
           </View>
-          <View flex>
+          <View style={styles.flex}>
             <Text style={styles.title}>Information</Text>
             {/* <View marginT-30 row style={styles.containerItems}>
            <Text style={styles.text}>About</Text>
@@ -62,7 +59,14 @@ export const SettingsContent =
             <TouchableOpacity
               onPress={() => handleGoToDetailUrl(urlTermsOfService)}
             >
-              <View marginB-30 marginT-30 row style={styles.containerItems}>
+              <View
+                style={[
+                  styles.containerItems,
+                  styles.marginB30,
+                  styles.marginT30,
+                  styles.row,
+                ]}
+              >
                 <Text style={styles.text}>Terms of Service</Text>
                 <TermsIcon />
               </View>
@@ -70,7 +74,7 @@ export const SettingsContent =
             <TouchableOpacity
               onPress={() => handleGoToDetailUrl(urlPrivacyPolicy)}
             >
-              <View row style={styles.containerItems}>
+              <View style={[styles.containerItems, styles.row]}>
                 <Text style={styles.text}>Privacy Policy</Text>
                 <PrivacyIcon />
               </View>
@@ -90,6 +94,17 @@ export const SettingsContent =
   };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
+    paddingHorizontal: 20,
+  },
+  sectionBlock: { paddingTop: 30, paddingBottom: 48 },
+  row: { flexDirection: "row" },
+  marginV30: { marginVertical: 30 },
+  marginT30: { marginTop: 30 },
+  marginB30: { marginBottom: 30 },
+  flex: { flex: 1 },
   title: {
     fontSize: 16,
     color: colorsLight.SECONDARY_TEXT_COLOR,

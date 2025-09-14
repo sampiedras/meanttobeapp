@@ -1,10 +1,9 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@react-native-material/core";
 import { MotiView } from "moti";
 import { Skeleton } from "moti/skeleton";
 import FastImage from "react-native-fast-image";
-import { TouchableOpacity, View } from "react-native-ui-lib";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { AppContainerSafeArea } from "@/core/components";
 import { colorsLight } from "@/core/theme";
@@ -31,7 +30,7 @@ export const DetailSongContent =
             <Skeleton colorMode="light" width="90%" height={180} />
           </MotiView>
         ) : (
-          <View paddingH-16 marginT-20>
+          <View style={[styles.paddingH16, styles.marginT20]}>
             {!playing ? (
               <TouchableOpacity onPress={handlePress}>
                 <FastImage
@@ -55,7 +54,7 @@ export const DetailSongContent =
                 />
               </View>
             )}
-            <View center marginT-20>
+            <View style={[styles.center, styles.marginT20]}>
               <Text color={colorsLight.PRIMARY_TEXT_COLOR} style={styles.title}>
                 {data?.name}
               </Text>
@@ -74,6 +73,8 @@ export const DetailSongContent =
   };
 
 const styles = StyleSheet.create({
+  paddingH16: { paddingHorizontal: 16 },
+  marginT20: { marginTop: 20 },
   image: {
     borderRadius: 16,
     width: "100%",
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  center: { alignItems: "center" },
 });
 
 export const DetailSongScreen = (
