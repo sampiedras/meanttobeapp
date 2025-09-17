@@ -54,7 +54,7 @@ export const ExplorerContent =
     );
 
     return (
-      <AppContainerSafeArea style={styles.container}>
+      <AppContainerSafeArea edges={["bottom"]}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.containerScroll}

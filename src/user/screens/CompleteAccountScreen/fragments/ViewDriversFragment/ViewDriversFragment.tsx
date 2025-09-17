@@ -192,6 +192,14 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
+  rowCenterH: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  marginV16: {
+    marginVertical: 16,
+  },
   item: {
     paddingHorizontal: 16,
     paddingVertical: 12,

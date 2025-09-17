@@ -31,7 +31,7 @@ export const StoryContent =
     });
 
     return (
-      <AppContainerSafeArea>
+      <AppContainerSafeArea edges={["bottom"]}>
         <View style={[styles.container, styles.paddingH16]}>
           <ScrollView contentContainerStyle={styles.scroll}>
             <Text variant="h6" style={styles.title}>

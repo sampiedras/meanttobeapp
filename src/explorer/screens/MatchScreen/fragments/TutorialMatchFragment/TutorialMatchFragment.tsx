@@ -12,8 +12,8 @@ import {
   ViewStyle,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BlurView } from "@react-native-community/blur";
 import { Text } from "@react-native-material/core";
+import { BlurView } from "expo-blur";
 import * as Animatable from "react-native-animatable";
 import { useAppDispatch } from "@/core/hooks/useRedux";
 import { setShowTabBar } from "@/core/slices/tabBarSlice";
@@ -91,8 +91,9 @@ export const TutorialMatchFragment = () => {
       <View style={styles.container}>
         <BlurView
           style={styles.container}
-          blurType="regular"
-          reducedTransparencyFallbackColor="#AEB7B4"
+          intensity={80}
+          tint="dark"
+          experimentalBlurMethod="dimezisBlurView"
         />
         {!!tutorialInfo && (
           <Animatable.View style={styles.content}>

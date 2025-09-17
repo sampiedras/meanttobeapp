@@ -40,6 +40,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           "Meanttobe uses your device's location to help you find cashback offers near you.",
         NSLocationWhenInUseUsageDescription:
           "Meanttobe uses your device's location to help you find cashback offers near you.",
+        NSUserTrackingUsageDescription:
+          "Meanttobe uses your data (IDFA) to personalize recommendations and improve your experience.",
       },
       entitlements: {
         "aps-environment": "production",
@@ -63,6 +65,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         "android.permission.ACCESS_MEDIA_LOCATION",
         "android.permission.CAMERA",
         "android.permission.BILLING",
+        "android.permission.POST_NOTIFICATIONS",
       ],
     },
     web: {
@@ -70,6 +73,16 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     },
     plugins: [
       "@react-native-firebase/app",
+      [
+        "react-native-permissions",
+        {
+          iosPermissions: [
+            "AppTrackingTransparency",
+            "LocationWhenInUse",
+            "Notifications",
+          ],
+        },
+      ],
       [
         "expo-build-properties",
         {

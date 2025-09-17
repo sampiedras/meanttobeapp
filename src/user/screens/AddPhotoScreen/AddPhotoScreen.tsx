@@ -21,7 +21,7 @@ export const AddPhotoContent =
     } = useViewModelProvider();
 
     return (
-      <AppContainerSafeArea>
+      <AppContainerSafeArea edges={["bottom"]}>
         <ScrollView style={styles.container}>
           <View style={styles.flex1CenterH}>
             <Text variant="h6" style={styles.title}>

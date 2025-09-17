@@ -10,8 +10,8 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { BlurView } from "@react-native-community/blur";
 import { Text } from "@react-native-material/core";
+import { BlurView } from "expo-blur";
 import * as Animatable from "react-native-animatable";
 import { CircleButton } from "@/core/components";
 import { useAppDispatch } from "@/core/hooks/useRedux";
@@ -172,8 +172,9 @@ export const TutorialFragment = () => {
       <View style={styles.container}>
         <BlurView
           style={styles.container}
-          blurType="regular"
-          reducedTransparencyFallbackColor="#AEB7B4"
+          intensity={80}
+          tint="dark"
+          experimentalBlurMethod="dimezisBlurView"
         />
         {!!tutorialInfo && (
           <Animatable.View style={styles.content}>

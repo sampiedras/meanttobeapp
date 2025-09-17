@@ -144,7 +144,7 @@ export const CustomInputFragment = () => {
   }, []);
 
   const isDisabled =
-    !text.trim() && !imageUploads.length && !fileUploads.length;
+    !text?.trim() && !imageUploads?.length && !fileUploads?.length;
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>

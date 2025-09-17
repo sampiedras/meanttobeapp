@@ -48,7 +48,7 @@ export const QuestionsContent =
     );
 
     return (
-      <AppContainerSafeArea>
+      <AppContainerSafeArea edges={["bottom"]}>
         <View style={styles.container}>
           <View style={styles.boxContainer}>
             <Text variant="h6" style={styles.title}>

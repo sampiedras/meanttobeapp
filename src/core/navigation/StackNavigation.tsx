@@ -36,6 +36,7 @@ export function StackNavigation() {
     permissionNotificationLocal,
   } = usePermissions();
 
+  console.log('userProfileuserProfile', userProfile)
   const { renderAuthGroupScreens } = useAuthGroupScreens();
   const renderUserGroupScreens = useUserGroupScreens();
   const renderUserAuthGroupScreens = useUserAuthGroupScreens();

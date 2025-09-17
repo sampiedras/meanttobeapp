@@ -63,7 +63,7 @@ export const ChurchContent =
     );
 
     return (
-      <AppContainerSafeArea style={styles.container}>
+      <AppContainerSafeArea style={styles.container} edges={["bottom"]}>
         <View style={styles.container}>
           <View style={styles.boxContainer}>
             <Text variant="h6" style={styles.title}>
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    paddingTop: 12,
     backgroundColor: colorsLight.BACKGROUND_SCREEN_COLOR,
   },
   boxContainer: {
@@ -190,6 +189,7 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi-Black",
   },
   buttonFind: {
+    width: "100%",
     backgroundColor: colorsLight.BACKGROUND_TEXT_INPUT_COLOR,
     paddingHorizontal: 16,
     paddingVertical: 24,
@@ -228,6 +228,7 @@ const styles = StyleSheet.create({
   centerV: { alignItems: "center" },
   rowCenterV: { flexDirection: "row", alignItems: "center" },
   rowCenterVSpread: {
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

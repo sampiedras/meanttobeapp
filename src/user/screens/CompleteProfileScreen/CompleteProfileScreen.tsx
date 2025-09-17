@@ -21,7 +21,7 @@ export const CompleteProfileContent =
       useViewModelProvider();
 
     return (
-      <AppContainerSafeArea>
+      <AppContainerSafeArea edges={["bottom"]}>
         <View style={[styles.rowCenter, styles.paddingH10, styles.marginT8]}>
           <View style={[styles.flex, styles.centerH]}>
             <Text style={styles.textHeader}>

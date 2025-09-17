@@ -37,6 +37,8 @@ export const MatchContent =
     } = useViewModelProvider();
     const ref = useRef<SwiperCardRefType>();
 
+    console.log('****** * entro a match screen* * ******')
+
     const renderCard = useCallback((item: UserMatchType) => {
       return <RenderCardFragment item={item} />;
     }, []);

@@ -57,14 +57,11 @@ export const AppGradientButton = ({
           <ActivityIndicator color="white" size={24} />
         ) : (
           <View style={styles.contentRow}>
-            <View
-              style={[
-                styles.iconSlot,
-                iconLeft ? styles.iconLeftPadding : null,
-              ]}
-            >
-              {iconLeft}
-            </View>
+            {iconLeft && (
+              <View style={[styles.iconSlot, styles.iconLeftPadding]}>
+                {iconLeft}
+              </View>
+            )}
             <Text
               style={[styles.text, { fontSize }]}
               color={
@@ -73,14 +70,11 @@ export const AppGradientButton = ({
             >
               {label}
             </Text>
-            <View
-              style={[
-                styles.iconSlot,
-                iconRight ? styles.iconRightPadding : null,
-              ]}
-            >
-              {iconRight}
-            </View>
+            {iconRight && (
+              <View style={[styles.iconSlot, styles.iconRightPadding]}>
+                {iconRight}
+              </View>
+            )}
           </View>
         )}
       </LinearGradient>
@@ -91,6 +85,7 @@ export const AppGradientButton = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: 24,
+    paddingHorizontal: 16,
   },
   button: {
     flex: 1,
@@ -98,7 +93,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
   },
   contentRow: {
     flex: 1,

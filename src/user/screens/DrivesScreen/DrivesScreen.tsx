@@ -45,15 +45,15 @@ export const DrivesContent =
         {item.map((cell) => (
           <TouchableOpacity
             key={cell.id}
-            backgroundColor={
-              cell.selected ? colorsLight.PRIMARY_COLOR : colorsLight.WHITE
-            }
             style={[
               styles.item,
               {
                 borderColor: cell.selected
                   ? colorsLight.PRIMARY_COLOR
                   : colorsLight.GRAY_02,
+                backgroundColor: cell.selected
+                  ? colorsLight.PRIMARY_COLOR
+                  : colorsLight.WHITE,
               },
             ]}
             onPress={() => handleSelect(cell.id, section.title)}
@@ -88,14 +88,14 @@ export const DrivesContent =
         i += Math.floor(screenWidth / 110)
       ) {
         dataInRows.push(
-          section.data.slice(i, i + Math.floor(screenWidth / 110)),
+          section.data.slice(i, i + Math.floor(screenWidth / 110))
         );
       }
       return { ...section, data: dataInRows };
     });
 
     return (
-      <AppContainerSafeArea>
+      <AppContainerSafeArea edges={["bottom"]}>
         <View style={styles.container}>
           <Text variant="h6" style={styles.title}>
             What drives you?
@@ -154,11 +154,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 12,
     paddingHorizontal: 16,
   },
-  rowCenterH: { flexDirection: "row", justifyContent: "center" },
-  marginV16: { marginVertical: 16 },
+  rowCenterH: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  marginV16: {
+    marginVertical: 16,
+  },
   title: {
     color: colorsLight.PRIMARY_TEXT_COLOR,
     fontFamily: "Satoshi-Regular",
@@ -215,7 +219,7 @@ const styles = StyleSheet.create({
 });
 
 export const DrivesScreen = (
-  props: RootStackScreenProps<E_UserStackRoutes.DRIVES>,
+  props: RootStackScreenProps<E_UserStackRoutes.DRIVES>
 ) => (
   <ViewModelProvider>
     <DrivesContent {...props} />

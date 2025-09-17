@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ViewStyle,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Edge, SafeAreaView } from "react-native-safe-area-context";
 import { colorsLight } from "../../theme/colorsLight";
 
 interface Props {
@@ -15,6 +15,7 @@ interface Props {
   style?: StyleProp<ViewStyle> | undefined;
   avoidKeyboard?: boolean;
   isDark?: boolean;
+  edges?: Edge[];
 }
 
 export const AppContainerSafeArea = ({
@@ -23,6 +24,7 @@ export const AppContainerSafeArea = ({
   style,
   avoidKeyboard,
   isDark,
+  edges = ["top", "bottom"],
 }: Props) => {
   return (
     <SafeAreaView
@@ -34,6 +36,7 @@ export const AppContainerSafeArea = ({
             bgColor || isDark ? "black" : colorsLight.BACKGROUND_SCREEN_COLOR,
         },
       ]}
+      edges={edges}
     >
       {avoidKeyboard ? (
         <KeyboardAvoidingView

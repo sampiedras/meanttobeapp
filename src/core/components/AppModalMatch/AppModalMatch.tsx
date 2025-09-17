@@ -13,8 +13,8 @@ import {
   BottomSheetModal,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import { BlurView } from "@react-native-community/blur";
 import { useNavigation } from "@react-navigation/native";
+import { BlurView } from "expo-blur";
 import FastImage from "react-native-fast-image";
 import { E_ChatStackRoutes } from "@/chat";
 import { useAuthProvider } from "@/core/context/AuthContext";
@@ -73,8 +73,9 @@ export const AppModalMatch = () => {
         children={
           <BlurView
             style={StyleSheet.absoluteFill}
-            blurType="light"
-            blurAmount={1}
+            intensity={50}
+            tint="light"
+            experimentalBlurMethod="dimezisBlurView"
           />
         }
       />

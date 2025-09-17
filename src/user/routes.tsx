@@ -152,7 +152,15 @@ export const useUserAuthGroupScreens = () => {
             },
             // eslint-disable-next-line react/no-unstable-nested-components
             headerLeft: () => (
-              <TouchableOpacity onPress={navigation.goBack} row centerV>
+              <TouchableOpacity
+                onPress={navigation.goBack}
+                // eslint-disable-next-line react-native/no-inline-styles
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <ArrowBackIcon />
               </TouchableOpacity>
             ),

@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Alert, Platform, SafeAreaView, StyleSheet, View } from "react-native";
+import { Alert, Platform, StyleSheet, View } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import { Text } from "@react-native-material/core";
 import * as Sentry from "@sentry/react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   PermissionLocationIcon,
   PermissionNotificationIcon,
@@ -137,6 +138,7 @@ export const PermissionScreen =
                 style={styles.button}
                 onPress={async () => {
                   await handlePermissionLocation();
+                  await checkPermission();
                   setCurrentPermissionStep(5);
                 }}
               />

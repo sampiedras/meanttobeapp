@@ -126,13 +126,15 @@ export function ViewModelProvider({ children }: { children: ReactNode }) {
     latitude: string;
     longitude: string;
   }>({
-    latitude: userProfile?.location?.latitude.toString() || "",
-    longitude: userProfile?.location.longitude.toString() || "",
+    latitude: userProfile?.location?.latitude?.toString() || "",
+    longitude: userProfile?.location?.longitude?.toString() || "",
   });
   const [modalVisible, setModalVisible] = useState(false);
   const [indexUserSelected, setIndexUserSelected] = useState<number | null>(
     null,
   );
+
+  console.log('****** * entro a view model provider* * ******')
 
   const handleToggleModalFilters = useCallback(() => {
     setModalFilters(!modalFilters);
